@@ -1,0 +1,10 @@
+body {background: #f1f1f1;}
+.flexmenu-container {
+	margin-bottom: 20px;
+	}
+.star, .star_on {color:#ccc}
+.productsCarousel ul.tab-nav li.active a {background-color:#fff}
+.homemodule {margin-top: 90px;}
+.banners_carousel.homemodule {
+	margin-top: 40px;
+	}

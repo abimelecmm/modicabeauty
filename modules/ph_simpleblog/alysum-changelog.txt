@@ -1,0 +1,120 @@
+/controllers/admin/AdminSimpleBlogSettingsController.php
+COMMENTED LINES 170, 172
+
+ADDED CODE TO LINE 193:
+'full_medium' => $this->l('Full width with medium images'),
+'full_small' => $this->l('Full width with medium images'),
+
+
+############################################################################
+
+/ph_simpleblog.php
+
+CHANGED LINES 
+
+140 - value "339"
+142 - value "717"
+123 - value "left_sidebar"
+
+
+ADDED CODE:
+
+public function addRating($id_editposts) {
+    $sql = 'UPDATE `'._DB_PREFIX_.'simpleblog_post` SET `likes` = `likes` + 1 WHERE id_simpleblog_post = '.$id_editposts;
+    $result = Db::getInstance()->Execute($sql);
+    $sql = 'SELECT `likes` FROM `'._DB_PREFIX_.'simpleblog_post` WHERE id_simpleblog_post = '.$id_editposts;
+    $res = Db::getInstance()->ExecuteS($sql);
+    return $res;
+}
+
+public function removeRating($id_editposts) {
+    $sql = 'UPDATE `'._DB_PREFIX_.'simpleblog_post` SET `likes` = `likes` - 1 WHERE id_simpleblog_post = '.$id_editposts;
+    $result = Db::getInstance()->Execute($sql);
+    $sql = 'SELECT `likes` FROM `'._DB_PREFIX_.'simpleblog_post` WHERE id_simpleblog_post = '.$id_editposts;
+    $res = Db::getInstance()->ExecuteS($sql);
+    return $res;
+}
+
+############################################################################
+
+/controllers/front/list.php
+
+ADDED CODE TO LINE 86
+
+if($blogLayout == 'full_medium') {
+	$gridHtmlCols = 'ph_col_medium';
+}
+if($blogLayout == 'full_small') {
+	$gridHtmlCols = 'ph_col_small';
+}
+
+############################################################################
+
+/views/templates/front/list.tpl
+
+ADDED CODE:
+
+$(document).ready(function(){
+	$.each($(".post-container"), function( index, value ) {
+		  var pid = $(value).data("postid");
+		  if ($.cookie('guest_{$cookie->id_guest}_'+pid) == "voted") {
+			$(".likes_"+pid+" div").addClass("voted");
+		}
+	});	
+	//$(".blog-main-image").fancybox();
+	$('.blog-main-image').fancybox({
+	  padding: 0,
+	  width: 1000,
+	  helpers: {
+	    overlay: {
+	      locked: false
+	    }
+	  }
+	});
+});
+function addRating(item_id){	
+	if ($.cookie('guest_{$cookie->id_guest}_'+item_id) != "voted") {
+		$.cookie('guest_{$cookie->id_guest}_'+item_id, 'voted');
+		var request = $.ajax({
+		  type: "POST",
+		  url: baseDir+'modules/ph_simpleblog/ajax.php',
+		  data: { 
+		  	action:'addRating',
+			item_id : item_id 
+		  },
+		  success: function(result){             
+		    	var data = $.parseJSON(result);
+				if (data.status == 'success') {		
+					$(".likes_"+item_id+" div").text(data.message).addClass("voted");
+				} else {
+					alert(data.message);
+				}
+		    }
+		}); 		
+	} else {
+		$.cookie('guest_{$cookie->id_guest}_'+item_id, '');
+		var request = $.ajax({
+		  type: "POST",
+		  url: baseDir+'modules/ph_simpleblog/ajax.php',
+		  data: { 
+		  	action:'removeRating',
+			item_id : item_id 
+			},
+		  success: function(result){             
+		    	var data = $.parseJSON(result);
+				if (data.status == 'success') {		
+					$(".likes_"+item_id+" div").text(data.message).removeClass("voted");
+				} else {
+					alert(data.message);
+				}
+		    }
+		});
+	}
+	return false;
+}
+
+############################################################################
+
+ADDED FILE ajax.php
+
+############################################################################

@@ -1,0 +1,87 @@
+body.preset2,
+body.preset2:before {
+  border-top:1px solid rgba(0,0,0,0.2);
+  }
+.preset2 .banners_carousel {margin-top: 30px;}
+body.preset2:before {
+  content: "";
+  position: absolute;
+  top:36px;
+  left:0;
+  height: 1px;
+  width:100%;
+}
+body.preset2,
+#footer {
+  background-color: #5c5c5c
+}
+#pk_customlinks li a,
+#header_user li a,
+#currencyHolder > span,
+.preset2 .selected_language * {
+  color: #eaeaea;
+}
+#pk_customlinks > ul {
+  border-right:1px solid rgba(0,0,0,0.2);
+  }
+#pk_customlinks > ul > li {  
+  border-left:1px solid rgba(0,0,0,0.2);
+  margin: 0;
+  padding: 0 20px;
+}
+#pk_customlinks .svgic {
+  display: inline-block;
+  }
+#pk_customlinks a:hover .svgic {
+  color:#fff
+}
+#currencyHolder {
+  border-left:1px solid rgba(0,0,0,0.2);
+  border-right:1px solid rgba(0,0,0,0.2);
+}
+#currencyHolder > span {
+  padding: 0 15px 0 20px;
+  }
+#languages_block_top {
+  margin: 0;
+}
+#currencies_block_top li {
+  padding-left: 20px;
+  border:none;
+  border-bottom:1px solid #cecaca;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  }
+ul#first-languages li img {
+  margin-left: 20px;
+  }
+#countries .selected_language img {
+  margin-left: 0;
+  }
+.selected_language .svgic {
+  margin-right: 0;
+  }
+#languages_block_top .selected_language {
+  margin: 0;
+  padding: 0 15px 0 20px;
+  border-right:1px solid rgba(0,0,0,0.2); 
+}
+#countries .selected_language a {
+  color:#eaeaea
+  }
+body .flexmenu > ul > li a { 
+  color:#595959}
+.flexmenu { 
+  background: url(data:image/gif;base64,R0lGODlhAQAIAPECALCwsFJSUv///wAAACH5BAUAAAIALAAAAAABAAgAQAIDjHVQADs=) repeat-x 0 100%;
+}
+body .products-module .function_button a {
+  background-color: #6d6d6d;
+  }
+#footer .block .block_content ul li, #footer .block .block_content ul li a {color:#efefef}
+#header_user_info .svgic-login,
+#currencies_block_top .svgic-money {display: inline-block;}
+#header_user {float: right;}
+.flexmenu_ul > li:nth-child(2) a {padding-left: 0;}
+.currency-sign {display: inline-block; vertical-align: top; width:22px; height: 13px; text-align: center; margin: 7px 8px 0 0;}
+.currencyHolder .dd_container li:hover .currency-sign.main_bg {background-color: #FFF !important}
+body #white_bg .currency-sign span {display: inline-block; vertical-align: top; margin-top: 1px; background-color: #FFF; border-radius:50%; text-align: center; width: 10px; height: 10px; line-height: 10px; font-size: 9px;}

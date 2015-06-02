@@ -1,0 +1,89 @@
+/* BLOCK #reinsurance_block ******************************************************************** */
+#pk_features {
+	overflow: hidden;
+	position: relative;
+	margin-bottom: 80px;
+	background-image: url(../img/features-bg.jpg);
+	background-attachment: fixed;
+	background-position: 50% 0;
+	background-repeat: no-repeat;
+	height: 500px;
+}
+#pk_features .page_width {
+	padding-top: 70px;
+}
+#pk_features h4 {
+	font-size: 30px;
+	line-height: 30px;
+	color: #FFF;
+	text-transform: uppercase;
+	padding-bottom: 45px;
+	text-align: center;
+}
+#pk_features ul {
+	width: 100%;
+	position: relative;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	}
+#pk_features li {
+	width:23%;
+	float: left;
+	margin-left: 2.66%;
+	font-size:13px;
+	color:#333;
+	background-color: #474747;
+}
+#pk_features li:first-child {
+	margin-left: 0;
+	}
+#pk_features .pkf-indent {
+	padding: 20px 20px 30px;
+	text-align: center
+	}
+#pk_features .img-wrapper {
+	width: 90px;
+	height: 90px;
+	margin: 0 auto;
+	border-radius:50%;
+	line-height: 90px;
+	margin-bottom: 20px;
+	position: relative
+	}
+#pk_features li img {
+	display: block;
+	max-width:70px;
+	max-height: 70px;
+	position: absolute;
+	margin:auto;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+}
+#pk_features li h5 {
+	color:#fff;
+	margin: 0 0 10px;
+	font-size: 16px;
+	line-height: 20px;
+}
+#pk_features li span {
+	font:normal 13px/20px Georgia;
+	color:#fff;
+	display: block;
+}
+#white_bg #pk_features li .button {
+	display: inline-block;
+	margin-top: 15px;
+	background:none;
+	color:#febe3a;
+	box-shadow:
+    	0 0 0 1px #febe3a,
+    	0 0 0 2px #febe3a;
+    	padding: 7px 15px;
+	}
+#white_bg #pk_features li .button:hover {
+	background-color: #febe3a;
+	color:#fff
+}

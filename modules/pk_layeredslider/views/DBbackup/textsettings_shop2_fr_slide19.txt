@@ -1,0 +1,1 @@
+before[duration:0,rotation:0,top:17,left:65,opacity:0]in[duration:0,rotation:0,top:17,left:65,opacity:1]after[duration:0,rotation:0,top:17,left:65,opacity:0]

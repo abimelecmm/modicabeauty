@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+	<name>pk_videobg</name>
+	<displayName><![CDATA[Advertising Block with video background]]></displayName>
+	<version><![CDATA[1.0]]></version>
+	<description><![CDATA[Allows you to add advertising with video background.]]></description>
+	<author><![CDATA[promokit.eu]]></author>
+	<tab><![CDATA[front_office_features]]></tab>
+	<is_configurable>1</is_configurable>
+	<need_instance>1</need_instance>
+	<limited_countries></limited_countries>
+</module>

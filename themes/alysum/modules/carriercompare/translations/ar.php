@@ -1,0 +1,35 @@
+<?php
+
+global $_MODULE;
+$_MODULE = array();
+$_MODULE['<{carriercompare}alysum>carriercompare_c65b3289df9c2c54a493dcd271d24df0'] = '';
+$_MODULE['<{carriercompare}alysum>carriercompare_369f88ec14d06a2166f5fcd4e7c919f1'] = '';
+$_MODULE['<{carriercompare}alysum>carriercompare_f4f70727dc34561dfde1a3c529b6205c'] = 'الإعدادات';
+$_MODULE['<{carriercompare}alysum>carriercompare_57d1936edb715b45f971985f444bf98b'] = '';
+$_MODULE['<{carriercompare}alysum>carriercompare_3a7c4c163e83b13d64278a5d4dfb71b3'] = '';
+$_MODULE['<{carriercompare}alysum>carriercompare_faf5148e1ec87fc7d6acc89a81168831'] = '';
+$_MODULE['<{carriercompare}alysum>carriercompare_c41e98315a4764541547a1a16786732d'] = '';
+$_MODULE['<{carriercompare}alysum>carriercompare_c9cc8cce247e49bae79f15173ce97354'] = 'حفظ';
+$_MODULE['<{carriercompare}alysum>carriercompare_2833e625c13a70c7b84ad98c97976c9d'] = '';
+$_MODULE['<{carriercompare}alysum>carriercompare_b49f15ff6f8530a76ed954676abbc4d6'] = '';
+$_MODULE['<{carriercompare}alysum>carriercompare_ed22df3e47c667a95dd43e59f2f38522'] = '';
+$_MODULE['<{carriercompare}alysum>carriercompare_e7a6ca4e744870d455a57b644f696457'] = '!مجاناً';
+$_MODULE['<{carriercompare}alysum>carriercompare_533bf2149f935df1f934e5ee55f68d20'] = 'توقع تكلفة الشحن والضريبة';
+$_MODULE['<{carriercompare}alysum>carriercompare_59716c97497eb9694541f7c3d37b1a4d'] = 'الدولة';
+$_MODULE['<{carriercompare}alysum>carriercompare_46a2a41cc6e552044816a2d04634545d'] = 'المنطقة';
+$_MODULE['<{carriercompare}alysum>carriercompare_5e178542b85fb18ca3c459e9a95f4f2e'] = 'الرمز البريدي';
+$_MODULE['<{carriercompare}alysum>carriercompare_9207f4078f515ecc8256bae33fa1f497'] = '';
+$_MODULE['<{carriercompare}alysum>carriercompare_914419aa32f04011357d3b604a86d7eb'] = 'جهة الشحن';
+$_MODULE['<{carriercompare}alysum>carriercompare_a82be0f551b8708bc08eb33cd9ded0cf'] = 'روابط ذات صلة';
+$_MODULE['<{carriercompare}alysum>carriercompare_3601146c4e948c32b6424d2c0a7f0118'] = 'السعر';
+$_MODULE['<{carriercompare}alysum>carriercompare_568ee69520d3299f2f0ea64d501b6f50'] = 'لا يوجد جهة شحن متاحة لما تم تحديده.';
+$_MODULE['<{carriercompare}alysum>carriercompare_1de0f9fcbe30b056483fe964aed55adc'] = '';
+$_MODULE['<{carriercompare}alysum>carriercompare_a305b69f91e8c50117cc540114b9ba06'] = '';
+$_MODULE['<{carriercompare}alysum>configuration_a2d3779b2b18f09740a46050388e08f0'] = '';
+$_MODULE['<{carriercompare}alysum>configuration_20015706a8cbd457cbb6ea3e7d5dc9b3'] = 'تم تعديل الاعدادات بنحاج';
+$_MODULE['<{carriercompare}alysum>configuration_99e09df7d3344d2d04153f297163affa'] = '';
+$_MODULE['<{carriercompare}alysum>configuration_6408d076fa6417e7bc8ddc3cdf9a0644'] = '';
+$_MODULE['<{carriercompare}alysum>configuration_4c1f76824b0d7333652d5f64a3e07ef5'] = '';
+$_MODULE['<{carriercompare}alysum>configuration_31efb362f3723b55bfa28f3551a672f7'] = '';
+$_MODULE['<{carriercompare}alysum>configuration_9c7cc22fb61d22cf2560f172ea85ab7b'] = '';
+$_MODULE['<{carriercompare}alysum>configuration_a4d3b161ce1309df1c4e25df28694b7b'] = 'إعتماد';

@@ -1,0 +1,69 @@
+.pk_popup {display: none;}
+.pkpopup .fancybox-skin .fancybox-close-overlay {
+	top:9px; 
+	right:9px;
+	width: 23px;
+	height: 23px; 
+	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAXCAQAAABKIxwrAAAAsUlEQVR4AeXRMQ4BURCH8dlEhOUAOIJCoxAStGqH+GrHEBGFiMMohHWIdQKVBGHrkbxikpfsXID52t+/GvnTI6WPRDXpIliCRZUDBdMIX7jTK+fCEqVgYjhDyWl5XFihfBjH2OfCGuXNLMY+FzYoWoId3uAW+BzxuWEylAfKi5HLDZ9RcjpsUZ4MXW74ShshYRcGA49XOBmWMNiHgfumhWEbcCT1uFBHohJqiMOdfoR/ASZV1wrAJFIRAAAAAElFTkSuQmCC) no-repeat 0 0; 
+	z-index:8
+}
+.pkpopup .fancybox-skin .fancybox-close-overlay:hover {
+	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAXCAYAAADgKtSgAAABaUlEQVR4Ae3VXUvCUByAcb9uF3URSL5uzmWYL3VbnLSsBkXqmWZuGlRXfYGu8sJpE3LNtAmtLuZZO7OBhImnFnThgQPCgd8D/3NwHv/y0m5gdcX1jV0P/hH0e13f2CXGF3iGCvngTMDnzYYCa2ekOKhUyoNOR0YxlhG+g2uiMGw07kcMHSzOjUeoAOh2H19Na40DEeErLIrVIT43DMPkjnM1orEk4rEDRenqdkCW0XqUrk6DYTF/9aMLTW7Gcoqi2AFZfkAsQ9dnw4SvJZXYwIE3DA76fdOBeZi/duMp4gCnaRoyP1e5BO/ceucZURiPwlmtloTYKH3xWxzDmjOKy7p4q6pP73ZAwgGqQo5PgXlYsGecTsYPe6pqBySpiaJM+JwUB5NwiS/cTJ5vpaxArzcONK1AJATnxumwH7Tb7ZdpsLO304mjZyug6/poD+wUicbCMlTm9ISbeWk4sJ8FcPF//o/wv/z6fwCqU5AtIIx1HQAAAABJRU5ErkJggg==) no-repeat 0 0; 
+	}
+.pkpopup .fancybox-skin .fancybox-close {background: transparent;}
+#newsletter_block_popup {
+	position: absolute;
+	bottom:60px;
+	right:40px;
+	width:40%;
+	margin: 0;
+}
+.pkpopup .inputNew {
+	width: 224px; 
+	height: 25px; 
+	background-color: rgba(255,255,255,0.7); 
+	border:1px solid rgba(0,0,0,0.2); 
+	padding: 10px 10px 10px 20px;
+	color:#686763;
+	font:normal 15px Georgia;
+	line-height: 25px;
+}
+.popup_text {
+	color:#666;
+	text-align: center;
+	padding-bottom: 20px;
+	}
+.button_unique {
+	border:1px solid rgba(0,0,0,0.2); 
+	background-color: #fff;
+	text-align: center;
+	width: 45px;
+	height: 45px;
+	cursor: pointer;
+	border-left:none;
+}
+.button_unique:hover {
+	background-color: #e17365
+}
+.button_unique:hover .svgic {
+	color:#fff;
+	}
+.send-response {
+	text-align: center;
+	font: bold 14px Gudea;
+	color:#990000;
+	padding-bottom: 5px;
+}
+.fancybox-close-overlay {
+	width: 28px;
+	height: 28px;
+	position: absolute;
+	cursor: pointer;
+	top:5px;
+	right:5px;
+	z-index:9;
+}
+.button_unique .svgic {
+	color:#a7a6a0;
+	margin-top: 12px;
+}

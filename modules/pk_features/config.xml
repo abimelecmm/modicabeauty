@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+	<name>pk_features</name>
+	<displayName><![CDATA[Blocks of features]]></displayName>
+	<version><![CDATA[2.2]]></version>
+	<description><![CDATA[Show features of your shop to your customers.]]></description>
+	<author><![CDATA[promokit.eu]]></author>
+	<tab><![CDATA[front_office_features]]></tab>
+	<is_configurable>1</is_configurable>
+	<need_instance>1</need_instance>
+	<limited_countries></limited_countries>
+</module>

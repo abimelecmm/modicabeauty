@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Bericht van {shop_name}</title>
+</head>
+<body>
+<table border="0" cellspacing="0" cellpadding="0" style="background:#f9f9f9; width:100%">
+  <tbody>
+    <tr style="background:#000000">
+      <td style="width:25%">&nbsp;</td>
+      <td style="width:50%">
+          <table style="width: 650px; height:25px" border="0" cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr>
+                  <td style="width:80%; color:#5f5d5a;"><a href="{shop_url}" style="color:#7a7874; text-decoration:none; font-family:Verdana, Geneva, sans-serif; font-size:12px">Home</a><span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</span><a style="color:#7a7874; text-decoration:none; font-family:Verdana, Geneva, sans-serif; font-size:12px" href="{my_account_url}">Mijn Account</a><span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</span><a style="color:#7a7874; text-decoration:none; font-family:Verdana, Geneva, sans-serif; font-size:12px" href="{shop_url}?fc=module&module=blockwishlist&controller=mywishlist">Mijn Wishlist</a></td>
+                  <td style="width:20%; height:25px" align="right"><a href="{shop_url}?controller=order-opc" style="color:#7a7874; text-decoration:none; font-family:Verdana, Geneva, sans-serif; font-size:12px">Mijn Winkelwagen</a></td>
+                </tr>
+              </tbody>
+          </table>
+      </td>
+      <td style="width:25%">&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+      	<table style="font-family: Verdana,sans-serif; font-size: 11px; color: #374953; width: 650px;" border="0" cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td style="padding-top: 45px; padding-bottom: 45px; border-bottom: 5px solid #000000;" align="center"><a title="{shop_name}" href="{shop_url}"><img style="border: none;" src="{shop_logo}" alt="{shop_name}" /></a></td>
+            </tr>
+            <tr>
+              <td style="line-height: 2px; font-size: 2px; border-bottom: 1px solid #8a8a8c;">&nbsp;</td>
+            </tr>
+            <tr>
+              <td align="center" style="padding-top:40px"><strong style="color:#6c6b68; font-size:30px; font-family:Georgia; text-transform:uppercase; line-height:45px">Hallo</strong><br />
+                <span style="color:#6c6b68; font-family:Georgia; font-size: 55px">{firstname} {lastname}</span>,</td>
+            </tr>
+            <tr>
+              <td style="font-size: 18px; font-style:italic; font-family:Georgia; color:#c5988b; padding:20px 0" align="center">Retour #{id_order_return} - update</td>
+            </tr>
+            <tr>
+              <td style="text-align: center; border-bottom:1px solid #8a8a8c; padding-bottom:45px"><span  style="color:#74726e; font-family:Georgia; font-size:28px">We hebben een update ivm uw retour #{id_order_return}, de nieuwe status is: "{state_order_return}"</span></td>
+            </tr>
+            <tr>
+              <td style="line-height: 2px; font-size: 2px; border-bottom: 5px solid #000;">&nbsp;</td>
+            </tr>
+            <tr>
+              <td style="line-height: 30px; height:30px">&nbsp;</td>
+            </tr>            
+            <tr>
+              <td style="padding:20px; border:1px solid #e0e0e0; background: #ffffff"><table border="0" cellspacing="0" cellpadding="0" width="100%">
+                  <tr>
+                    <td valign="top" style="color:#757575; font-family:Verdana, Geneva, sans-serif; font-size:13px; padding-right:20px">YU kunt uw order bekijken en uw factuur downloaden vanuit het <a style="color: #c5988b; text-decoration: none;" href="{history_url}">"Order geschiedenis"</a> gedeelte van uw klant account door te klikken op <a style="color: #c5988b; text-decoration: none;" href="{my_account_url}">"Mijn account"</a> in onze shop.</td>
+                    {adv_img}
+                  </tr>
+                </table></td>
+            </tr>
+            <tr>
+              <td style="height:60px">&nbsp;</td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr style="background:#000000">
+      <td>&nbsp;</td>
+      <td style="padding-top:20px">
+      	<table style="width: 650px; color:#888888" border="0" cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td valign="top" style="padding-bottom:20px; width:29%"><div style="padding-right:30px">
+                  <h4 style="margin:0 0 20px 0; color:#888888; text-transform:uppercase; font-size:15px; font-family:Georgia">Contact Info</h4>
+                  <p style="line-height:29px; color:#505050; font-size:13px">{email_addr}</p>
+                </div></td>
+              <td valign="top" style="padding-bottom:20px; width:32%"><div style="padding-right:30px">
+                  <h4 style="margin:0 0 20px 0; color:#888888; text-transform:uppercase; font-size:15px; font-family:Georgia">Volg ons</h4>
+                  {social_networks}
+                </div></td>
+              <td style="width:39%" valign="top">
+	              {adv_img}
+              </td>
+            </tr>
+            <tr>
+              <td colspan="3" style="font-size: 12px; height:50px; line-height:50px; border-top:1px solid #1e1e1e; color:#505050; font-family:Verdana, Geneva, sans-serif" align="left"><a style="color:#505050; text-decoration: none;" href="{shop_url}">{shop_name}</a> powered by <a style="text-decoration: none; color:#505050;" href="http://www.prestashop.com/">PrestaShop&trade;</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+      <td>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>

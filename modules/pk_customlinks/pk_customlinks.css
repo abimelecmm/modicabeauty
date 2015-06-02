@@ -1,0 +1,128 @@
+#pk_customlinks {
+	float: left;
+	}
+#pk_customlinks ul {
+	list-style: none;
+}
+#pk_customlinks li {
+	position: relative; 
+	padding: 0 10px; 
+	margin-right: 15px;
+}
+#pk_customlinks li a {
+	color:#999; 
+	font-family: Verdana; 
+	line-height: 36px;
+	font-size: 13px;
+}
+#pk_customlinks .pk_account li a {line-height: 18px }
+#pk_customlinks li:hover a {
+	color: #FFF
+}
+#pk_customlinks li a:hover {
+	text-decoration: none; 
+	color:#bbb
+}
+#pk_customlinks .dd_container {
+	display: none;
+	position: absolute;
+	top:36px;
+	left:0;	
+	border:none;
+	width:250px;
+	text-align:left;
+	z-index:9999;
+}
+#pk_customlinks > ul > li:hover * {
+	color: #FFF;
+}
+#pk_customlinks > ul > li > a:hover {
+	color:#fff !important
+}
+#pk_customlinks li .indent {
+	padding:10px; 
+	color:#fff
+}
+#pk_customlinks li ul {
+	list-style-type: none;
+	margin: 0;
+}
+#pk_customlinks li span {
+	line-height: 20px;
+	display: inline-block;
+	margin-bottom: 5px;
+	}
+#pk_customlinks li a span {
+	line-height: 14px;
+	margin: 0;
+}
+#pk_customlinks li ul li,
+#pk_customlinks li dl dt {
+	width:auto;
+	display: block;
+	padding: 5px 0;
+	margin: 5px 0 0 0 !important;
+	float: none;
+	overflow: hidden;
+	position: relative;
+}
+#pk_customlinks li ul li:first-child,
+#pk_customlinks li dl dt:first-child {
+	margin:0
+}
+#pk_customlinks .content_img img {
+	width:63px;
+	height: auto;
+	float:left
+}
+#pk_customlinks .text_desc {
+	float:left;
+	width:140px;
+	margin-left:10px
+	}
+#pk_customlinks .text_desc a, #pk_customlinks .favoritelist a {
+	display: block;
+	color:#fff;
+	font-size: 11px;
+	line-height: 14px;
+}
+#pk_customlinks .text_desc a:hover, #pk_customlinks .favoritelist a:hover {
+	color:#eee
+	}
+#pk_customlinks .text_desc .price {
+	color:#fff; 
+	font-size:14px; 
+	line-height: 18px
+}
+#pk_customlinks .remove, 
+#pk_customlinks .ajax_cart_block_remove_link {
+	position: absolute;
+	top:-20px;
+	right: -20px;
+}
+#pk_customlinks li ul li:hover .remove,
+#pk_customlinks li ul li:hover .ajax_cart_block_remove_link,
+#pk_customlinks li dl dt:hover .ajax_cart_block_remove_link {
+	top:0;
+	right:0
+	}
+#pk_wishlist .text_desc a, 
+#pk_wishlist .text_desc span {
+	display: inline;
+}
+li.no-products, 
+dt.no-products {
+	font-style: italic; 
+	line-height: 20px !important;
+	margin: 0;
+}
+li.pk_wishlist {
+	margin: 0
+}
+#pk_customlinks .svgic {
+	display: none;
+	margin-right: 7px;
+	width:15px;
+	height: 15px;
+	margin-top: 10px;
+}

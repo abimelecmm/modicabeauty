@@ -1,0 +1,208 @@
+* {
+  direction: rtl !important; }
+
+#page {
+  text-align: right !important; }
+.bx-viewport,
+.cameraSlide,
+.nbs-flexisel-inner, .tab-slider {
+  direction: ltr !important;}
+
+#currencies_block_top,
+#languages_block_top,
+#payment-icons li,
+#newsletter_block_ext .minibutton,
+#index #center_column.column_exist, #center_column,
+.right_col #left_column,
+#product_comment,
+.productInfo .reduction {
+  float: left;
+  }
+#pk_customlinks,
+.right_col #center_column,
+#links_block_left,
+#left_column,
+#pb-left-column h1,
+.content_prices #add_to_cart,
+.our_price_display,
+#attributes .attribute_fieldset,
+.box-cart-bottom .buttons_bottom_block, .box-cart-bottom .addthis_toolbox,
+.product-info,
+.product_list > li .right_block,
+#pk_customlinks .content_img,
+.cart_block .cart-images,
+.cart_block #cart-prices,
+.cart_block #cart-buttons,
+#cart-prices > div > span,
+.productInfo .manufacturer_name,
+.productInfo .button,
+.flexmenu > ul > li {
+  float: right;
+  }
+#pk_customlinks .dd_container,
+.productInfo .name {
+  text-align: right;
+  }
+.footer_bottom_hook > div {
+  text-align: left;
+  }
+#header_user {
+  margin-left: 0;
+  margin-right: 15px;
+  }
+#pk_customlinks li {
+  margin-left: 15px;
+  margin-right: 0;
+  }
+#search_block_top,
+#search_block_top .searchbutton,
+.facebook-box .likeButton,
+.product-flags,
+.cart_block .cart_block_list .remove_link {
+  right: auto;
+  left:0;
+  }
+#shopping_cart,
+#pk_customlinks .dd_container,
+#twitter-feed .svgic.svgic-twitter {
+  left:auto;
+  right:0;
+  }
+#payment-icons li {
+  margin-left: 10px;
+  margin-right: 0;
+  }
+#footer .block .block_content ul li {
+  padding: 11px 10px 11px 0;
+  }
+#footer #twitter-feed ul li {
+  padding: 0 28px 25px 0;
+}
+#newsletter_block_ext .col {
+  margin-left: 30px;
+  margin-right: 0;
+}
+#newsletter_block_ext .col.promo {
+ margin-left: 0;
+}
+#left_column .product_images .product_image {
+  float: right;
+  margin: 0 0 10px 20px;
+  }
+#pb-right-column {
+  margin-right: 0;
+  margin-left: 45px;
+  float: right;
+}
+#pb-left-column {
+  margin-right: 0;
+  float: right;
+  }
+#availability_label, #product_reference label, .product-manufacturer .value_name {
+  float: right;
+  margin-left: 10px;
+  }
+.our_price_display {
+  margin-right: 0;
+  margin-left: 15px;
+}
+.attribute_list {
+  margin-right: 0;
+  margin-left: 15px;
+  }
+.views {
+  margin-left: 0;
+  margin-right: 15px;
+  }
+.views span {
+  padding-left: 15px;
+  }
+.grid_title {
+  padding-right: 0;
+  padding-left: 10px;
+  }
+.product_list > li .right_block {
+  float: left;
+  text-align: left;
+  }
+.view_list .product_list .product-image-container {
+  float: right;
+  margin: 0 0 0 33px;
+  }
+.product_list .left_block {
+  left: auto;
+  right:5px;
+}
+#pk_customlinks .text_desc {
+  margin-left: 0;
+  margin-right: 15px;    
+}
+#header .cart_block {
+  left:auto;
+  right:-1px;
+  }
+.cart_block .cart-images{
+  margin-right: 0;
+  margin-left: 20px;
+}
+#cart-prices > div > span {
+  margin-left: 10px;
+  }
+body #layered_block_left span.layered_subtitle {padding-right: 10px;}
+.layered_price .layered_slider_container {margin-right: 15px;}
+table#cart_summary .last_item, table#cart_summary .cart_delete, .price_discount_del {
+  border-right:none !important;
+  border-left:1px solid #e5e5e5 !important
+  }
+body .flexmenu_ul > li:nth-child(2) a {
+  padding-left: 25px;
+  padding-right: 0;
+  }
+#pk_customlinks .svgic {
+  margin-right: 0;
+  margin-left: 7px;
+  }
+#countries .selected_language img {
+  margin:13px 10px 0 5px
+  }
+.quick-contact input:not(.button), .quick-contact textarea {
+  padding: 5px 15px 5px 0px;
+  }
+.v-flexmenuitem a.opener {
+  right:auto;
+  left:0;
+  }
+.v-flexmenuitem > a > img {
+  margin-right: 0;
+  margin-left: 5px;
+  }
+.v-flexmenuitem:hover a.opener {
+  -ms-transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+  }
+.left_col .vert-flexmenu > ul > li div.submenu {
+  left: auto;
+right: 100%;
+  }
+.vert-flexmenu .flexisel-nav-wrapper {
+  right: auto;
+  left:20px;
+  }
+.vert-flexmenu .right-section {
+  position: relative;
+  }
+.preset4 #shopping_cart {
+  left:0;
+  right:auto;
+  }
+.preset4 #search_block_top {
+  left:180px;
+  }
+.preset4 .c_block {
+  right:auto;
+  left:440px;
+  }
+#currencies_block_top {
+  margin: 0 30px 0 0;
+  }

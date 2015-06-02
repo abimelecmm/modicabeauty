@@ -1,0 +1,14 @@
+#special_block_right span.reduction {
+	font-size:12px;
+	color:#fff;
+	top:-8px;
+	position: relative;
+	background-color: #8a0000;
+	padding: 1px 3px;
+	line-height: 10px;
+}
+
+.price-discount.price {
+	color:#ccc;
+	text-decoration: line-through;
+	}

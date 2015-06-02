@@ -1,0 +1,89 @@
+table#product_comparison {
+	width:100%;
+	border-right:1px solid #ccc;
+	border-bottom:1px solid #ccc;
+}
+#product_comparison tr.comparison_header {font-weight:bold}
+#product_comparison td {
+	padding:10px 10px 20px 10px;
+	border-top:1px solid #ccc;
+	border-left:1px solid #ccc;
+	vertical-align:top
+}
+#product_comparison td.td_empty{
+	background:#fff;
+}
+#product_comparison tr.comparison_header,
+#product_comparison td.comparison_feature_even {}
+
+#product_comparison .product_image {
+	display:block;
+	text-align:center
+}
+#product_comparison .product_image img {border:1px solid #ccc}
+#product_comparison h5 {
+	margin: 0;
+}
+#product_comparison .product_desc {
+	padding-bottom:5px;
+	height:40px;
+	color:#666
+}
+#product_comparison .lnk_more {
+	display:block;
+	margin-bottom:10px;
+	padding-left:10px;
+	color:#0088cc;
+	background:url(../../img/arrow_right_1.png) no-repeat 0 4px transparent;
+}
+
+.prices_container {height:50px}
+.price_container {padding-bottom:10px}
+#product_comparison .price {
+	font-size: 24px;
+	text-shadow: none !important;
+	font-weight: normal;
+}
+.discount {
+   display:inline-block;
+   padding:1px 5px;
+   font-size:10px;
+   font-weight:bold;
+   color:#fff;
+   text-transform:uppercase;
+	background:#9B0000
+}
+
+.comparison_availability_statut {display:none}
+
+#product_comparison .posrel a img {width: 100%; height: auto;}
+#product_comparison .product_desc {display: none;}
+
+#product_comparison .product_image img {border:none; display: block;}
+#product_comparison td {
+	text-align:center;
+	background:#fff;
+	position:relative;
+	border-top: 1px solid #e5e5e5;
+	border-left: 1px solid #e5e5e5;
+	border-right: 1px solid #e5e5e5;
+	padding-top:12px !important;
+	}
+.cmp_remove {
+	background:url("../images/remove_item.png") no-repeat 0 -20px;
+	position:absolute;
+	top:0px;
+	right:0px;
+	text-indent:9999px;
+	margin:0;
+	padding:0 !important;
+	width:20px;
+	height:20px;
+	opacity:0.8;
+}
+.prices-container {height: auto; line-height: 35px;}
+.product-name {font: normal 14px/18px Georgia; display: inline-block; padding: 10px 0;}
+.comparison_product_infos {clear:both; overflow: hidden;}
+.button-container {line-height: 35px;}
+.old-price {text-decoration: line-through; font-size: 22px; color:#bbb}
+#products-comparison #center_column {width: 100%;}

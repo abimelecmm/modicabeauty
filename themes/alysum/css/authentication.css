@@ -1,0 +1,107 @@
+/* create account ****************************************************************************** */
+#account-creation_form {}
+
+	#account-creation_form  fieldset {
+		padding:0 0 15px 0;
+		border:1px solid #ccc;
+		background:#f8f8f8
+	}
+		#account-creation_form  h3 {
+			margin:0 0 15px 0;
+			padding:8px;
+			font-size:14px;
+			color:#fff;
+			text-transform:uppercase;
+			background:url(../img/bg_form_h3.png) repeat-x 0 0 #989898
+		}
+		#center_column #account-creation_form p {margin:0; padding:0 0 10px 0}
+		#account-creation_form p.required {color:#222}
+		#account-creation_form p.required  sup {color:#990000}
+		.form-group {
+			clear: both;
+			margin-bottom: 15px;
+			}
+		#account-creation_form .submit {
+			padding: 10px 0 0 260px;
+			}
+		#account-creation_form label {
+			display:inline-block;
+			padding:6px 15px;
+			width:230px;/* 260 */
+			font-size:14px;
+			text-align:right
+		}
+		#account-creation_form .checkbox {
+			margin: 0 0 10px 260px;
+			overflow: hidden;
+			}
+		#account-creation_form .checkbox label {
+			display:inline-block;
+			padding:0;
+			width:auto;/* 260 */
+			font-size:14px;
+			text-align:left
+		}
+		#account-creation_form .radio-inline {padding: 5px 0;}
+		#account-creation_form p.radio label {
+			float:none;
+			padding-right:10px;
+			width:auto;
+			font-size:14px
+		}
+		#account-creation_form p.checkbox label {
+			float:none;
+			width:auto;
+			font-size:12px
+		}
+		.form-group input{
+			padding:0 5px;
+			height:29px;
+			line-height: 27px;
+			width:360px;/* 370 */
+			border:1px solid #ccc;
+			font-size: 12px;
+			color:#666
+		}
+		p.checkbox input {
+			margin-left:260px;
+		}
+		p.select select {
+			margin-right:10px;
+			border:1px solid #ccc;
+			font-size: 12px;
+			color:#666
+		}
+		p.textarea textarea {
+			height:80px;
+			width:370px;
+			border:1px solid #ccc;
+			font-size: 12px;
+			color:#666
+		}
+		
+		#account-creation_form span.form_info {
+			display:block;
+			margin:5px 0 0 265px;
+			color:#666
+		}
+		#account-creation_form p.inline-infos {
+			margin:0 0 0 100px !important;
+			font-size:12px;
+			color:#666;
+		}
+	
+	.newsletter-subscription {margin: 10px 0 10px 260px; clear:both;}
+	#new_account_form .form-group label,
+	#new_account_form .gender-line label {
+			display:inline-block;
+			padding:6px 15px;
+			width:230px;/* 260 */
+			font-size:14px;
+			text-align:right
+		}
+	.form-group .col-xs-4 {display: inline-block;}
+	.form-group .row {display: inline-block;}
+	#new_account_form .checkbox {margin-left: 263px;}
+	#new_account_form h3 {margin-top: 40px;}
+	#center_column #new_account_form .cart_navigation {margin-top: 20px; padding-top: 10px;}

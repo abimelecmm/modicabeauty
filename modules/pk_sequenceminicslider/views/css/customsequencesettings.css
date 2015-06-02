@@ -1,0 +1,237 @@
+
+/* ---------------------------------------------------------------- */
+/* Custom settings. You can change styles below to tune your slider */
+/* ---------------------------------------------------------------- */
+#sequence #slide2 .slide-content h4, #sequence #slide2 .slide-content h5, #sequence #slide3 .slide-content h5,
+#sequence #slide6 .slide-content h4, #sequence #slide6 .slide-content h5, #sequence #slide7 .slide-content h5 {
+  font-size:21px
+}
+
+#slide2 .slideImg0, #slide2 .slideImg3, #slide2 .slideImg7,
+#slide6 .slideImg0, #slide6 .slideImg3, #slide6 .slideImg7,
+#slide9 .slideImg0, #slide9 .slideImg3, #slide9 .slideImg7,
+#slide12 .slideImg0, #slide12 .slideImg3, #slide12 .slideImg7,
+#slide15 .slideImg0, #slide15 .slideImg3, #slide15 .slideImg7,
+#slide18 .slideImg0, #slide18 .slideImg3, #slide18 .slideImg7,
+#slide21 .slideImg0, #slide21 .slideImg3, #slide21 .slideImg7, {z-index: 9;}
+
+#slide1 .slideImg2,
+#slide5 .slideImg2,
+#slide8 .slideImg2,
+#slide12 .slideImg2,
+#slide15 .slideImg2,
+#slide18 .slideImg2,
+#slide21 .slideImg2
+{
+transition-delay: .2s;
+-moz-transition-delay: .2s; 
+-webkit-transition-delay: .2s;
+-o-transition-delay: .2s;
+}
+#slide1 .slideImg3,
+#slide5 .slideImg3,
+#slide8 .slideImg3,
+#slide12 .slideImg3,
+#slide15 .slideImg3,
+#slide18 .slideImg3,
+#slide21 .slideImg3 {
+transition-delay: .4s;
+-moz-transition-delay: .4s; 
+-webkit-transition-delay: .4s;
+-o-transition-delay: .4s;
+}
+#slide1 .slideImg4,
+#slide5 .slideImg4,
+#slide8 .slideImg4,
+#slide12 .slideImg4,
+#slide15 .slideImg4,
+#slide18 .slideImg4,
+#slide21 .slideImg4 {
+transition-delay: .6s;
+-moz-transition-delay: .6s; 
+-webkit-transition-delay: .6s;
+-o-transition-delay: .6s;
+}
+#slide2 .slideImg6,
+#slide6 .slideImg6,
+#slide9 .slideImg6,
+#slide13 .slideImg6,
+#slide16 .slideImg6,
+#slide19 .slideImg6,
+#slide22 .slideImg6 {
+transition-delay: .1s;
+-moz-transition-delay: .1s; 
+-webkit-transition-delay: .1s;
+-o-transition-delay: .1s;
+}
+#slide2 .slideImg5,
+#slide6 .slideImg5,
+#slide9 .slideImg5,
+#slide13 .slideImg5,
+#slide16 .slideImg5,
+#slide19 .slideImg5,
+#slide22 .slideImg5 {
+transition-delay: .2s;
+-moz-transition-delay: .2s; 
+-webkit-transition-delay: .2s;
+-o-transition-delay: .2s;
+}
+#slide2 .slideImg4,
+#slide6 .slideImg4,
+#slide9 .slideImg4,
+#slide12 .slideImg4,
+#slide16 .slideImg4,
+#slide19 .slideImg4,
+#slide22 .slideImg4 {
+transition-delay: .3s;
+-moz-transition-delay: .3s; 
+-webkit-transition-delay: .3s;
+-o-transition-delay: .3s;
+}
+#slide2 .slideImg3,
+#slide6 .slideImg3,
+#slide9 .slideImg3,
+#slide13 .slideImg3,
+#slide16 .slideImg3,
+#slide19 .slideImg3,
+#slide22 .slideImg3 {
+transition-delay: .4s;
+-moz-transition-delay: .4s; 
+-webkit-transition-delay: .4s;
+-o-transition-delay: .4s;
+}
+#slide2 .slideImg2,
+#slide6 .slideImg2,
+#slide9 .slideImg2,
+#slide13 .slideImg2,
+#slide16 .slideImg2,
+#slide19 .slideImg2,
+#slide22 .slideImg2 {
+transition-delay: .5s;
+-moz-transition-delay: .5s; 
+-webkit-transition-delay: .5s;
+-o-transition-delay: .5s;
+}
+#slide2 .slideImg1,
+#slide6 .slideImg1,
+#slide9 .slideImg1,
+#slide13 .slideImg1,
+#slide16 .slideImg1,
+#slide19 .slideImg1,
+#slide22 .slideImg1 {
+transition-delay: .6s;
+-moz-transition-delay: .6s; 
+-webkit-transition-delay: .6s;
+-o-transition-delay: .6s;
+}
+#slide2 .slideImg0,
+#slide6 .slideImg0,
+#slide9 .slideImg0,
+#slide13 .slideImg0,
+#slide16 .slideImg0,
+#slide19 .slideImg0,
+#slide22 .slideImg0 {
+transition-delay: .7s;
+-moz-transition-delay: .7s; 
+-webkit-transition-delay: .7s;
+-o-transition-delay: .7s;
+}
+.animate-in#slide3 .slideImg0
+.animate-in#slide7 .slideImg0,
+.animate-in#slide10 .slideImg0,
+.animate-in#slide14 .slideImg0,
+.animate-in#slide17 .slideImg0,
+.animate-in#slide20 .slideImg0 {
+  transition-delay: .5s;
+-moz-transition-delay: .5s; 
+-webkit-transition-delay: .5s;
+-o-transition-delay: .5s;
+}
+.animate-in#slide3 .slideImg1,
+.animate-in#slide7 .slideImg1,
+.animate-in#slide10 .slideImg1,
+.animate-in#slide14 .slideImg1,
+.animate-in#slide17 .slideImg1,
+.animate-in#slide20 .slideImg1 {
+  transition-delay: 1.2s;
+-moz-transition-delay: 1.2s; 
+-webkit-transition-delay: 1.2s;
+-o-transition-delay: 1.2s;
+}
+#sequence .animate-in .slide-content {
+  transition-delay: .5s;
+-moz-transition-delay: .5s; 
+-webkit-transition-delay: .5s;
+-o-transition-delay: .5s;
+  }
+#slide13 h4 {font-size:18px !important}
+#slide13 h5 {font-size:18px !important}
+#slide19 h4 {font-size:18px !important}
+#slide19 h5 {font-size:18px !important}
+#slide18 h4 {font-size:22px !important}
+#slide20 h5 {font-size:21px !important}
+#slide16 h4 {font-size:25px !important}
+#slide16 h5 {font-size:18px !important}
+#slide16 h4 {font-size:20px !important}
+#slide17 h5 {font-size:18px !important}
+#slide17 h4 {font-size:18px !important}
+#slide23 h5 {font-size:25px !important}
+#slide21 h5 {font-size:23px !important}
+#slide21 h4 {font-size:21px !important}
+#slide22 h4 {font-size:25px !important}
+#slide22 h5 {font-size:16px !important}
+#slide23 h5 {font-size:23px !important}
+
+.slide-content { overflow:hidden }
+#sequence h3, #sequence h4, #sequence h5, #sequence p {
+  transform:translate(400px, 0px);
+  -webkit-transform:translate(400px, 0px);
+  -mox-transform:translate(400px, 0px);
+  -0-transform:translate(400px, 0px);
+}
+#sequence .animate-in h3, #sequence .animate-in h4, #sequence .animate-in h5, #sequence .animate-in p {
+  transform:translate(0px, 0px);
+  -webkit-transform:translate(0px, 0px);
+  -mox-transform:translate(400px, 0px);
+  -0-transform:translate(400px, 0px);
+  }
+#sequence .animate-in h4 {
+  transition-delay: .3s;
+-moz-transition-delay: .3s; 
+-webkit-transition-delay: .3s;
+-o-transition-delay: .3s;
+  }
+#sequence .animate-in h5 {
+  transition-delay: .7s;
+-moz-transition-delay: .7s; 
+-webkit-transition-delay: .7s;
+-o-transition-delay: .7s;
+  }
+#sequence .animate-in p {
+  transition-delay: 1s;
+-moz-transition-delay: 1s; 
+-webkit-transition-delay: 1s;
+-o-transition-delay: 1s;
+  }
+#sequence .animate-out .slide-text, #sequence .animate-out .slide-text * {
+  opacity:0;
+  filter: alpha(opacity = 0);
+    -webkit-transition-duration: 1s;
+  -moz-transition-duration: 1s;
+  -ms-transition-duration: 1s;
+  -o-transition-duration: 1s;
+  transition-duration: 1s;  
+  }
+#sequence .animate-in .slide-text, #sequence .animate-in .slide-text * {
+  opacity:1;
+  filter: alpha(opacity = 100);
+    -webkit-transition-duration: 1s;
+  -moz-transition-duration: 1s;
+  -ms-transition-duration: 1s;
+  -o-transition-duration: 1s;
+  transition-duration: 1s;
+}
+/* next settings affects to autoplay. If left:0 - autoplay is not working */
+#sequence .animate-in .slide-text {
+  left:1px 
+}

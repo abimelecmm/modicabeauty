@@ -1,0 +1,221 @@
+#isotopeSort .block_content {
+	padding: 0;
+	width:103%;
+}
+.isotopeSortIndent {overflow: hidden}
+
+#isotope li {
+	margin:0 20px 20px 0;
+	width:176px;
+	display:block;
+	float:left;
+}
+#isotopeSort li.last_item_of_line  {margin-right:0}
+#isotopeSort .s_title_block,  #isotopeSort h5 {
+	color:#787878;
+	font: normal 17px/20px Georgia;
+	margin-bottom:10px;
+	text-align: center;
+}
+#isotopeSort .s_title_block a {
+	color:#787878;
+	display: block;
+	margin-bottom: 10px;
+}
+.product_image_cont {
+	position: relative;
+	}
+
+#isotopeSort .product_image {
+	display:block;
+	position:relative;
+	overflow:hidden;
+	text-align:center;
+	height:auto;
+	vertical-align:top;
+	border:1px solid #e4e4e4;
+	margin-bottom: 20px;
+}
+#isotopeSort .product_image img {width:100%; display: block;}
+
+.isotope_bottom_block {	
+	padding:0;
+	position:relative;
+	overflow:hidden;
+	text-align: center;
+}
+#isotopeSort li .isotope_bottom_block .button,
+#isotopeSort li .isotope_bottom_block .exclusive {
+	display: inline-block; 
+	opacity: 0; 
+	z-index:99; 
+	position: relative;
+	top:-22px;
+	margin:0 5px
+}
+#isotopeSort li:hover .isotope_bottom_block .button,
+#isotopeSort li:hover .isotope_bottom_block .exclusive {
+	opacity: 1
+}
+#isotopeSort li:hover .price_container {
+	opacity:0;
+}
+#isotopeSort .product_desc,
+#isotopeSort .product_desc a {
+	color:#666
+}
+#isotopeSort .price_container {
+	padding: 0;
+	text-align: center;
+}
+#isotopeSort .price {
+	font-size:14px;
+	font-size: 24px;
+	margin:7px 0;
+}
+#isotopeSort .labels {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+#isotopeSort li span.exclusive {display:none;}
+#isotopeSort span.new,
+#isotopeSort .pk-reduction {
+  display: block;
+  font-size: 14px;
+  line-height: 20px;
+  color: #fff;
+  padding: 5px 7px;
+  z-index: 800;
+  text-transform: uppercase;
+  text-align: center
+}
+#isotopeSort .pk-reduction {
+  background-color: #c72929;
+  margin-top: 5px;
+  font-family: Arial;
+}
+.filter {
+	text-align: center;
+	margin-bottom: 10px;
+	}
+.filter li {
+	display:inline-block;
+	margin:0 10px 20px 0;
+	text-align:center;
+}
+.filter li a {
+	color:#515151;
+	text-transform: uppercase;
+	font-size:22px;
+	padding: 0 20px;
+	line-height: 36px;
+	display: block;
+	border:2px solid transparent;
+}
+.filter li a.selected {
+	border-color:#515151;
+	}
+#white_bg #isotopeSort .svgic {margin-top: 11px;}
+#white_bg #isotopeSort .svgic.svgic-like {margin-top: 12px;}
+/* Start: Recommended Isotope styles */
+
+/**** Isotope Filtering ****/
+
+.isotope-item {
+  z-index: 2;
+}
+
+.isotope-hidden.isotope-item {
+  pointer-events: none;
+  z-index: 1;
+}
+
+/**** Isotope CSS3 transitions ****/
+
+.isotope,
+.isotope .isotope-item {
+  -webkit-transition-duration: 0.8s;
+     -moz-transition-duration: 0.8s;
+      -ms-transition-duration: 0.8s;
+       -o-transition-duration: 0.8s;
+          transition-duration: 0.8s;
+}
+
+.isotope {
+  -webkit-transition-property: height, width;
+     -moz-transition-property: height, width;
+      -ms-transition-property: height, width;
+       -o-transition-property: height, width;
+          transition-property: height, width;
+}
+
+.isotope .isotope-item {
+  -webkit-transition-property: -webkit-transform, opacity;
+     -moz-transition-property:    -moz-transform, opacity;
+      -ms-transition-property:     -ms-transform, opacity;
+       -o-transition-property:      -o-transform, opacity;
+          transition-property:         transform, opacity;
+}
+
+/**** disabling Isotope CSS3 transitions ****/
+
+.isotope.no-transition,
+.isotope.no-transition .isotope-item,
+.isotope .isotope-item.no-transition {
+  -webkit-transition-duration: 0s;
+     -moz-transition-duration: 0s;
+      -ms-transition-duration: 0s;
+       -o-transition-duration: 0s;
+          transition-duration: 0s;
+}
+
+/* End: Recommended Isotope styles */
+
+
+
+/* disable CSS transitions for containers with infinite scrolling*/
+.isotope.infinite-scrolling {
+  -webkit-transition: none;
+     -moz-transition: none;
+      -ms-transition: none;
+       -o-transition: none;
+          transition: none;
+}
+
+.isotope_bottom_block .button.exclusive { min-width: 77px}
+
+/* ie7 fix */
+#isotopeSort .filter li {
+	float:left \9;
+}
+.isotope-old-price.old-price {
+  font-size: 20px; 
+  color:#aaa; 
+  text-decoration:line-through;
+}
+#isotopeSort .quick-view {
+	padding: 0;
+	margin: 0;
+	display: inline-block;
+	vertical-align: top;
+}
+
+@media (min-width: 1170px) {
+	body #isotope li {
+		margin-right: 30px;
+		width:210px;
+	}
+}
+body .column_exist #isotope li {
+	width: 270px;
+	margin-right: 28px;
+	}
+
+#isotope .countdown {
+	position: absolute;
+	width: 100%;
+	bottom:7px;
+	left:0;
+	text-align: center;
+}

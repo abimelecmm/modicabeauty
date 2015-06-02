@@ -1,0 +1,56 @@
+.pk_aboutus_block {
+	overflow: hidden;
+	}
+.pk_aboutus_block a{
+	display: block;
+	width:50%;
+	margin-right: 3%;
+	float: left;
+}
+.pk_aboutus_block a img {
+	width: 100%;
+	height: auto;
+}
+
+.pk_aboutus_block .rte { background: transparent none repeat scroll 0 0 }
+.pk_aboutus_block h6 {
+	position: relative;
+	margin: 0 0 20px 0;
+	padding: 0 0 20px 0;
+	border-bottom:1px solid #bdbcbc;
+	background: none;
+	font-size: 22px;
+	line-height: 22px;
+	font-weight: normal;
+	color:#333;
+	font-family: LMRomanCaps10-Regular !important;
+}
+.pk_aboutus_block h6:after {
+	content:"";
+	position: absolute;
+	bottom:0px;
+	height: 1px;
+	left:0;
+	width: 100%;
+	border-top:2px solid #8a8882;
+}
+.pk_aboutus_text {
+	width: 47%;
+	float: left;
+	font-size: 12px;
+	line-height: 19px;
+	color:#777;
+}
+.pk_aboutus_text ul {
+	margin: 0 0 25px 20px;
+	list-style-type: none;
+	list-style-position: inside;
+}
+.pk_aboutus_text ul li {
+	margin-bottom: 10px;
+}
+.pk_aboutus_text ul li:before {
+    content: '\25A0';
+    font-size: 14px;
+    margin-right: 10px;
+}

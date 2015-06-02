@@ -1,0 +1,81 @@
+#crossselling h2.productscategory_h2 {
+	margin:40px 0 20px 0;
+	padding:10px 0;
+	border-bottom:1px solid #ccc;
+	font-size:18px;
+	color:#333
+}
+#HOOK_SHOPPING_CART #crossselling div.productscategory_h2 {
+	line-height: 20px;
+	font-size: 20px;
+	padding: 0 0 15px 0;
+	border-style: none;
+	font-style: normal;
+	margin: 0;
+	}
+#crossselling li {
+	float:left;
+}
+#crossselling li a.lnk_img {display:block}
+#crossselling li a img {border:1px solid #ccc}
+#crossselling li p.product_name {text-align:center}
+
+#crossselling_list {overflow: hidden;}
+
+#HOOK_SHOPPING_CART #crossselling ul,
+#crossselling ul {
+  list-style:none;
+}
+#HOOK_SHOPPING_CART #crossselling ul li {
+  border: 0 none;
+  margin-left:0px;
+	padding:0px;
+  text-align:center;
+  float:left;
+  width:164px;
+}
+#HOOK_SHOPPING_CART #crossselling ul li a {
+  display:block;  
+  width:162px;
+}
+#HOOK_SHOPPING_CART #crossselling ul li a:hover {
+    box-shadow: none;
+}
+#HOOK_SHOPPING_CART #crossselling ul li span, 
+#HOOK_SHOPPING_CART #crossselling .product_name a {
+  color:#757575;
+  display:block;
+  height:35px;
+  overflow:hidden;
+  margin:8px 0;
+  font-size:14px;
+}
+#HOOK_SHOPPING_CART #crossselling .product_name a:hover {
+  color:#757575;
+  text-decoration:none;
+}
+#HOOK_SHOPPING_CART #crossselling .price {
+  position:relative;
+  height:29px;  
+	font-size: 24px;
+	line-height: 29px;
+	margin: 0px;
+	overflow: auto;
+}
+#HOOK_SHOPPING_CART .wrap_indent {
+	padding: 11px 29px 18px;
+	}
+#blockcart_caroucel {width:10000%; position: relative; list-style: none;} 
+
+#crossselling_list,
+#HOOK_SHOPPING_CART .white_bg_bord {
+  position: relative;
+  }
+#crossselling_list .nbs-flexisel-inner {
+  overflow: hidden;
+  margin: 0 auto;
+}
+#crossselling li a img {
+  border-color:#e6e6e6
+  }
+.content_only #crossselling_list .flexisel-nav:hover {background-color: #ccc;}

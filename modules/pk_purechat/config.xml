@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+	<name>pk_purechat</name>
+	<displayName><![CDATA[PureChat]]></displayName>
+	<version><![CDATA[1.0]]></version>
+	<description><![CDATA[Integrate Purechat on your shop.]]></description>
+	<author><![CDATA[promokit.eu]]></author>
+	<tab><![CDATA[advertising_marketing]]></tab>
+	<is_configurable>1</is_configurable>
+	<need_instance>0</need_instance>
+	<limited_countries></limited_countries>
+</module>

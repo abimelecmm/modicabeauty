@@ -1,0 +1,98 @@
+#history #left_column {display:none}
+#history #center_column{width:757px}
+#history #center_column h1{margin-top:20px}
+#submitReorder {
+	margin:20px 0;
+	padding:15px 20px;
+	background:#ccc;
+	overflow: hidden;
+}
+#submitReorder .button {
+	position: relative;
+	float:right;
+}
+#submitReorder .dark {
+	padding: 0;line-height: 30px;
+	color:#fff
+	}
+.info-order {
+	margin-bottom:20px;
+}
+.info-order p {padding-bottom:10px}
+.info-order p .icon {
+	position:relative;
+	top:2px;
+	left:0
+}
+
+#order-list {
+	margin-bottom:20px;
+	width:100%;
+	border:1px solid #999;
+	border-bottom:none
+}
+#order-list  th {
+	padding:14px 12px;
+	color:#fff;
+	text-shadow:0 1px 0 #000;
+}
+#order-list tr.alternate_item {background-color: #f3f3f3}
+#order-list  td {
+	padding:12px;
+	border-right:1px solid #e9e9e9;
+	border-bottom:1px solid #e9e9e9;
+	font-weight:bold;
+	font-size:12px;
+	vertical-align:top
+}
+#order-list  td.history_detail {border-right:none;}
+
+#order-list .last_item  td {border-bottom:1px solid #999}
+
+.adresses_bloc {margin-bottom:50px; overflow: hidden;}
+.adresses_bloc ul li {text-indent: 10px;}
+#history .adresses_bloc .item {margin-right:0}
+.detail_step_by_step {width:100%}
+.detail_step_by_step th {width:50% !important}
+.detail_step_by_step tr.last_item td {border-bottom:1px solid #999}
+
+#order-detail-content table {width:100%}
+#order-detail-content table .order_qte_input {display:none}
+#order-detail-content table tr.totalprice td {border-bottom:1px solid #999}
+#order-detail-content table tr:nth-child(even) {background:#f3f3f3;}
+
+#sendOrderMessage {margin:40px 0 0 0}
+#sendOrderMessage p {padding-bottom:10px}
+
+#history ul.address {width:50%}
+
+#returnOrderMessage .textarea textarea,
+#sendOrderMessage .textarea textarea {
+	width:100%;
+	border:1px solid #999
+}
+.link-button {display: inline-block;line-height: 24px;}
+.history_detail .button {line-height: 14px; margin-right: 10px;}
+#block-history table {background: #FFF;}
+#block-history th {text-align: center; border-bottom: 1px solid #e0e0e0; text-align: left; text-indent:10px}
+.table_block {margin-bottom: 50px;}
+#history #center_column h1 {
+	margin:0 0 20px;
+	font-size: 20px;
+}
+h3.page-subheading {
+	font-size:17px;
+	line-height: 54px;
+	border-bottom:1px solid #e0e0e0;
+	padding: 0;
+	margin-bottom:20px;
+}
+.table-bordered tbody tr {
+	border-bottom: 1px solid #e0e0e0;
+}
+.table-bordered tbody td:first-child {
+	border-left:1px solid #e0e0e0
+}
+.table-bordered tbody td:last-child {
+	border-right:1px solid #e0e0e0
+}

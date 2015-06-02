@@ -1,0 +1,19 @@
+/* HEADER */
+#pattern #header { height: 100px}
+body #header #header_logo, #pattern #header_logo { margin-top: 50px; left: 0}
+
+/* Logo */
+#header_logo a { font-size: 40px; }
+span.logo { vertical-align: bottom; }
+
+/* Shopping cart */
+#shopping_cart { position: relative; border: none; float: right; top: 0; left: 0; }
+body #shopping_cart > a { height: 36px; }
+
+
+
+/* FOOTER */
+
+@media (min-width: 1170px) {
+  #footer .block, #footer #twitter-feed { margin-right: 0; margin-left: 40px; }
+}

@@ -1,0 +1,18 @@
+id_category;Active (0/1);Name;Parent category;Description;Meta title;Meta description;Meta keywords;Friendly URL
+20;1;Face;2;;;;;
+30;1;Moisturiser;20;;;;;
+40;1;Anti-aging;20;;;;;
+50;1;Serum;20;;;;;
+60;1;Eyecare;20;;;;;
+70;1;Cleanser & Face Wash;20;;;;;
+80;1;Face Masks;20;;;;;
+90;1;Body;10;;;;;
+100;1;Lotion;90;;;;;
+110;1;Oil;90;;;;;
+120;1;Body Butter;90;;;;;
+130;1;Cellulite;90;;;;;
+140;1;Hands;90;;;;;
+150;1;Bath & Shower;2;;;;;
+160;1;Haircare;2;;;;;
+170;1;Suncare;2;;;;;
+180;1;Gifts;2;;;;;

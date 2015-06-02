@@ -1,0 +1,69 @@
+/* Block manufacturer */
+#manufacturersCarousel {
+  overflow: hidden;
+  position: relative;
+}
+.manuf-indent {
+  padding-right: 30px;
+  }
+#manufacturersCarousel ul li {
+  border: 0 none;
+  margin-left:0px;
+	padding:0;
+  float: left;
+  width:200px;
+  text-align: center;
+}
+#manufacturersCarousel ul li a {
+  display: block;
+  width:calc(100% - 14px);
+  background:#efedeb;
+  overflow: hidden;
+  padding: 7px;
+  text-align: center;
+}
+#manufacturersCarousel ul li a:hover {
+  background:#e1e1e1;
+}
+#manufacturersCarousel ul li span {
+  line-height: 30px;
+  font-size: 14px;
+}
+#manufacturersCarousel ul li img {
+  max-width:100%;
+  width:auto;
+  height: auto;
+  opacity:0.9;
+  cursor: pointer;
+  border:1px solid #e5e5e5;
+}
+#manufacturersCarousel ul li img:hover {
+  opacity: 1;
+}
+#manufacturersCarousel .flexisel-nav {
+  position: absolute;
+  top:25px;
+  z-index: 9;
+  background:#f9f9f9;
+  width:40px;
+  height: 40px;
+}
+#manufacturersCarousel .flexisel-nav.nbs-flexisel-nav-left {
+  left:-50px;
+}
+#manufacturersCarousel .flexisel-nav.nbs-flexisel-nav-right {
+  right:-50px;
+}
+#manufacturersCarousel:hover .flexisel-nav.nbs-flexisel-nav-left {
+  left:2px;
+}
+#manufacturersCarousel:hover .flexisel-nav.nbs-flexisel-nav-right {
+  right:2px;
+}
+.mnf-nbs-flexisel-container {
+  position: relative;
+  max-width: 100%;
+}
+#manufacturersCarousel .nbs-flexisel-inner {
+  width:calc(100% + 30px)
+}

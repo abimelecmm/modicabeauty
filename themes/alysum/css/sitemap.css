@@ -1,0 +1,67 @@
+/******************************************************************
+					Sitemap Page Styles
+*******************************************************************/
+#sitemap .sitemap_block .page-subheading {
+}
+#sitemap ol,
+#sitemap ul {
+    list-style: none;
+    }
+.sm-col {
+    width:33%;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0;
+}
+#sitemap .sitemap_block li {
+    line-height: 16px;
+    padding-bottom: 11px;
+}
+
+#sitemap .sitemap_block li a:before {
+    content: "\f105";
+    display: inline-block;
+    font-family: "FontAwesome";
+    padding-right: 10px;
+}
+
+#listpage_content div.tree_top {
+    padding: 5px 0 0 27px;
+}
+
+#listpage_content div.tree_top a:before {
+    content: "\f015";
+    display: inline-block;
+    font-family: "FontAwesome";
+    font-size: 20px;
+    color: #333333;
+}
+
+#listpage_content div.tree_top a:hover:before {
+    color: #515151;
+}
+
+.categTree {
+    border-top:1px solid #ccc;
+    padding-top: 20px;
+    margin-top: 40px;
+    }
+.categTree ul.tree {
+    padding-left: 24px;
+}
+
+.categTree ul.tree li {
+    margin: 0 0 0 21px;
+    padding: 5px 0 0 25px;
+    border-left: 1px solid #d6d4d4;
+    background: url(../img/sitemap-horizontal.png) no-repeat left 15px transparent;
+}
+
+.categTree ul.tree > li {
+    margin: 0 0 0 11px;
+}
+
+.categTree ul.tree li.last {
+    border: medium none;
+    background: url(../img/sitemap-last.png) no-repeat 0px -4px transparent;
+}

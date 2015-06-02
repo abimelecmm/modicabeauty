@@ -1,0 +1,10 @@
+.flexmenu-container {
+	margin-bottom: 20px;
+	}
+#shopping_cart .svgic.main_color,
+#white_bg .searchbutton .svgic.main_color {
+	color:#bbb
+}
+#white_bg .searchbutton:hover .svgic.main_color {
+	color:#fff
+	}

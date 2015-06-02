@@ -1,0 +1,360 @@
+#maintenance {
+	margin:0 auto;
+	width:940px;
+	font:normal 30px Arial, Verdana, sans-serif;
+	color:#333;
+}
+@font-face {
+    font-family: 'LMRoman10Regular';
+    src: url('../fonts/lmroman10-regular-webfont.eot');
+    src: url('../fonts/lmroman10-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/lmroman10-regular-webfont.woff') format('embedded-opentype'),
+         url('../fonts/lmroman10-regular-webfont.ttf') format('truetype'),
+         url('../fonts/lmroman10-regular-webfont.svg#LMRoman10Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'TrajanProRegular';
+    src: url('../fonts/trajanpro-regular-webfont.eot');
+    src: url('../fonts/trajanpro-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/trajanpro-regular-webfont.woff') format('embedded-opentype'),
+         url('../fonts/trajanpro-regular-webfont.ttf') format('truetype'),
+         url('../fonts/trajanpro-regular-webfont.svg#TrajanProRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+/**
+ *	This element is created inside your target element
+ *	It is used so that your own element will not need to be altered
+ **/
+ h1 {
+     font-size: 100px;
+     color:#fff;
+     font-weight: normal;
+     text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25);
+     text-align: center;
+     margin: 0;
+     line-height: 232px;
+     height: 232px;
+     font-family: "Georgia";
+     }
+
+.countdown_row {
+  clear: both;
+  width: 100%;
+  padding: 0px 2px;
+  text-align: center;
+}
+.countdown_section {
+    width: 223px;
+    height: 140px;
+    margin-top: 65px;  
+    display: inline-block;
+    margin-left:20px;
+    position: relative; 
+    font: normal 16px/24px "Georgia" ;
+    color:#fff
+}
+.countdown_section i {    
+    text-transform: lowercase;
+    font-family: Georgia, Arial;
+    font-size: 16px;
+    line-height: 16px;
+    color:#fff;
+    font-weight: normal;
+    text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25);
+    display: block;
+    font-style: normal;
+}
+.countdown_section:first-child {
+    margin: 0;
+}
+.countdown_descr {
+  display: block;
+  width: 100%;
+}
+
+.countdown_amount {
+    font-family: LMRoman10Regular, Arial;
+    font-size: 150px;
+    font-weight: bold;
+    color:#fff;
+    text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25);
+    line-height: 150px;
+    color:#fff;
+    margin:0px 0 0 0;
+    padding: 0;
+    display: block;
+}
+
+
+
+.someTimer {
+height: 300px;
+overflow: hidden;
+    }
+.progress {
+    height:1px;
+    background:#d8d8d8;
+    line-height: 1px;
+    box-shadow:         1px 1px 0px 0px rgba(50, 50, 50, 0.2);
+}
+.marker {
+    height:1px;
+    background:#fff;
+    line-height: 1px;
+    box-shadow:         1px 1px 0px 0px rgba(50, 50, 50, 0.2);   
+    position: relative;
+}
+.point {
+    width: 11px;
+    height: 11px;
+    background: #e17365;
+    border-radius:50%;
+    position: absolute;
+    right:-5px;
+    top:-5px;
+    color:#fff;
+	text-indent: 11px;
+	font: normal 16px/40px "Times New Roman";
+}
+.send_form {
+    width:720px;
+    margin: 100px auto 50px;
+    border: 1px solid rgba(255,255,255,0.5);
+    border: 1px solid #fff\9;
+    border-radius: 2px;
+    }
+.form-indent {
+    padding: 30px;
+    text-align: center;
+    font-size:25px;    
+    text-transform: uppercase;
+    color:#fff
+}
+.form-indent form {
+    width:330px;
+    height: 43px;
+    border: 1px solid rgba(255,255,255,0.5);
+    border: 1px solid #fff\9;
+    border-radius: 2px;
+    background:rgba(255,255,255,0.2);
+    margin: 0 auto;
+}
+.form-indent  h4 {
+    margin: 0 0 20px 0;
+    padding: 0;
+    font-family: TrajanProRegular;
+    text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25);
+    }
+.cs-submit {
+    width:86px;
+    height: 32px;
+    background: #c19487;
+    color:#fff;
+    font-size:18px;
+    line-height: 32px;
+    margin: 5px;
+    border:none;
+    float:right;
+    border-radius: 2px;
+    box-shadow:         0px 1px 0px 0px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    font-family: "LMRoman10Regular";
+    font-weight: normal;
+}
+.cs-email {
+    width:220px;
+    background: none;
+    border:none;
+    line-height: 32px;
+    float: left;
+    height: 32px;
+    text-indent: 10px;
+    font-size: 18px;
+    margin: 4px;
+    color:#fff;
+    font-family: "LMRoman10Regular";
+    font-weight: normal;
+    border:1px solid #fff\9
+}
+.cs-email::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #fff;
+}
+.cs-email::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #fff;
+}
+
+.container {width:960px; margin: 0 auto;}
+#message table {width:100%; margin: 0; padding: 0;border-collapse:collapse; border-spacing: 0;}
+#message table td {padding: 0; margin: 0;vertical-align: top; height:auto;}
+#message table td.col {width:50%; line-height: 8px;}
+#message table td.mText {white-space: nowrap; padding: 0 20px; color:#fff; text-transform: uppercase; font-family: "LMRoman10Regular"; line-height: 7px; font-size: 16px;}
+.hLine {border-bottom:5px solid rgba(255,255,255,0.7); display: inline-block; width:100%; margin-bottom: 2px;border-bottom:5px solid #fff\9;}
+.bottomLine {border-bottom:1px solid rgba(255,255,255,0.7);border-bottom:1px solid #fff\9; }
+#map-canvas {width:100%; height: 175px;}
+.footer-columns  {overflow: hidden; margin-bottom: 50px;}
+.footer-columns .col {
+    width:280px;
+    margin-left: 40px;
+    float: left;
+}
+.footer-columns .col:first-child {
+    margin: 0;
+}
+.footer-columns .col h5 {
+    text-transform: uppercase;
+    color: #FFF;
+    font: normal 15px/22px Georgia;
+    margin: 0 0 15px;
+}
+.footer-columns .content {
+    font:normal 13px/19px Georgia;
+    color:#fff;
+    }
+/*
+------------------------------
+    Impromptu
+------------------------------
+*/
+#popupouter {
+position: absolute;
+width: 400px;
+top: 50%;
+left: 50%;
+margin:-28px 0 0 -268px;
+z-index: 99999;
+background: #fff;
+border:1px solid #e7e7e7;
+    padding: 5px;
+box-shadow:         0px 0px 10px rgba(0, 0, 0, 0.75);
+text-align: center;
+}
+.LoginRadius_overlay{
+    width:100%;
+    position: absolute;
+    height: 100%;
+    background:rgba(204, 204, 204, 0.8);
+    z-index:99999
+    }
+body.jqi-active #pattern {-webkit-filter:blur(2px)}
+.jqifade{
+    position: absolute; 
+    background-color: #000; 
+}
+div.jqi{  
+    font-family: Arial, Helvetica, sans-serif; 
+    position: absolute; 
+    background-color: #fff; 
+    font-size: 14px; 
+    line-height: 50px;
+    text-align: left; 
+    border:1px solid #e7e7e7;
+    padding: 5px;
+    width:400px;
+box-shadow:         0px 0px 10px rgba(0, 0, 0, 0.75);
+}
+div.jqi .jqicontainer{ 
+    background: #efefef;
+}
+div.jqi .jqiclose{ 
+    position: absolute;
+    top: 10px; right: 10px; 
+    width: 12px; 
+    height: 12px;
+    cursor: pointer; 
+    text-indent: -9999px;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAhElEQVQY02OorKiwA+IDQMzPgAaAYsxAvAiIY0GcfCD+D8SnkRVDFS2Fyi2ACRZDBU6BFKMpWgziI1tTCpU4AcTLsSpCUlwJVfAfaiJWRSDrliEpPIbhQTRFIOtqoOyjQMyHSxEzVLwaKnYEiHlBAm24HA7k10Ll1oM4ElDFmA5HBJ02AJ8+h9cxW/9wAAAAAElFTkSuQmCC) no-repeat 50% 50%;
+}
+div.jqi .jqititle{
+    padding: 5px 10px;
+    font-size: 16px; 
+    line-height: 20px; 
+    border-bottom: solid 1px #eeeeee;
+}
+div.jqi .jqimessage{ 
+    padding: 30px 10px; 
+    line-height: 20px; 
+    color: #444444; 
+    text-align:center;
+}
+div.jqi .jqibuttons{ 
+    text-align: right; 
+    padding: 5px 0 5px 0; 
+    border: solid 1px #eeeeee; 
+    background-color: #f4f4f4;
+}
+div.jqi button{ 
+    padding: 3px 10px; 
+    margin: 0 10px; 
+    background-color: #2F6073; 
+    border: solid 1px #f4f4f4; 
+    color: #ffffff; 
+    font-weight: bold; 
+    font-size: 12px; 
+}
+div.jqi button:hover{ 
+    background-color: #728A8C;
+}
+div.jqi button.jqidefaultbutton{
+    background-color: #BF5E26;
+}
+.jqiwarning .jqi .jqibuttons{ 
+    background-color: #BF5E26;
+}
+body.wdt480 #views_block #view_scroll_left, body.wdt480 #views_block #view_scroll_right {
+    display: none !important;   
+}
+
+.jqi .jqiarrow{ position: absolute; height: 0; width:0; line-height: 0; font-size: 0; border: solid 10px transparent;}
+
+.jqi .jqiarrowtl{ left: 10px; top: -20px; border-bottom-color: #ffffff; }
+.jqi .jqiarrowtc{ left: 50%; top: -20px; border-bottom-color: #ffffff; margin-left: -10px; }
+.jqi .jqiarrowtr{ right: 10px; top: -20px; border-bottom-color: #ffffff; }
+
+.jqi .jqiarrowbl{ left: 10px; bottom: -20px; border-top-color: #ffffff; }
+.jqi .jqiarrowbc{ left: 50%; bottom: -20px; border-top-color: #ffffff; margin-left: -10px; }
+.jqi .jqiarrowbr{ right: 10px; bottom: -20px; border-top-color: #ffffff; }
+
+.jqi .jqiarrowlt{ left: -20px; top: 10px; border-right-color: #ffffff; }
+.jqi .jqiarrowlm{ left: -20px; top: 50%; border-right-color: #ffffff; margin-top: -10px; }
+.jqi .jqiarrowlb{ left: -20px; bottom: 10px; border-right-color: #ffffff; }
+
+.jqi .jqiarrowrt{ right: -20px; top: 10px; border-left-color: #ffffff; }
+.jqi .jqiarrowrm{ right: -20px; top: 50%; border-left-color: #ffffff; margin-top: -10px; }
+.jqi .jqiarrowrb{ right: -20px; bottom: 10px; border-left-color: #ffffff; }
+
+.footer-columns .facebook {width:315px}
+.facebook ul {list-style-type: none; margin: 0; padding: 0;}
+.facebook .fb_fans {padding: 0px 0 15px; color:#fff}
+.facebook .fb_fans a {color:#fff !important; text-decoration: none; font-style: italic;}
+.facebook .fb_fans a:hover {text-decoration: none; color:#eee}
+.facebook .fb_followers li {
+        float:left; 
+        padding: 0 !important; 
+        border-style: none !important; 
+        width:60px; 
+        margin-right:25px; 
+        margin-bottom: 11px !important;
+        }
+.facebook .fb_followers li:nth-child(4n+4) {margin-right: 0;}
+.facebook .fb_followers li:hover {padding-left: 0 !important;}
+.facebook .fb_followers li a, 
+.facebook .fb_followers li span {
+        padding: 4px !important; 
+        display:block; 
+        height: 50px;
+}
+.facebook .fb_followers li a:hover {padding: 4px !important; background: #efefef !important;}
+.facebook .fb_followers li img {width:52px; height: 52px; vertical-align: top; border:none}
+.facebook .fb_followers li div.fb_name {line-height:20px;  text-align: center; display: block; padding-top: 5px;} 

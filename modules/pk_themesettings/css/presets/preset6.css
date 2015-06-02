@@ -1,0 +1,196 @@
+input.button_mini, input.button_small, input.button, input.button_large, input.button_mini_disabled, input.button_small_disabled, input.button_disabled, input.button_large_disabled, input.exclusive_mini, input.exclusive_small, input.exclusive, input.exclusive_large, input.exclusive_mini_disabled, input.exclusive_small_disabled, input.exclusive_disabled, input.exclusive_large_disabled, a.button_mini, a.button_small, a.button, a.button_large, a.exclusive_mini, a.exclusive_small, a.exclusive, a.exclusive_large, span.button_mini, span.button_small, span.button, span.button_large, span.exclusive_mini, span.exclusive_small, span.exclusive, span.exclusive_large, span.exclusive_large_disabled, .cart_navigation .button, .cart_navigation .button_large, .cart_voucher .submit input.button, button.exclusive, .compare-form .button  {
+  box-shadow:inset 0px 0px 0px 2px #706e69;
+  text-transform: uppercase;
+  padding:10px 15px;
+  color:#706e69 !important;
+  line-height: 16px;
+  background-color: transparent;
+}
+.compare-form .button {
+  padding:4px 10px;
+  text-transform: none;
+  }
+input.button_mini:hover, input.button_small:hover, input.button:hover, input.button_large:hover, input.button_mini_disabled:hover, input.button_small_disabled:hover, input.button_disabled:hover, input.button_large_disabled:hover, input.exclusive_mini:hover, input.exclusive_small:hover, input.exclusive:hover, input.exclusive_large:hover, input.exclusive_mini_disabled:hover, input.exclusive_small_disabled:hover, input.exclusive_disabled:hover, input.exclusive_large_disabled:hover, a.button_mini:hover, a.button_small:hover, a.button:hover, a.button_large:hover, a.exclusive_mini:hover, a.exclusive_small:hover, a.exclusive:hover, a.exclusive_large:hover, span.button_mini:hover, span.button_small:hover, span.button:hover, span.button_large:hover, span.exclusive_mini:hover, span.exclusive_small:hover, span.exclusive:hover, span.exclusive_large:hover, span.exclusive_large_disabled:hover, .cart_navigation .button:hover, .cart_navigation .button_large:hover, .cart_voucher .submit input.button:hover, #idTab4 ul li .ajax_add_to_cart_button:hover, button.exclusive:hover, .compare-form .button:hover  {
+  box-shadow:inset 0px 0px 0px 2px transparent;
+  color:#fff !important;
+}
+#shopping_cart {
+	left: auto;
+	right:250px;
+	}
+
+/* HOME PAGE */
+#index .top_slider {
+	position: absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	z-index:1;
+}
+#index .header {
+	position: absolute;
+	top:0;
+	left:0;
+	width:100%;
+	z-index: 9999;
+	background-color: rgba(255,255,255,0.9);
+	height: 120px;
+}
+#index #header {
+	width:1170px;
+	margin: 0 auto;
+}
+#index #header {
+	top:0;
+}
+#index #footer,
+#index #header_user,
+#index #languages_block_top,
+#index #currencies_block_top,
+#index #pk_customlinks {
+	display: none;
+}
+#index #header_logo {
+	margin-top: 30px;
+	width:auto;
+	z-index: 10010;
+	}
+#index #search_block_top {
+	top:50px;
+	z-index:10010;
+	}
+#index #shopping_cart {
+	top:50px;
+	right:50px;
+	left:auto;
+	min-width:0;
+	width:34px;
+	padding: 0;
+	z-index: 10010;
+	}
+#index .flexmenu-container {
+	position: relative;
+	z-index: 10001;
+	top:50px;
+	right:0;
+}
+#index .flexmenu {
+	background: none;
+	display: inline-block; vertical-align: top;
+	}
+
+#index #search_block_top,
+#index #shopping_cart {
+	border-color:transparent;
+	}
+#index #shopping_cart b,
+#index #shopping_cart a > span {
+	display: none;
+	}
+#index #search_block_top.hvr {
+	z-index: 10022;
+	border-color:#e7e2e2;
+	background:#fff;
+	width:300px;
+}
+#index #search_block_top,
+#index #search_block_top .searchbutton {
+	width:36px;
+	}
+#index #shopping_cart .svgic-cart {
+	margin: 8px auto 0;
+	width:100%;
+}
+#index #search_block_top #search_query_top {text-indent:-100px; background-color: transparent !important }
+#index #search_block_top.hvr #search_query_top {text-indent:10px; background: #FFF !important;}
+#index #white_bg .searchbutton .svgic,
+#index #shopping_cart .svgic {color:#707070}
+#index #white_bg .searchbutton:hover .svgic {color:#fff !important}
+#index .flexmenu > ul > li {float: none; display: inline-block; vertical-align: top;}
+#index .flexmenu_ul {text-align: right;}
+#index .flexmenu_ul li * {text-align: left;}
+#index .flexmenu_ul > li:last-child {margin-right: 100px;}
+#index .flexmenu > ul > li > a span {padding: 0}
+#index .flexmenuitem:hover > a span::before,
+#index .menu_logo {display: none !important;}
+body .flexmenu > ul > li a {
+	font-size: 17px;
+	color:#666
+}
+#index #shopping_cart:hover, #index #shopping_cart.hover {
+	background-color: transparent;
+	}
+#index #header .cart_block {
+	right:-1px;
+	left:auto;
+	}
+#index .ajax_cart_quantity.mobile_cart_num.main_bg {
+	display: inline-block !important;
+	position: absolute;
+	bottom:0;
+	right:0;
+	color:#fff;
+	width:14px;
+	height: 14px;
+	text-align: center;
+	line-height: 14px;
+	font-size: 11px;
+	border-radius: 50%;
+}
+
+@media (min-width : 980px) and (max-width : 1170px) {
+    #index #header {
+		width:960px}
+}
+@media (min-width : 728px) and (max-width : 979px) {
+    #index #header {
+		width:728px}
+	body#index .flexmenu_ul > li:last-child {margin-right: 0}
+	body#index #header_logo {margin-top: 20px}
+	body#index #search_block_top,
+	body#index #shopping_cart {top:40px}
+	body#index .flexmenu {margin-top: 40px;}
+	body#index .header {height: 133px}
+}
+@media (min-width : 480px) and (max-width : 727px) {
+    #index #header {
+		width:450px}
+}
+@media (max-width : 727px) {
+	body#index #header #header_logo {
+		margin-top: 10px;
+		}
+	body#index #search_block_top {
+		top:30px;
+		right:0;
+		margin: 0;
+		}
+	body#index #shopping_cart {
+		top:30px;
+		right:50px;
+		left:auto;
+		float: right;
+		margin: 0;
+	}
+	body#index .flexmenu-container {top:0}
+	body#index .flexmenu {margin-top: 35px;}
+	body#index .ajax_cart_quantity.mobile_cart_num.main_bg {padding: 0;}
+	body#index #header #header_logo {
+	  height: 70px;
+	  width: 100%;
+	  text-align: center;
+	}
+	#index .flexmenu_ul {margin-top: 0;}
+}
+@media (max-width : 479px) {
+    #index #header {
+		width:290px}
+	body#index .mobileMenuTitle {
+		background-position: 50% 50%;
+	}
+	body#index #shopping_cart,
+	body#index #search_block_top {
+		top:80px;
+	}
+}

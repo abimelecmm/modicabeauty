@@ -1,0 +1,84 @@
+#my-account  #left_column {display:none}
+#my-account #center_column {width:757px}
+#my-account #center_column h1 {margin-bottom:20px}
+
+#my-account #center_column h4 {
+	font-weight:normal;
+	font-size:12px;
+	color:#666
+}
+
+#my-account .myaccount_lnk_list {list-style-type:none}
+#my-account .myaccount_lnk_list li {
+	font-size:13px;
+	line-height:36px
+}
+#my-account .myaccount_lnk_list img.icon,
+#my-account p img.icon {
+	position:relative;
+	top:6px;
+	left:0
+}
+
+#my-account .addresses-lists {
+  margin-bottom: 30px; }
+#my-account ul.myaccount-link-list li {
+  overflow: hidden;
+  width:50%
+}
+#my-account ul.myaccount-link-list li a {
+  border: 1px solid #E2E2E2;
+  text-transform: uppercase;
+  line-height: 22px;
+  font-size: 16px;
+  padding: 10px 0;
+  vertical-align: top;
+  margin-bottom: 5px;
+  background: #FFF;
+  display: block;
+  position: relative;
+}
+#my-account ul.myaccount-link-list li a i {
+  font-size: 25px;
+  color: #fd7e01;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 52px;
+  height: 100%;
+  padding: 0px 0 0 0;
+  text-align: center;
+}
+#my-account ul.myaccount-link-list li a span {
+  display: block;
+  padding: 8px 15px 8px 17px;
+  overflow: hidden;
+  border: 1px solid;
+  margin-left: 52px;
+  border-color: white white white #c8c8c8;
+}
+#my-account ul.myaccount-link-list li a i.icon-list-ol {
+  background:url(data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAxklEQVQ4y2NgGPKgo6ODH4hdgdgHiKUpNSwZiO8A8TMofgTEdUDMSo5h4UgGoeMucgw8icfAJyR5H6iYF49hMOxLioF8RBjoR4qBzEB8GY9hT4FYg9QwBCWVBzgMrCQ32WgB8QwgvgjE14F4LRC7D4rcwQ71ciMQrwHiY0B8Aog3AfEkII4CYlFSwu4WEbH8GIjLiTFwKRGGwfANkG/wGSYOtfkZCdgPn4FZJBoGwovxGbifDANBJZAYNsMYgVieTMxJsyQHAP78eTD6lKeeAAAAAElFTkSuQmCC) 50% 50% no-repeat;  
+}
+#my-account ul.myaccount-link-list li a i.icon-ban-circle {
+  background:url(data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAdElEQVQ4y2NgGPSgo6NjGhA/BeJnFGKQGbNABj6hgmFwzEBNw2AGrqQmZhgSsbyDmpgmkUITA88D8XEc+DxUDYx/jRgDzfCEsRlYIYKfMyAuLARiXyx4KrlhWAPEMVjwXHIMpGbh8BRk4EQqGQoyY/rgz8oAnGyQ6sZuCvUAAAAASUVORK5CYII=) 50% 50% no-repeat;  
+}
+#my-account ul.myaccount-link-list li a i.icon-building {
+  background:url(data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAjElEQVQ4y2NgGPSgo6NjBhAL4ZDTBOIWKHs6LnXomp4B8SUg9kYSYwHiAiB+CMQbkNRdRFaHpF4SiEOAuA+mEIaboAp2IokhG4iurg+IjyPLoSvEpplYsVEDRw0c3gZeIKBwFlTsAhEGngIJMgOxFRC3IWk+AMTFQKyOVABgU3cSiCcCcTgQyzKMTAAAWbI4qMOS858AAAAASUVORK5CYII=) 50% 50% no-repeat;  
+  }
+#my-account ul.myaccount-link-list li a i.icon-user {
+  background:url(data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAuUlEQVQ4y2NggIIpU6ZMB+LHQPyMAN4LxFwMhAARBiFjU2INBIFqKG4F4i4gvoDFQDNiDYwEYj0krAbE27EZCMQSQKwDxBzU8DLIwCooew8+A52AmJ8ARjfwGT4DVwPxTAKYJAMXQCMCHybJQD8glieASTKQnEihrwupHob48i9ZsYwL1wyKSDlFpGEPofmYoIEK0MIhhgA2gKpvwGsgmuFiBAwtA+I7MBcTY6AKEN8E4uNE4CoGWgIAZMN8Z/y1OVYAAAAASUVORK5CYII=) 50% 50% no-repeat;  
+}
+
+#my-account ul.myaccount-link-list li a i.icon-referal {
+  background:url(data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAQAAAAngNWGAAABPklEQVR4AW3SMWsTARzG4efOICZC0CSik2MQBMGbdNBRrEM/gIJ11oKLLu3q0MXMDhF0CQT1AwjapVIctNCUapagURNjNUsDQSFNHf/L/db3Gd8EiNZSl9Vs+ypCsgZA1b6ilgxzDQ2nTPwFUsBxbTuaVmQg9cA1W7ruBoRlV9BxVXTewFGrzgWkDip+i8ZOIFEPyDq44ZlDwMBUGfveB6TlkY6uXUs29byw6JiOdTftBSy6ZOqWO0rK3mjbdsE7Cx6bOwIF8MFJ9D1XEPHWD0t+uUgKhmDPIYj+gCmkoAfmhiD6DgYBvyCG6BsYBtx0APq5cCfghoe476WPAA48UXPdqqcB2cCiptteA+4ZaTrtFQQEqkpGgJEMIGB+Z/PgxGd0TUQz7PqXd9wxVixjZsEnFWMgYJTInLHlJ0T/Abb/XkS8KoFwAAAAAElFTkSuQmCC) 50% 50% no-repeat;  
+}
+#my-account ul.myaccount-link-list li a i.icon-favorite {
+  background:url(data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAA3ElEQVQ4y2NgGDKgo6NDDYj7gfgcED8B4qNAnArETGhqFgPxPSC+CsTzgNgSm2ERQPwAiJ9hwa1QNZpAfAOL/FMgrgFiRphhllDBZzgwSM4YiA/gUQPCyTAD1xBQCMLHiFBzCYhZQAY+JEIxsVgRZOA1KhooCTJwNpUMOwYLQxsqGZiCnGwWUmjYESBmRzZQHBpL5BgGilRjbInbiMwYj8aX/QKB+DEJhlUSk6fDiDS0lpSCIpCA98vIKX1ssBQGIJfHU1KkqUKLMZBh14HYnhrlJB8QNwKx3IAU1AAhK0g1iaybUQAAAABJRU5ErkJggg==) 50% 50% no-repeat;  
+}
+#my-account ul.myaccount-link-list li a i.icon-wishlist {
+  background:url(data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAQAAAAngNWGAAABCElEQVR4AY3KP2sTcQAA0HfHhQQCTkJEkrFLKQQ6FAqFDulaKITSuYVOhTb0ogEHieBwoI7OjibB0VGI6BdwEoKCOIT4d3EIEolx9rgf5M0vIqtquSHvs7e40HHuNUm2YaQm75M2mpqqnjkzTjxU89HALwDwyheXevpWDj21mdjxR9t3eR130ffAyhsSZdNgI3Jfy4REkWtdwModE4gRbn+lnmtoFcX0vzZQ90KdfNwGsJQa4kgD8jG15QmWuoYAkACAil0VPDI1Ihz3VMz89NIHwpEfDrwHwhHeCYqtKUZZGCUg9s1NJ0JuOcaMKOu5wle/FbmtZGrfPPHYwqmaYgtj98yJMuv5B7i7Q14yNXhGAAAAAElFTkSuQmCC) 50% 50% no-repeat;  
+}
+#my-account ul.myaccount-link-list li a i.icon-loginradius {
+  background:url(../img/icon/loginradius.png) 50% 50% no-repeat;  
+}

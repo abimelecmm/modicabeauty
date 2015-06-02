@@ -1,0 +1,12 @@
+.topbanner {
+	text-align: center;
+	background-color: #000;
+	margin-top: -36px;
+	margin-bottom: 36px;
+	max-height: 65px;
+	height: auto;
+	max-width:100%;
+}
+.topbanner a {
+	display: block;
+}
