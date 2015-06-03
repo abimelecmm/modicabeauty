@@ -40,7 +40,10 @@
 			<p>{l s='You cannot place a new order from your country.'} <span class="bold">{$geolocation_country}</span></p>
 		</div>
 		{/if}
+		<!--
 		{if ($page_name == "index")}<div class="loader-bg"></div>{/if}
+		<div id="white_bg" class="smooth05{if ($page_name == "index")} blured{/if}">
+		-->
 		<div id="white_bg" class="smooth05">
 		{if isset($theme_settings) && $theme_settings.toTop == 1}
 		<div id="scrollTop" class="bshadow main_bg"><a href="#"><svg class="svgic svgic-arrowdown"><use xlink:href="#si-arrowdown"></use></svg></a></div>
