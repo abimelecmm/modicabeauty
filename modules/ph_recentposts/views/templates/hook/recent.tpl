@@ -63,7 +63,7 @@ jQuery(document).ready(function() {
         pref: "recposts",
         visibleItems: 2,
         animationSpeed: 500,
-        autoPlay: true,
+        autoPlay: false,
         autoPlaySpeed: 3000,            
         pauseOnHover: true,
         enableResponsiveBreakpoints: true,
