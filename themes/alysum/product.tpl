@@ -279,6 +279,262 @@
 					{/if}-->
 				</div> <!-- end short_description_block -->
 			{/if}
+						<!-- pb-right-column1-->
+			<div id="pb-right-column1" class="col-xs-12 col-sm-4 col-md-3">
+				<div class="box-info-product">					
+					<div class="product_attributes clearfix">						
+						{if isset($groups)}
+							<!-- attributes -->
+							<div id="attributes">
+								<div class="clear"></div>
+								{foreach from=$groups key=id_attribute_group item=group}
+									{if $group.attributes|@count}
+										<fieldset class="attribute_fieldset">
+											<label class="attribute_label" {if $group.group_type != 'color' && $group.group_type != 'radio'}for="group_{$id_attribute_group|intval}"{/if}>{$group.name|escape:'html':'UTF-8'} :&nbsp;</label>
+											{assign var="groupName" value="group_$id_attribute_group"}
+											<div class="attribute_list">
+												{if ($group.group_type == 'select')}
+													<select name="{$groupName}" id="group_{$id_attribute_group|intval}" class="form-control attribute_select" onchange="findCombination();getProductAttribute();">
+														{foreach from=$group.attributes key=id_attribute item=group_attribute}
+															<option value="{$id_attribute|intval}"{if (isset($smarty.get.$groupName) && $smarty.get.$groupName|intval == $id_attribute) || $group.default == $id_attribute} selected="selected"{/if} title="{$group_attribute|escape:'html':'UTF-8'}">{$group_attribute|escape:'html':'UTF-8'}</option>
+														{/foreach}
+													</select>
+												{elseif ($group.group_type == 'color')}
+													{if (!$theme_settings) || ($theme_settings.product_colorpicker == 1)}
+													<div id="dd_{$id_attribute_group|intval}" class="wrapper-dropdown">
+														{foreach from=$group.attributes key=id_attribute item=group_attribute}
+															{if $group.default == $id_attribute}
+															<i id="color_marker" style="background-color: {$colors.$id_attribute.value};">
+																{if file_exists($col_img_dir|cat:$id_attribute|cat:'.jpg')}
+																	<img id="attr_{$id_attribute}" class="{if $group.default == $id_attribute}display{else}hidden{/if}" src="{$img_col_dir}{$id_attribute}.jpg" alt="{$colors.$id_attribute.name}" width="19" />
+																{/if}
+															</i>
+																<span>
+																{$colors.$id_attribute.name}												
+																</span>
+															{/if}
+														{/foreach}
+														<ul id="color_to_pick_list2" class="dropdown">
+															{assign var="default_colorpicker" value=""}
+															{foreach from=$group.attributes key=id_attribute item=group_attribute}
+															<li{if $group.default == $id_attribute} class="selected"{/if}>
+																<a id="color_{$id_attribute|intval}" class="color_pick{if ($group.default == $id_attribute)} selected{/if}" onclick="colorPickerClick(this);getProductAttribute();{if $colors|@count > 0}$('#wrapResetImages').show('slow');$('#dd_{$id_attribute_group|intval}').find('#color_marker').css('background-color', $(this).find('i').css('background-color'));
+																	$('#dd_{$id_attribute_group|intval}').find('#color_marker img').remove();$('#dd_{$id_attribute_group|intval}').find('#color_to_pick_list2 #attr_{$id_attribute}').clone().prependTo('#dd_{$id_attribute_group|intval} i#color_marker');{/if}">
+																	<i style="background: {$colors.$id_attribute.value};">
+																		{if file_exists($col_img_dir|cat:$id_attribute|cat:'.jpg')}
+																			<img id="attr_{$id_attribute}" class="{if $group.default == $id_attribute}display{else}hide{/if}" src="{$img_col_dir}{$id_attribute}.jpg" alt="{$colors.$id_attribute.name}" width="19" />
+																		{/if}
+																	</i>
+																	{$colors.$id_attribute.name}
+																</a>										
+															</li>
+															{if ($group.default == $id_attribute)}
+																{$default_colorpicker = $id_attribute}
+															{/if}
+															{/foreach}
+														</ul>
+														<div><b></b></div>
+														<input type="hidden" class="color_pick_hidden" name="{$groupName}" value="{$default_colorpicker}" />
+													</div>
+													<script>
+													$(function() {	 
+													    var dd = new DropDown( $('#dd_{$id_attribute_group|intval}') );
+													    $(dd).click(function() { 
+													    	$('.wrapper-dropdown').removeClass('active');
+													    });	 
+													});
+													</script>													
+													{else}
+													<ul id="color_to_pick_list" class="clearfix">
+														{assign var="default_colorpicker" value=""}
+														{foreach from=$group.attributes key=id_attribute item=group_attribute}
+															<li{if $group.default == $id_attribute} class="selected"{/if}>
+																<a id="color_{$id_attribute|intval}" class="color_pick{if ($group.default == $id_attribute)} selected{/if}" style="background: {$colors.$id_attribute.value};" title="{$colors.$id_attribute.name}">
+																	{if file_exists($col_img_dir|cat:$id_attribute|cat:'.jpg')}
+																		<img src="{$img_col_dir}{$id_attribute}.jpg" alt="{$colors.$id_attribute.name}" width="20" height="20" />
+																	{/if}
+																</a>
+															</li>
+															{if ($group.default == $id_attribute)}
+																{$default_colorpicker = $id_attribute}
+															{/if}
+														{/foreach}
+													</ul>
+													<input type="hidden" class="color_pick_hidden" name="{$groupName}" value="{$default_colorpicker}" />
+													{/if}
+												{elseif ($group.group_type == 'radio')}
+													<ul>
+														{foreach from=$group.attributes key=id_attribute item=group_attribute}
+															<li>
+																<input type="radio" class="attribute_radio" name="{$groupName}" value="{$id_attribute}" {if ($group.default == $id_attribute)} checked="checked"{/if} onclick="findCombination();getProductAttribute();" />
+																<span>{$group_attribute|escape:'html':'UTF-8'}</span>
+															</li>
+														{/foreach}
+													</ul>
+												{/if}
+											</div> <!-- end attribute_list -->
+										</fieldset>
+									{/if}
+								{/foreach}
+							</div> <!-- end attributes -->
+							{/if}
+							{if ($product->show_price && !isset($restricted_country_mode)) || isset($groups) || $product->reference || (isset($HOOK_PRODUCT_ACTIONS) && $HOOK_PRODUCT_ACTIONS)}
+							<!-- quantity wanted -->
+							<p id="quantity_wanted_p"{if (!$allow_oosp && $product->quantity <= 0) || !$product->available_for_order || $PS_CATALOG_MODE} style="display: none;"{/if}>
+								<label>{l s='Quantity:'}</label>
+								<input
+									type="text"
+									name="qty"
+									id="quantity_wanted"
+									class="text"
+									value="{if isset($quantityBackup)}{$quantityBackup|intval}{else}{if $product->minimal_quantity > 1}{$product->minimal_quantity}{else}1{/if}{/if}"
+									maxlength="3"
+									{if $product->minimal_quantity > 1}onkeyup="checkMinimalQuantity({$product->minimal_quantity});"{/if} />
+								<a href="#" data-field-qty="qty" class="btn btn-default button-minus product_quantity_down">
+									<span><i class="icon-minus"></i></span>
+								</a>
+								<a href="#"  data-field-qty="qty" class="btn btn-default button-plus product_quantity_up ">
+									<span><i class="icon-plus"></i></span>
+								</a>
+								<span class="clearfix"></span>
+							</p>
+							<!-- minimal quantity wanted -->
+							<p id="minimal_quantity_wanted_p"{if $product->minimal_quantity <= 1 || !$product->available_for_order || $PS_CATALOG_MODE} style="display: none;"{/if}>
+								{l s='This product is not sold individually. You must select at least'} <b id="minimal_quantity_label">{$product->minimal_quantity}</b> {l s='quantity for this product.'}
+							</p>
+						{/if}
+					</div> <!-- end product_attributes -->
+					<div class="content_prices clearfix{if (($cookie->ts_countdown == 1) && isset($product->specificPrice.to))} countd sec_bord_hvr{/if}">
+						{if $product->show_price && !isset($restricted_country_mode) && !$PS_CATALOG_MODE}
+							<!-- prices -->
+							{if ($cookie->ts_countdown == 1)}
+					        {assign var=to value="-"|explode:$product->specificPrice.to} 
+					        {if isset($product->specificPrice.to) && ($to[0] != "0000")}
+					        	<div class="countdown" title="{l s='To the end of this offer'}"></div>
+					        	<script>
+					        	$(document).ready(function(){
+					        		$(function() {
+									    $('.countdown').countdown({
+									        date: "{$product->specificPrice.to|replace:' ':'T'}",
+									          render: function(data) {
+									            $(this.el).html("<div class='main_bg'>" + this.leadingZeros(data.days, 2) + " <span>{l s='Days'}</span></div><div class='main_bg'>" + this.leadingZeros(data.hours, 2) + " <span>{l s='Hours'}</span></div><div class='main_bg'>" + this.leadingZeros(data.min, 2) + " <span>{l s='Min'}</span></div><div class='main_bg'>" + this.leadingZeros(data.sec, 2) + " <span>{l s='Sec'}</span></div>");
+									            $(this.el).attr('title', this.leadingZeros(data.days, 2)+" {l s='Days'} {l s='and'} "+this.leadingZeros(data.hours, 2)+" {l s='Hours'} {l s='to the end of this offer'}");
+									          }
+									    });
+									});
+					        	});
+					        	</script>			        	
+					        {/if}
+					        {/if}
+							<div class="price">
+								<p class="our_price_display" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+									{if $product->quantity > 0}<link itemprop="availability" href="http://schema.org/InStock"/>{/if}
+									{if $priceDisplay >= 0 && $priceDisplay <= 2}
+										<span id="our_price_display" itemprop="price">{convertPrice price=$productPrice}</span>
+										<!--{if $tax_enabled  && ((isset($display_tax_label) && $display_tax_label == 1) || !isset($display_tax_label))}
+											{if $priceDisplay == 1}{l s='tax excl.'}{else}{l s='tax incl.'}{/if}
+										{/if}-->
+										<meta itemprop="priceCurrency" content="{$currency->iso_code}" />
+										{hook h="displayProductPriceBlock" product=$product type="price"}
+									{/if}
+								</p>
+								<p id="reduction_percent" {if !$product->specificPrice || $product->specificPrice.reduction_type != 'percentage'} style="display:none;"{/if}>
+									<span id="reduction_percent_display">
+										{if $product->specificPrice && $product->specificPrice.reduction_type == 'percentage'}-{$product->specificPrice.reduction*100}%{/if}
+									</span>
+								</p>
+								<p id="reduction_amount" {if !$product->specificPrice || $product->specificPrice.reduction_type != 'amount' || $product->specificPrice.reduction|intval ==0} style="display:none"{/if}>
+									<span id="reduction_amount_display">
+									{if $product->specificPrice && $product->specificPrice.reduction_type == 'amount' && $product->specificPrice.reduction|intval !=0}
+										-{convertPrice price=$productPriceWithoutReduction-$productPrice|floatval}
+									{/if}
+									</span>
+								</p>
+								<p id="old_price"{if !$product->specificPrice || !$product->specificPrice.reduction} class="hidden"{/if}>
+									{if $priceDisplay >= 0 && $priceDisplay <= 2}
+										<span id="old_price_display">{if $productPriceWithoutReduction > $productPrice}{convertPrice price=$productPriceWithoutReduction}{/if}</span>
+										<!-- {if $tax_enabled && $display_tax_label == 1}{if $priceDisplay == 1}{l s='tax excl.'}{else}{l s='tax incl.'}{/if}{/if} -->
+									{/if}
+								</p>
+
+								{if $priceDisplay == 2}
+									<br />
+									<span id="pretaxe_price">
+										<span id="pretaxe_price_display">{convertPrice price=$product->getPrice(false, $smarty.const.NULL)}</span>
+										{l s='tax excl.'}
+									</span>
+								{/if}
+								<div id="add_to_cart" {if (!$allow_oosp && $product->quantity <= 0) || !$product->available_for_order || (isset($restricted_country_mode) && $restricted_country_mode) || $PS_CATALOG_MODE}style="display:none"{/if} class="buttons_bottom_block">
+								{if ($product->show_price && !isset($restricted_country_mode)) || isset($groups) || $product->reference || (isset($HOOK_PRODUCT_ACTIONS) && $HOOK_PRODUCT_ACTIONS)}
+									<!-- add to cart form-->
+									<form id="buy_block" style="margin-top:0" {if $PS_CATALOG_MODE && !isset($groups) && $product->quantity > 0}class="hidden"{/if} action="{$link->getPageLink('cart')|escape:'html':'UTF-8'}" method="post">
+										<!-- hidden datas -->
+										<button type="submit" name="Submit" class="exclusive lmromancaps">{l s='Add to cart'}</button>
+										<p class="hidden">
+											<input type="hidden" name="token" value="{$static_token}" />
+											<input type="hidden" name="id_product" value="{$product->id|intval}" id="product_page_product_id" />
+											<input type="hidden" name="add" value="1" />
+											<input type="hidden" name="id_product_attribute" id="idCombination" value="" />
+										</p>
+									</form>
+								{/if}
+								</div>
+							</div> <!-- end prices -->
+					
+							{if $packItems|@count && $productPrice < $product->getNoPackPrice()}
+								<p class="pack_price">{l s='Instead of'} <span style="text-decoration: line-through;">{convertPrice price=$product->getNoPackPrice()}</span></p>
+							{/if}
+
+							{if $product->ecotax != 0}
+								<p class="price-ecotax">{l s='Include'} <span id="ecotax_price_display">{if $priceDisplay == 2}{$ecotax_tax_exc|convertAndFormatPrice}{else}{$ecotax_tax_inc|convertAndFormatPrice}{/if}</span> {l s='For green tax'}
+									{if $product->specificPrice && $product->specificPrice.reduction}
+									<br />{l s='(not impacted by the discount)'}
+									{/if}
+								</p>
+							{/if}
+
+							{if !empty($product->unity) && $product->unit_price_ratio > 0.000000}
+								{math equation="pprice / punit_price"  pprice=$productPrice  punit_price=$product->unit_price_ratio assign=unit_price}
+								<p class="unit-price"><span id="unit_price_display">{convertPrice price=$unit_price}</span> {l s='per'} {$product->unity|escape:'html':'UTF-8'}</p>
+							{/if}
+						{/if} {*close if for show price*}
+						<div class="clear"></div>
+					</div> <!-- end content_prices -->
+					{if !$content_only}
+					<div class="box-cart-bottom">						
+						{if $theme_settings.share_buttons == 1}
+						<!-- AddThis Button BEGIN -->
+						<div class="addthis_toolbox addthis_default_style">
+							<div class="addthis-container">
+							<a class="addthis_button_preferred_1"></a>
+							<a class="addthis_button_preferred_2"></a>
+							<a class="addthis_button_preferred_3"></a>
+							<a class="addthis_button_preferred_4"></a>
+							<a class="addthis_button_compact"></a>
+							<a class="addthis_counter addthis_bubble_style"></a>
+							</div>
+						</div>
+						<script type="text/javascript">
+							var addthis_config = { "data_track_addressbar":true }; 
+							addthis_config.data_track_addressbar = false;
+						</script>
+						<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4f8c6f62449043f7"></script>
+						<!-- AddThis Button END -->
+						{/if}
+						{if isset($HOOK_PRODUCT_ACTIONS) && $HOOK_PRODUCT_ACTIONS}{$HOOK_PRODUCT_ACTIONS}{/if}<strong></strong>
+					</div> <!-- end box-cart-bottom -->
+					<ul id="usefull_link_block" class="clearfix">
+						{if $HOOK_EXTRA_LEFT}{$HOOK_EXTRA_LEFT}{/if}
+						<!--<li class="print">
+							<a href="javascript:print();">
+								{l s='Print'}
+							</a>
+						</li>-->
+					</ul>
+				</div> <!-- end box-info-product -->
+				{/if}
+			</div> <!-- end pb-right-column1-->
+
 			{if !$content_only}
 				<div class="tab-titles">
 					{if $product->description}<h3 class="active-tab" data-title="1">{l s='More info'}</h3>{/if}{if isset($features) && $features}<h3 data-title="2">{l s='Data sheet'}</h3>{/if}{if isset($accessories) && $accessories}<h3 data-title="3">{l s='Accessories'}</h3>{/if}{if (isset($quantity_discounts) && count($quantity_discounts) > 0)}<h3 data-title="4">{l s='Volume discounts'}</h3>{/if}{if isset($attachments) && $attachments}<h3 data-title="5">{l s='Download'}</h3>{/if}{if isset($product) && $product->customizable}<h3 data-title="6">{l s='Product customization'}</h3>{/if}{if isset($packItems) && $packItems|@count > 0}<h3 data-title="7">{l s='Pack content'}</h3>{/if}{$HOOK_PRODUCT_TAB}
@@ -559,261 +815,6 @@
 				<!--end HOOK_PRODUCT_TAB -->
 
 			{/if}
-			<!-- pb-right-column1-->
-			<div id="pb-right-column1" class="col-xs-12 col-sm-4 col-md-3">
-				<div class="box-info-product">					
-					<div class="product_attributes clearfix">						
-						{if isset($groups)}
-							<!-- attributes -->
-							<div id="attributes">
-								<div class="clear"></div>
-								{foreach from=$groups key=id_attribute_group item=group}
-									{if $group.attributes|@count}
-										<fieldset class="attribute_fieldset">
-											<label class="attribute_label" {if $group.group_type != 'color' && $group.group_type != 'radio'}for="group_{$id_attribute_group|intval}"{/if}>{$group.name|escape:'html':'UTF-8'} :&nbsp;</label>
-											{assign var="groupName" value="group_$id_attribute_group"}
-											<div class="attribute_list">
-												{if ($group.group_type == 'select')}
-													<select name="{$groupName}" id="group_{$id_attribute_group|intval}" class="form-control attribute_select" onchange="findCombination();getProductAttribute();">
-														{foreach from=$group.attributes key=id_attribute item=group_attribute}
-															<option value="{$id_attribute|intval}"{if (isset($smarty.get.$groupName) && $smarty.get.$groupName|intval == $id_attribute) || $group.default == $id_attribute} selected="selected"{/if} title="{$group_attribute|escape:'html':'UTF-8'}">{$group_attribute|escape:'html':'UTF-8'}</option>
-														{/foreach}
-													</select>
-												{elseif ($group.group_type == 'color')}
-													{if (!$theme_settings) || ($theme_settings.product_colorpicker == 1)}
-													<div id="dd_{$id_attribute_group|intval}" class="wrapper-dropdown">
-														{foreach from=$group.attributes key=id_attribute item=group_attribute}
-															{if $group.default == $id_attribute}
-															<i id="color_marker" style="background-color: {$colors.$id_attribute.value};">
-																{if file_exists($col_img_dir|cat:$id_attribute|cat:'.jpg')}
-																	<img id="attr_{$id_attribute}" class="{if $group.default == $id_attribute}display{else}hidden{/if}" src="{$img_col_dir}{$id_attribute}.jpg" alt="{$colors.$id_attribute.name}" width="19" />
-																{/if}
-															</i>
-																<span>
-																{$colors.$id_attribute.name}												
-																</span>
-															{/if}
-														{/foreach}
-														<ul id="color_to_pick_list2" class="dropdown">
-															{assign var="default_colorpicker" value=""}
-															{foreach from=$group.attributes key=id_attribute item=group_attribute}
-															<li{if $group.default == $id_attribute} class="selected"{/if}>
-																<a id="color_{$id_attribute|intval}" class="color_pick{if ($group.default == $id_attribute)} selected{/if}" onclick="colorPickerClick(this);getProductAttribute();{if $colors|@count > 0}$('#wrapResetImages').show('slow');$('#dd_{$id_attribute_group|intval}').find('#color_marker').css('background-color', $(this).find('i').css('background-color'));
-																	$('#dd_{$id_attribute_group|intval}').find('#color_marker img').remove();$('#dd_{$id_attribute_group|intval}').find('#color_to_pick_list2 #attr_{$id_attribute}').clone().prependTo('#dd_{$id_attribute_group|intval} i#color_marker');{/if}">
-																	<i style="background: {$colors.$id_attribute.value};">
-																		{if file_exists($col_img_dir|cat:$id_attribute|cat:'.jpg')}
-																			<img id="attr_{$id_attribute}" class="{if $group.default == $id_attribute}display{else}hide{/if}" src="{$img_col_dir}{$id_attribute}.jpg" alt="{$colors.$id_attribute.name}" width="19" />
-																		{/if}
-																	</i>
-																	{$colors.$id_attribute.name}
-																</a>										
-															</li>
-															{if ($group.default == $id_attribute)}
-																{$default_colorpicker = $id_attribute}
-															{/if}
-															{/foreach}
-														</ul>
-														<div><b></b></div>
-														<input type="hidden" class="color_pick_hidden" name="{$groupName}" value="{$default_colorpicker}" />
-													</div>
-													<script>
-													$(function() {	 
-													    var dd = new DropDown( $('#dd_{$id_attribute_group|intval}') );
-													    $(dd).click(function() { 
-													    	$('.wrapper-dropdown').removeClass('active');
-													    });	 
-													});
-													</script>													
-													{else}
-													<ul id="color_to_pick_list" class="clearfix">
-														{assign var="default_colorpicker" value=""}
-														{foreach from=$group.attributes key=id_attribute item=group_attribute}
-															<li{if $group.default == $id_attribute} class="selected"{/if}>
-																<a id="color_{$id_attribute|intval}" class="color_pick{if ($group.default == $id_attribute)} selected{/if}" style="background: {$colors.$id_attribute.value};" title="{$colors.$id_attribute.name}">
-																	{if file_exists($col_img_dir|cat:$id_attribute|cat:'.jpg')}
-																		<img src="{$img_col_dir}{$id_attribute}.jpg" alt="{$colors.$id_attribute.name}" width="20" height="20" />
-																	{/if}
-																</a>
-															</li>
-															{if ($group.default == $id_attribute)}
-																{$default_colorpicker = $id_attribute}
-															{/if}
-														{/foreach}
-													</ul>
-													<input type="hidden" class="color_pick_hidden" name="{$groupName}" value="{$default_colorpicker}" />
-													{/if}
-												{elseif ($group.group_type == 'radio')}
-													<ul>
-														{foreach from=$group.attributes key=id_attribute item=group_attribute}
-															<li>
-																<input type="radio" class="attribute_radio" name="{$groupName}" value="{$id_attribute}" {if ($group.default == $id_attribute)} checked="checked"{/if} onclick="findCombination();getProductAttribute();" />
-																<span>{$group_attribute|escape:'html':'UTF-8'}</span>
-															</li>
-														{/foreach}
-													</ul>
-												{/if}
-											</div> <!-- end attribute_list -->
-										</fieldset>
-									{/if}
-								{/foreach}
-							</div> <!-- end attributes -->
-							{/if}
-							{if ($product->show_price && !isset($restricted_country_mode)) || isset($groups) || $product->reference || (isset($HOOK_PRODUCT_ACTIONS) && $HOOK_PRODUCT_ACTIONS)}
-							<!-- quantity wanted -->
-							<p id="quantity_wanted_p"{if (!$allow_oosp && $product->quantity <= 0) || !$product->available_for_order || $PS_CATALOG_MODE} style="display: none;"{/if}>
-								<label>{l s='Quantity:'}</label>
-								<input
-									type="text"
-									name="qty"
-									id="quantity_wanted"
-									class="text"
-									value="{if isset($quantityBackup)}{$quantityBackup|intval}{else}{if $product->minimal_quantity > 1}{$product->minimal_quantity}{else}1{/if}{/if}"
-									maxlength="3"
-									{if $product->minimal_quantity > 1}onkeyup="checkMinimalQuantity({$product->minimal_quantity});"{/if} />
-								<a href="#" data-field-qty="qty" class="btn btn-default button-minus product_quantity_down">
-									<span><i class="icon-minus"></i></span>
-								</a>
-								<a href="#"  data-field-qty="qty" class="btn btn-default button-plus product_quantity_up ">
-									<span><i class="icon-plus"></i></span>
-								</a>
-								<span class="clearfix"></span>
-							</p>
-							<!-- minimal quantity wanted -->
-							<p id="minimal_quantity_wanted_p"{if $product->minimal_quantity <= 1 || !$product->available_for_order || $PS_CATALOG_MODE} style="display: none;"{/if}>
-								{l s='This product is not sold individually. You must select at least'} <b id="minimal_quantity_label">{$product->minimal_quantity}</b> {l s='quantity for this product.'}
-							</p>
-						{/if}
-					</div> <!-- end product_attributes -->
-					<div class="content_prices clearfix{if (($cookie->ts_countdown == 1) && isset($product->specificPrice.to))} countd sec_bord_hvr{/if}">
-						{if $product->show_price && !isset($restricted_country_mode) && !$PS_CATALOG_MODE}
-							<!-- prices -->
-							{if ($cookie->ts_countdown == 1)}
-					        {assign var=to value="-"|explode:$product->specificPrice.to} 
-					        {if isset($product->specificPrice.to) && ($to[0] != "0000")}
-					        	<div class="countdown" title="{l s='To the end of this offer'}"></div>
-					        	<script>
-					        	$(document).ready(function(){
-					        		$(function() {
-									    $('.countdown').countdown({
-									        date: "{$product->specificPrice.to|replace:' ':'T'}",
-									          render: function(data) {
-									            $(this.el).html("<div class='main_bg'>" + this.leadingZeros(data.days, 2) + " <span>{l s='Days'}</span></div><div class='main_bg'>" + this.leadingZeros(data.hours, 2) + " <span>{l s='Hours'}</span></div><div class='main_bg'>" + this.leadingZeros(data.min, 2) + " <span>{l s='Min'}</span></div><div class='main_bg'>" + this.leadingZeros(data.sec, 2) + " <span>{l s='Sec'}</span></div>");
-									            $(this.el).attr('title', this.leadingZeros(data.days, 2)+" {l s='Days'} {l s='and'} "+this.leadingZeros(data.hours, 2)+" {l s='Hours'} {l s='to the end of this offer'}");
-									          }
-									    });
-									});
-					        	});
-					        	</script>			        	
-					        {/if}
-					        {/if}
-							<div class="price">
-								<p class="our_price_display" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-									{if $product->quantity > 0}<link itemprop="availability" href="http://schema.org/InStock"/>{/if}
-									{if $priceDisplay >= 0 && $priceDisplay <= 2}
-										<span id="our_price_display" itemprop="price">{convertPrice price=$productPrice}</span>
-										<!--{if $tax_enabled  && ((isset($display_tax_label) && $display_tax_label == 1) || !isset($display_tax_label))}
-											{if $priceDisplay == 1}{l s='tax excl.'}{else}{l s='tax incl.'}{/if}
-										{/if}-->
-										<meta itemprop="priceCurrency" content="{$currency->iso_code}" />
-										{hook h="displayProductPriceBlock" product=$product type="price"}
-									{/if}
-								</p>
-								<p id="reduction_percent" {if !$product->specificPrice || $product->specificPrice.reduction_type != 'percentage'} style="display:none;"{/if}>
-									<span id="reduction_percent_display">
-										{if $product->specificPrice && $product->specificPrice.reduction_type == 'percentage'}-{$product->specificPrice.reduction*100}%{/if}
-									</span>
-								</p>
-								<p id="reduction_amount" {if !$product->specificPrice || $product->specificPrice.reduction_type != 'amount' || $product->specificPrice.reduction|intval ==0} style="display:none"{/if}>
-									<span id="reduction_amount_display">
-									{if $product->specificPrice && $product->specificPrice.reduction_type == 'amount' && $product->specificPrice.reduction|intval !=0}
-										-{convertPrice price=$productPriceWithoutReduction-$productPrice|floatval}
-									{/if}
-									</span>
-								</p>
-								<p id="old_price"{if !$product->specificPrice || !$product->specificPrice.reduction} class="hidden"{/if}>
-									{if $priceDisplay >= 0 && $priceDisplay <= 2}
-										<span id="old_price_display">{if $productPriceWithoutReduction > $productPrice}{convertPrice price=$productPriceWithoutReduction}{/if}</span>
-										<!-- {if $tax_enabled && $display_tax_label == 1}{if $priceDisplay == 1}{l s='tax excl.'}{else}{l s='tax incl.'}{/if}{/if} -->
-									{/if}
-								</p>
-
-								{if $priceDisplay == 2}
-									<br />
-									<span id="pretaxe_price">
-										<span id="pretaxe_price_display">{convertPrice price=$product->getPrice(false, $smarty.const.NULL)}</span>
-										{l s='tax excl.'}
-									</span>
-								{/if}
-								<div id="add_to_cart" {if (!$allow_oosp && $product->quantity <= 0) || !$product->available_for_order || (isset($restricted_country_mode) && $restricted_country_mode) || $PS_CATALOG_MODE}style="display:none"{/if} class="buttons_bottom_block">
-								{if ($product->show_price && !isset($restricted_country_mode)) || isset($groups) || $product->reference || (isset($HOOK_PRODUCT_ACTIONS) && $HOOK_PRODUCT_ACTIONS)}
-									<!-- add to cart form-->
-									<form id="buy_block" style="margin-top:0" {if $PS_CATALOG_MODE && !isset($groups) && $product->quantity > 0}class="hidden"{/if} action="{$link->getPageLink('cart')|escape:'html':'UTF-8'}" method="post">
-										<!-- hidden datas -->
-										<button type="submit" name="Submit" class="exclusive lmromancaps">{l s='Add to cart'}</button>
-										<p class="hidden">
-											<input type="hidden" name="token" value="{$static_token}" />
-											<input type="hidden" name="id_product" value="{$product->id|intval}" id="product_page_product_id" />
-											<input type="hidden" name="add" value="1" />
-											<input type="hidden" name="id_product_attribute" id="idCombination" value="" />
-										</p>
-									</form>
-								{/if}
-								</div>
-							</div> <!-- end prices -->
-					
-							{if $packItems|@count && $productPrice < $product->getNoPackPrice()}
-								<p class="pack_price">{l s='Instead of'} <span style="text-decoration: line-through;">{convertPrice price=$product->getNoPackPrice()}</span></p>
-							{/if}
-
-							{if $product->ecotax != 0}
-								<p class="price-ecotax">{l s='Include'} <span id="ecotax_price_display">{if $priceDisplay == 2}{$ecotax_tax_exc|convertAndFormatPrice}{else}{$ecotax_tax_inc|convertAndFormatPrice}{/if}</span> {l s='For green tax'}
-									{if $product->specificPrice && $product->specificPrice.reduction}
-									<br />{l s='(not impacted by the discount)'}
-									{/if}
-								</p>
-							{/if}
-
-							{if !empty($product->unity) && $product->unit_price_ratio > 0.000000}
-								{math equation="pprice / punit_price"  pprice=$productPrice  punit_price=$product->unit_price_ratio assign=unit_price}
-								<p class="unit-price"><span id="unit_price_display">{convertPrice price=$unit_price}</span> {l s='per'} {$product->unity|escape:'html':'UTF-8'}</p>
-							{/if}
-						{/if} {*close if for show price*}
-						<div class="clear"></div>
-					</div> <!-- end content_prices -->
-					{if !$content_only}
-					<div class="box-cart-bottom">						
-						{if $theme_settings.share_buttons == 1}
-						<!-- AddThis Button BEGIN -->
-						<div class="addthis_toolbox addthis_default_style">
-							<div class="addthis-container">
-							<a class="addthis_button_preferred_1"></a>
-							<a class="addthis_button_preferred_2"></a>
-							<a class="addthis_button_preferred_3"></a>
-							<a class="addthis_button_preferred_4"></a>
-							<a class="addthis_button_compact"></a>
-							<a class="addthis_counter addthis_bubble_style"></a>
-							</div>
-						</div>
-						<script type="text/javascript">
-							var addthis_config = { "data_track_addressbar":true }; 
-							addthis_config.data_track_addressbar = false;
-						</script>
-						<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4f8c6f62449043f7"></script>
-						<!-- AddThis Button END -->
-						{/if}
-						{if isset($HOOK_PRODUCT_ACTIONS) && $HOOK_PRODUCT_ACTIONS}{$HOOK_PRODUCT_ACTIONS}{/if}<strong></strong>
-					</div> <!-- end box-cart-bottom -->
-					<ul id="usefull_link_block" class="clearfix">
-						{if $HOOK_EXTRA_LEFT}{$HOOK_EXTRA_LEFT}{/if}
-						<!--<li class="print">
-							<a href="javascript:print();">
-								{l s='Print'}
-							</a>
-						</li>-->
-					</ul>
-				</div> <!-- end box-info-product -->
-				{/if}
-			</div> <!-- end pb-right-column1-->
 			{if $content_only}
 				{if isset($HOOK_PRODUCT_FOOTER) && $HOOK_PRODUCT_FOOTER}{$HOOK_PRODUCT_FOOTER}{/if}
 				{/if}
