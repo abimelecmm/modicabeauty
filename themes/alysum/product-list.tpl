@@ -110,7 +110,7 @@
 						<h3 itemprop="name" class="ellipsis">
 							{if isset($product.pack_quantity) && $product.pack_quantity}{$product.pack_quantity|intval|cat:' x '}{/if}
 							<a class="product-name" href="{$product.link|escape:'html':'UTF-8'}" title="{$product.name|escape:'html':'UTF-8'}" itemprop="url" >
-								{$product.name|truncate:28:'...'|escape:'html':'UTF-8'}
+								{$product.name|truncate:70:'...'|escape:'html':'UTF-8'}
 							</a>
 						</h3>	
 					</div>
