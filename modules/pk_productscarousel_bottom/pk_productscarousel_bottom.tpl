@@ -145,7 +145,7 @@
                         
                         <!-- END BESTSELLERS -->
                       {else}
-                        <a class="f_title ellipsis" href="{$productLink}" title="{$set.data.legend}">{$set.data.name|escape:htmlall:'UTF-8'|truncate:35}</a>
+                        <a class="f_title ellipsis" href="{$productLink}" title="{$set.data.legend}">{$set.data.name|escape:htmlall:'UTF-8'|truncate:70}</a>
                         {if $set.data.show_price AND !isset($restricted_country_mode) AND !$PS_CATALOG_MODE}
                           {if isset($p_price) && ($p_price == 1)}
                             <div class="content_price smooth02 price-bg{if isset($set.data.specific_prices.price)} oldprice-exist{/if}">
