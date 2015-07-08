@@ -164,9 +164,6 @@
 				</p>
 			{/if}			
 		</div><!-- end image_column -->
-		{if !$content_only}
-		{if isset($HOOK_PRODUCT_FOOTER) && $HOOK_PRODUCT_FOOTER}{$HOOK_PRODUCT_FOOTER}{/if}
-		{/if}
 		</div> <!-- end pb-right-column -->
 		<!-- end right infos--> 
 
@@ -827,6 +824,11 @@
 
 		</div>
 		<!-- end left infos-->
+		
+		{if !$content_only}
+		{if isset($HOOK_PRODUCT_FOOTER) && $HOOK_PRODUCT_FOOTER}{$HOOK_PRODUCT_FOOTER}{/if}
+		{/if}
+
 	</div> <!-- end primary_block -->
 <script>
 $(window).load(function(){
