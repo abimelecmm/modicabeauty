@@ -8,9 +8,9 @@
 {/if}
 
 <div class="ph_simpleblog simpleblog-single" data-postid="{$post->id_simpleblog_post}">
-	<div class="img_container">
+	<!-- div class="img_container">
 		<img src="{$post->banner}" alt="{$post->meta_title}" title="{$post->meta_title}" />
-	</div>	
+	</div -->	
 	<div class="blog-info">
 		{if Configuration::get('PH_BLOG_DISPLAY_DATE')}
 		<div class="blog-date main_bg">
