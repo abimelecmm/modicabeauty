@@ -174,6 +174,11 @@
 			{/if}
 	
 			<h1 itemprop="name">{$product->name|escape:'html':'UTF-8'}</h1>
+
+			<p class="product-desc" itemprop="description"{if  !$product->description_short} style="display: none;"{/if}>
+				{$product.description_short|strip_tags:'UTF-8'|truncate:360:'...'}
+			</p>
+
 			{if isset($comments) && ($theme_settings.product_rating == 1)}
 				{assign var='totalGrade' value=0}
 				{assign var='totalVotes' value=0}
@@ -204,10 +209,6 @@
 					</div>
 				</div>		
 			{/if}
-			<p id="product_reference"{if isset($groups) || !$product->reference} style="display: none;"{/if}>
-				<label>{l s='Model'}: </label>
-				<span class="editable" itemprop="sku">{$product->reference|escape:'html':'UTF-8'}</span>
-			</p>
 			{if isset($product->manufacturer_name) && $product->manufacturer_name != ""}
 			<p class="product-manufacturer">
 				 <span class="value_name">{l s='Manufacturer:'}</span> <a href="{$link->getmanufacturerLink($product->id_manufacturer)|escape:'htmlall':'UTF-8'}" itemprop="brand" itemscope itemtype="http://schema.org/Organization"><span itemprop="name">{$product->manufacturer_name}</span></a>
@@ -223,6 +224,10 @@
 				<span class="value_name">{l s='Condition'}: </spam>
 				<span class="editable" itemprop="condition">{$smarty.capture.condition|escape:'html':'UTF-8'}</span>
 			</p>			
+			<p id="product_reference"{if isset($groups) || !$product->reference} style="display: none;"{/if}>
+				<label>{l s='Model'}: </label>
+				<span class="editable" itemprop="sku">{$product->reference|escape:'html':'UTF-8'}</span>
+			</p>
 
 			<p id="availability_statut">
 				<span id="availability_label" class="value_name">{l s='Availability:'}</span>
