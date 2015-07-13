@@ -1930,10 +1930,10 @@ table#cart_summary tfoot .cart-separator-02 {border-top:1px solid #fff; padding:
 	width:278px;
 	height: 253px;
 	margin-right:20px;
-	background: url("../images/voucher.jpg") no-repeat 0 0;
+	/*background: url("../images/voucher.jpg") no-repeat 0 0;*/
 	position: relative;
 	float:left;
-	border:1px solid #e0e0e0;
+	/*border:1px solid #e0e0e0;*/
 }
 .shopping_cart_voucher_content {
 	width:278px;
@@ -1942,7 +1942,7 @@ table#cart_summary tfoot .cart-separator-02 {border-top:1px solid #fff; padding:
 	bottom: 0;
 	left:0;
 }
-.shopping_cart_voucher_content .space {padding: 19px 19px 10px 19px}
+.shopping_cart_voucher_content .space {/*padding: 19px 19px 10px 19px*/}
 .shopping_cart_voucher_content h4 { font-size:23px; line-height: 23px; padding: 0}
 .shopping_cart_voucher_content h4 label {color:#3a3a3c !important;}
 .shopping_cart_voucher_content .ind {padding: 5px 5px 5px 10px;}
