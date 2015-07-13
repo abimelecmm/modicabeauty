@@ -233,7 +233,6 @@
 				<span id="availability_label" class="value_name">{l s='Availability:'}</span>
 				<span id="availability_value"{if $product->quantity <= 0} class="warning_inline"{/if}>
 				{if $product->quantity <= 0}{if $allow_oosp}{$product->available_later}{else}{l s='This product is no longer in stock'}{/if}{else}{$product->available_now}{/if}
-				{if $product->quantity <= 0}{l s='item in stock'}{/if}
 				</span>
 				<!-- number of item in stock -->
 				{if ($display_qties == 1 && !$PS_CATALOG_MODE && $product->available_for_order)}
@@ -243,6 +242,12 @@
 					<span {if $product->quantity == 1} style="display: none;"{/if} id="quantityAvailableTxtMultiple">{l s='items in stock'}</span>)
 				</span>
 				{/if}
+
+
+				<span id="availability_value">{l s='items in stock'}</span>
+				
+
+
 				{if $PS_STOCK_MANAGEMENT}
 					{hook h="displayProductDeliveryTime" product=$product}
 					<span class="warning_inline" id="last_quantities"{if ($product->quantity > $last_qties || $product->quantity <= 0) || $allow_oosp || !$product->available_for_order || $PS_CATALOG_MODE} style="display: none"{/if} >{l s='Warning: Last items in stock!'}</span>
