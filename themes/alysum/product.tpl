@@ -233,6 +233,7 @@
 				<span id="availability_label" class="value_name">{l s='Availability:'}</span>
 				<span id="availability_value"{if $product->quantity <= 0} class="warning_inline"{/if}>
 				{if $product->quantity <= 0}{if $allow_oosp}{$product->available_later}{else}{l s='This product is no longer in stock'}{/if}{else}{$product->available_now}{/if}
+				{if $product->quantity <= 0}{$product->available_now}{/if}
 				</span>
 				<!-- number of item in stock -->
 				{if ($display_qties == 1 && !$PS_CATALOG_MODE && $product->available_for_order)}
