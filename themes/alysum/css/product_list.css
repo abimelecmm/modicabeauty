@@ -328,7 +328,6 @@ ul.product_list > li .on_sale, ul.product_list > li .online_only {
 	width:198px;
 	float:left;
 	margin: 0 20px 11px 0;
-	display: flex;
 }
 /* 1px solid #e0e0e0 */
 .product_list > li .left_block,
@@ -344,7 +343,7 @@ ul.product_list > li .on_sale, ul.product_list > li .online_only {
 .view_grid .product_list a.product_img_link img {
 	margin:0 auto; 
 	width: calc(100% - 2px); 
-	/*height: auto;*/ 
+	height: auto; 
 	display: block;
 }
 .view_grid .product_list > li .center_block {
