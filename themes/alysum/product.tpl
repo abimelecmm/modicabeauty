@@ -175,9 +175,9 @@
 	
 			<h1 itemprop="name">{$product->name|escape:'html':'UTF-8'}</h1>
 
-			<p class="product-desc" itemprop="description">
+			<div class="product-desc" itemprop="description">
 				{$product->description_short}
-			</p>
+			</div>
 
 			{if isset($comments) && ($theme_settings.product_rating == 1)}
 				{assign var='totalGrade' value=0}
