@@ -2855,7 +2855,7 @@ input.exclusive,input.exclusive_large,input.exclusive_mini_disabled,input.exclus
         $getCustomTab = Db::getInstance()->ExecuteS('SELECT `custom_tab_name` FROM `'._DB_PREFIX_.'pk_product_extratabs` WHERE  id_product = '.$id_product.' AND shop_id = '.$sid.' AND lang_id = '.$lid);        
         $getVideo = Db::getInstance()->ExecuteS('SELECT `video` FROM `'._DB_PREFIX_.'pk_product_extratabs` WHERE  id_product = '.$id_product.' AND shop_id = '.$sid.' AND lang_id = '.$lid);
         $tab = "";
-        if (($s["custom_tab"]) && isset($getCustomTab[0]["custom_tab_name"]))
+        if (($s["custom_tab"]) && isset($getCustomTab[0]["custom_tab_name"]) && $getCustomTab[0]["custom_tab_name"] != '')
             $tab .= "<h3 class='page-product-heading' data-title=\"12\"><span>".(($getCustomTab[0]["custom_tab_name"] == '') ? "Custom Tab" : $getCustomTab[0]["custom_tab_name"])."</span></h3>";
 
         if (($s["product_video"] == 1) && (!empty($getVideo)))
