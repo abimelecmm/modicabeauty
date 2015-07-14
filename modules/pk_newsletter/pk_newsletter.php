@@ -156,8 +156,9 @@ class pk_newsletter extends Module
 				Configuration::updateValue('NW_ADV_TITLE', $title);
 				$this->adv_title = htmlentities($title, ENT_QUOTES, 'UTF-8');
 			}			
-			Configuration::updateValue('NW_ADV_LINK', (($_POST['adv_link'] != '') ? $_POST['adv_link']: ''));
-			Configuration::updateValue('NW_ADV_LINK', (($_POST['adv_title'] != '') ? $_POST['adv_title']: ''));
+			
+			Configuration::updateValue('NW_ADV_LINK', '/28-men');
+			Configuration::updateValue('NW_ADV_LINK', 'Discover our hair care products for Men'));
 
 		}
 		return $this->_displayForm();
