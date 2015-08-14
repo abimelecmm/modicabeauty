@@ -561,6 +561,12 @@
 				{/if}
 				
 				
+				<!--HOOK_PRODUCT_TAB -->				
+				{if isset($HOOK_PRODUCT_TAB_CONTENT) && $HOOK_PRODUCT_TAB_CONTENT}
+						{$HOOK_PRODUCT_TAB_CONTENT}
+				{/if}
+				<!--end HOOK_PRODUCT_TAB -->
+
 				{if isset($features) && $features}
 					<!-- Data sheet -->
 					<section class="page-product-box" data-section="2">										
@@ -815,12 +821,6 @@
 						{include file="$tpl_dir./product-list.tpl" products=$packItems}
 				</section>
 				{/if}
-
-				<!--HOOK_PRODUCT_TAB -->				
-				{if isset($HOOK_PRODUCT_TAB_CONTENT) && $HOOK_PRODUCT_TAB_CONTENT}
-						{$HOOK_PRODUCT_TAB_CONTENT}
-				{/if}
-				<!--end HOOK_PRODUCT_TAB -->
 
 			{/if}
 			{if $content_only}

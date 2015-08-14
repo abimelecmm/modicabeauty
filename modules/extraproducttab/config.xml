@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+	<name>extraproducttab</name>
+	<displayName><![CDATA[Extra Product Tabs]]></displayName>
+	<version><![CDATA[2.5.4.1]]></version>
+	<description><![CDATA[Module for creating extra tabs in product description]]></description>
+	<author><![CDATA[mitsos1os]]></author>
+	<tab><![CDATA[front_office_features]]></tab>
+	<is_configurable>1</is_configurable>
+	<need_instance>0</need_instance>
+	<limited_countries></limited_countries>
+</module>
