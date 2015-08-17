@@ -435,15 +435,10 @@
 					        {/if}
 					        {/if}
 							<div class="price">
-								<p class="our_price_display" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-									{if $product->quantity > 0}<link itemprop="availability" href="http://schema.org/InStock"/>{/if}
+								<p id="old_price"{if !$product->specificPrice || !$product->specificPrice.reduction} class="hidden"{/if}>
 									{if $priceDisplay >= 0 && $priceDisplay <= 2}
-										<span id="our_price_display" itemprop="price">{convertPrice price=$productPrice}</span>
-										<!--{if $tax_enabled  && ((isset($display_tax_label) && $display_tax_label == 1) || !isset($display_tax_label))}
-											{if $priceDisplay == 1}{l s='tax excl.'}{else}{l s='tax incl.'}{/if}
-										{/if}-->
-										<meta itemprop="priceCurrency" content="{$currency->iso_code}" />
-										{hook h="displayProductPriceBlock" product=$product type="price"}
+										<span id="old_price_display">{if $productPriceWithoutReduction > $productPrice}{convertPrice price=$productPriceWithoutReduction}{/if}</span>
+										<!-- {if $tax_enabled && $display_tax_label == 1}{if $priceDisplay == 1}{l s='tax excl.'}{else}{l s='tax incl.'}{/if}{/if} -->
 									{/if}
 								</p>
 								<p id="reduction_percent" {if !$product->specificPrice || $product->specificPrice.reduction_type != 'percentage'} style="display:none;"{/if}>
@@ -458,10 +453,15 @@
 									{/if}
 									</span>
 								</p>
-								<p id="old_price"{if !$product->specificPrice || !$product->specificPrice.reduction} class="hidden"{/if}>
+								<p class="our_price_display" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+									{if $product->quantity > 0}<link itemprop="availability" href="http://schema.org/InStock"/>{/if}
 									{if $priceDisplay >= 0 && $priceDisplay <= 2}
-										<span id="old_price_display">{if $productPriceWithoutReduction > $productPrice}{convertPrice price=$productPriceWithoutReduction}{/if}</span>
-										<!-- {if $tax_enabled && $display_tax_label == 1}{if $priceDisplay == 1}{l s='tax excl.'}{else}{l s='tax incl.'}{/if}{/if} -->
+										<span id="our_price_display" itemprop="price">{convertPrice price=$productPrice}</span>
+										<!--{if $tax_enabled  && ((isset($display_tax_label) && $display_tax_label == 1) || !isset($display_tax_label))}
+											{if $priceDisplay == 1}{l s='tax excl.'}{else}{l s='tax incl.'}{/if}
+										{/if}-->
+										<meta itemprop="priceCurrency" content="{$currency->iso_code}" />
+										{hook h="displayProductPriceBlock" product=$product type="price"}
 									{/if}
 								</p>
 
