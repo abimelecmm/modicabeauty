@@ -42,17 +42,17 @@
 			{if !empty($product.gift)}
 				<span class="gift-icon">{l s='Gift!'}</span>
 			{else}
-            	{if !$priceDisplay}
-					<span class="price{if isset($product.is_discounted) && $product.is_discounted} special-price{/if}">{convertPrice price=$product.price_wt}</span>
-				{else}
-               	 	<span class="price{if isset($product.is_discounted) && $product.is_discounted} special-price{/if}">{convertPrice price=$product.price}</span>
-				{/if}
 				{if isset($product.is_discounted) && $product.is_discounted}
+					<span class="old-price">{convertPrice price=$product.price_without_specific_price}</span>
                 	<span class="price-percent-reduction small">
                     	{assign var='priceReductonPercent' value=(($product.price_without_specific_price - $product.price_wt)/$product.price_without_specific_price) * 100 * -1}
 						{$priceReductonPercent|round|string_format:"%d"}%
                     </span>
-					<span class="old-price">{convertPrice price=$product.price_without_specific_price}</span>
+				{/if}
+            	{if !$priceDisplay}
+					<span class="price{if isset($product.is_discounted) && $product.is_discounted} special-price{/if}">{convertPrice price=$product.price_wt}</span>
+				{else}
+               	 	<span class="price{if isset($product.is_discounted) && $product.is_discounted} special-price{/if}">{convertPrice price=$product.price}</span>
 				{/if}
 			{/if}
 		</span>
