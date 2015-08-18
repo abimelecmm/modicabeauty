@@ -27,9 +27,11 @@
 {include file="$tpl_dir./errors.tpl"}
 
 {if !isset($errors) OR !sizeof($errors)}
-	<h1 class="page-heading product-listing">
-		{l s='List of products by manufacturer'}&nbsp;{$manufacturer->name|escape:'html':'UTF-8'}
-	</h1>
+	{if empty($manufacturer->short_description)}
+		<h1 class="page-heading product-listing">
+			<!--{l s='List of products by manufacturer'}&nbsp;-->{$manufacturer->name|escape:'html':'UTF-8'}
+		</h1>
+	{/if}
 	{if !empty($manufacturer->description) || !empty($manufacturer->short_description)}
 		<div class="description_box">
 			{if !empty($manufacturer->short_description)}
@@ -39,8 +41,11 @@
 				<div class="hide_desc">
 					{$manufacturer->description}
 				</div>
-				<a href="#" class="lnk_more" onclick="$(this).prev().slideDown('slow'); $(this).hide();$(this).prev().prev().hide(); return false;">
-					{l s='More'}
+				<a href="#" class="lnk_more" onclick="$(this).prev().slideDown('slow'); $(this).hide(); $(this).next().show(); return false;">
+					<!--{l s='More'}-->{l s='Learn more about'}&nbsp;{$manufacturer->name|escape:'html':'UTF-8'}
+				</a>
+				<a href="#" class="lnk_more" style="display:none;" onclick="$(this).prev().prev().slideUp('slow'); $(this).hide(); $(this).prev().show(); return false;">
+					{l s='Hide'}
 				</a>
 			{else}
 				<div>
