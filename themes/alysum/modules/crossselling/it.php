@@ -2,4 +2,4 @@
 
 global $_MODULE;
 $_MODULE = array();
-$_MODULE['<{crossselling}alysum_2.0>crossselling_5d0cc69b26762bb6cb8162650c37e4e3'] = 'Anche i prodotti acquistati';
+$_MODULE['<{crossselling}alysum>crossselling_13dea5e69b261c6cf142a79ba5b9a0da'] = '';

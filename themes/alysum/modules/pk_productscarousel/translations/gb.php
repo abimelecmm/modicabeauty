@@ -1,0 +1,37 @@
+<?php
+
+global $_MODULE;
+$_MODULE = array();
+$_MODULE['<{pk_productscarousel}alysum>pk_productscarousel_b9afbfa229b71d8224d49a2d80996998'] = '';
+$_MODULE['<{pk_productscarousel}alysum>pk_productscarousel_6484edb588c34c6d2d4f12a93be923b2'] = '';
+$_MODULE['<{pk_productscarousel}alysum>pk_productscarousel_dd0de17e8450a0fd3248b19c4a4f803b'] = '';
+$_MODULE['<{pk_productscarousel}alysum>pk_productscarousel_c888438d14855d7d96a2724ee9c306bd'] = '';
+$_MODULE['<{pk_productscarousel}alysum>pk_productscarousel_af3bff2510b21c30f8cd01945c84da9f'] = '';
+$_MODULE['<{pk_productscarousel}alysum>pk_productscarousel_9ff0635f5737513b1a6f559ac2bff745'] = '';
+$_MODULE['<{pk_productscarousel}alysum>pk_productscarousel_4d1e1fff374897f9eaa9535ca1d0a0b5'] = '';
+$_MODULE['<{pk_productscarousel}alysum>pk_productscarousel_ca7d973c26c57b69e0857e7a0332d545'] = '';
+$_MODULE['<{pk_productscarousel}alysum>pk_productscarousel_8af828f302b91d1f905dc35acc43efaa'] = '';
+$_MODULE['<{pk_productscarousel}alysum>pk_productscarousel_babba85d52b4221d3f44a6912d1b8e4f'] = '';
+$_MODULE['<{pk_productscarousel}alysum>pk_productscarousel_64663f4646781c9c0110838b905daa23'] = '';
+$_MODULE['<{pk_productscarousel}alysum>pk_productscarousel_8c01e919c85226116b3ea80998a7348b'] = '';
+$_MODULE['<{pk_productscarousel}alysum>pk_productscarousel_355a160cafc7fefd3b042c695ecb6c7d'] = '';
+$_MODULE['<{pk_productscarousel}alysum>pk_productscarousel_52d0c5019893509f37b5ccfe26f88ee6'] = '';
+$_MODULE['<{pk_productscarousel}alysum>pk_productscarousel_3b916fc8872fea5743ec9d4b4fee2de3'] = '';
+$_MODULE['<{pk_productscarousel}alysum>pk_productscarousel_0452ddf87b6f0182b9ee01a9af9faa60'] = '';
+$_MODULE['<{pk_productscarousel}alysum>pk_productscarousel_373a8012a44d2c67d56e4ab6724263d2'] = '';
+$_MODULE['<{pk_productscarousel}alysum>pk_productscarousel_a794f1800e53c070d9a367c135870641'] = '';
+$_MODULE['<{pk_productscarousel}alysum>pk_productscarousel_1f1e07eee50620404998a20ac3c442e9'] = '';
+$_MODULE['<{pk_productscarousel}alysum>pk_productscarousel_c9cc8cce247e49bae79f15173ce97354'] = '';
+$_MODULE['<{pk_productscarousel}alysum>pk_productscarousel_15422d54ec0d47000dc86a9820a5237e'] = '';
+$_MODULE['<{pk_productscarousel}alysum>pk_productscarousel_03c2e7e41ffc181a4e84080b4710e81e'] = '';
+$_MODULE['<{pk_productscarousel}alysum>pk_productscarousel_b4c2b550635fe54fd29f2b64dfaca55d'] = '';
+$_MODULE['<{pk_productscarousel}alysum>pk_productscarousel_cf8156f1f57a8603cd6b3a28c9c2c61b'] = '';
+$_MODULE['<{pk_productscarousel}alysum>pk_productscarousel_1529636c2dd134b028a08f7b131115b5'] = '';
+$_MODULE['<{pk_productscarousel}alysum>pk_productscarousel_1276c482cb32edf4fce51761a9792716'] = '';
+$_MODULE['<{pk_productscarousel}alysum>pk_productscarousel_2d0f6b8300be19cf35e89e66f0677f95'] = '';
+$_MODULE['<{pk_productscarousel}alysum>pk_productscarousel_4351cfebe4b61d8aa5efa1d020710005'] = '';
+$_MODULE['<{pk_productscarousel}alysum>pk_productscarousel_3ec365dd533ddb7ef3d1c111186ce872'] = '';
+$_MODULE['<{pk_productscarousel}alysum>pk_productscarousel_77b65985b439ff157c1c13d63c9dc294'] = '';
+$_MODULE['<{pk_productscarousel}alysum>pk_productscarousel_2e9d63ee3a71d60ccf6cdff5ea901348'] = '';
+$_MODULE['<{pk_productscarousel}alysum>pk_productscarousel_4fc7c84f159dd8192ecfc639d9652db2'] = '';
+$_MODULE['<{pk_productscarousel}alysum>pk_productscarousel_6a5373df703ab2827a4ba7facdfcf779'] = '';
