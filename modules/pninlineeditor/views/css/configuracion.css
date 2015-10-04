@@ -1,0 +1,28 @@
+#right{
+	float: left;
+	width: 50%;
+}
+
+#left{
+	float: left;
+	width: 50%;
+}
+
+.pn_inline_input{
+	width: 50%;
+
+}
+
+#div_logo {}
+
+#pn_logo{
+
+
+background: #76B852;
+-webkit-background-size: 30%;
+max-width: 30%;
+display: block;
+margin: auto;
+
+
+}

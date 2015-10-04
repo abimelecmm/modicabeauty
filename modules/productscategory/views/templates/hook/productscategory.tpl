@@ -1,5 +1,5 @@
 {*
-* 2007-2014 PrestaShop
+* 2007-2015 PrestaShop
 *
 * NOTICE OF LICENSE
 *
@@ -18,14 +18,20 @@
 * needs please refer to http://www.prestashop.com for more information.
 *
 *  @author PrestaShop SA <contact@prestashop.com>
-*  @copyright  2007-2014 PrestaShop SA
+*  @copyright  2007-2015 PrestaShop SA
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 
 {if isset($categoryProducts) && count($categoryProducts) > 0 && $categoryProducts !== false}
 <div class="clearfix blockproductscategory">
-	<h2 class="productscategory_h2">{$categoryProducts|@count} {l s='Other products in the same category' mod='productscategory'}</h2>
+	<h2 class="productscategory_h2">
+		{if $categoryProducts|@count == 1}
+			{l s='%s other product in the same category:' sprintf=[$categoryProducts|@count] mod='productscategory'}
+		{else}
+			{l s='%s other products in the same category:' sprintf=[$categoryProducts|@count] mod='productscategory'}
+		{/if}
+	</h2>
 	<div id="{if count($categoryProducts) > 5}productscategory{else}productscategory_noscroll{/if}">
 	{if count($categoryProducts) > 5}<a id="productscategory_scroll_left" title="{l s='Previous' mod='productscategory'}" href="javascript:{ldelim}{rdelim}">{l s='Previous' mod='productscategory'}</a>{/if}
 	<div id="productscategory_list">

@@ -156,8 +156,6 @@ class pk_newsletter extends Module
 				Configuration::updateValue('NW_ADV_TITLE', $title);
 				$this->adv_title = htmlentities($title, ENT_QUOTES, 'UTF-8');
 			}			
-			
-
 		}
 		return $this->_displayForm();
 	}

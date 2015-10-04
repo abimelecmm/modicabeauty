@@ -13,9 +13,9 @@
 					{/if}				
 				</div>
 			</div>
-			<div class="fb_fans">{$ppls}</div>
+			<div class="fb_fans">{l s='%s people like' sprintf=$FB_data.likes mod='pk_blockfacebooklike'} <a href="{$FB_page_URL}" target="_blank">{$FB_data.name}</a></div>
 			{if $show_faces}
-			{$err}
+			<div class="hidden">{$err}</div>
 			<ul class="fb_followers">
 				{if file_exists($modulePath)} 
 					{include file="$modulePath"}

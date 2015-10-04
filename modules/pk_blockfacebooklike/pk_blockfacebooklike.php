@@ -1,7 +1,7 @@
 <?php
 /*
 	Module Name: pk_blockfacebooklike
-	Version: 2.3
+	Version: 2.5
 	Author: Marek Mnishek
 	Author URI: http://promokit.eu
 	Copyright (C) 2013 promokit.eu 
@@ -20,7 +20,7 @@ class pk_blockfacebooklike extends Module
 	{
 		$this->name = 'pk_blockfacebooklike';
 		$this->tab = 'front_office_features';
-		$this->version = '2.4';
+		$this->version = '2.5';
 		$this->author = 'promokit.eu';
 		$this->bootstrap = true;
 
@@ -41,6 +41,7 @@ class pk_blockfacebooklike extends Module
 			!Configuration::updateValue('PLLB_FACES', 1) OR
 			!Configuration::updateValue('PLLB_COMPANY_NAME', 0) OR
 			!Configuration::updateValue('PLLB_COMPANY_LOGO', 0) OR 
+			!Configuration::updateValue('PLLB_FB_APP_ID', '') OR 
 			!Configuration::updateValue('PLLB_NUM', 6))
 			return false;
 		return true;
@@ -54,6 +55,7 @@ class pk_blockfacebooklike extends Module
 		!Configuration::deleteByName('PLLB_TITLE') OR	
 		!Configuration::deleteByName('PLLB_COMPANY_NAME') OR
 		!Configuration::deleteByName('PLLB_COMPANY_LOGO') OR 	
+		!Configuration::deleteByName('PLLB_FB_APP_ID') OR 	
 		!Configuration::deleteByName('PLLB_FACES'))
 			return false;
 		return true;
@@ -67,6 +69,7 @@ class pk_blockfacebooklike extends Module
 		Configuration::updateValue('PLLB_COMPANY_NAME', Tools::getValue('company_name'));
 		Configuration::updateValue('PLLB_COMPANY_LOGO', Tools::getValue('company_logo'));	
 		Configuration::updateValue('PLLB_NUM', Tools::getValue('num'));	
+		Configuration::updateValue('PLLB_FB_APP_ID', Tools::getValue('fb_app_id'));
 				
 		$this->_html .= $this->displayConfirmation($this->l('Your settings have been updated.'));
 	}
@@ -95,10 +98,18 @@ class pk_blockfacebooklike extends Module
 		if (!($languages = Language::getLanguages()))
 			 return false;		
 		$this->_html .= '
+		<style>.paddtop0 {padding-top:0 !important}</style>
 		<form action="'.$_SERVER['REQUEST_URI'].'" method="post" id="module_form" class="defaultForm form-horizontal">
 		<div class="panel" id="fieldset_0">												
 			<div class="panel-heading"><i class="icon-cogs"></i> '.$this->l('Facebook Settings').'</div>
 			<div class="form-wrapper">	
+				<div class="form-group">
+					<label class="control-label col-lg-3">'.$this->l('Facebook App Token').'</label>
+					<div class="col-lg-6">
+						<input size="60" type="text" name="fb_app_id" value="'.Tools::getValue('fb_app_id', Configuration::get('PLLB_FB_APP_ID')).'"/>
+						<p class="help-block"><a href="https://www.youtube.com/watch?v=wyyCHDZ1qww">'.$this->l('How to Create Facebook App').'</a> '.$this->l('and').' <a href="https://developers.facebook.com/tools/access_token/">'.$this->l('Get App Token').'</a></p>
+					</div>
+				</div>
 				<div class="form-group">
 					<label class="control-label col-lg-3">'.$this->l('Module Title').'</label>
 					<div class="col-lg-6">
@@ -113,27 +124,27 @@ class pk_blockfacebooklike extends Module
 						<p class="help-block">'.$this->l('The name of the Facebook Page').'</p>
 					</div>
 				</div>
-				<div class="form-group">
+				<!--<div class="form-group">
 					<label class="control-label col-lg-3">'.$this->l('Face number').'</label>
 					<div class="col-lg-6">
 						<input size="6" type="text" name="num" value="'.Tools::getValue('num', Configuration::get('PLLB_NUM')).'"/>
 						<p class="help-block">'.$this->l('Number of visible faces').'</p>
 					</div>
-				</div>
+				</div>-->
 				<div class="form-group">
-					<label class="control-label col-lg-3">'.$this->l('Show Faces').'</label>
+					<label class="control-label col-lg-3 paddtop0">'.$this->l('Show Faces').'</label>
 					<div class="col-lg-6">
 						<input type="checkbox" name="faces" '.(Tools::getValue('faces', Configuration::get('PLLB_FACES')) ? "value='true' checked='checked'" : "value='false'").' />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-lg-3">'.$this->l('Show Company name').'</label>
+					<label class="control-label col-lg-3 paddtop0">'.$this->l('Show Company name').'</label>
 					<div class="col-lg-6">
 						<input type="checkbox" name="company_name" '.(Tools::getValue('company_name', Configuration::get('PLLB_COMPANY_NAME')) ? "value='true' checked='checked'" : "value='false'").' />
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-lg-3">'.$this->l('Show Company Logo').'</label>
+					<label class="control-label col-lg-3 paddtop0">'.$this->l('Show Company Logo').'</label>
 					<div class="col-lg-6">
 						<input type="checkbox" name="company_logo" value="'.(Tools::getValue('company_logo', Configuration::get('PLLB_COMPANY_LOGO')) ? "true" : "false").'"'.(Tools::getValue('company_logo', Configuration::get('PLLB_COMPANY_LOGO')) ? "checked='checked'" : "").' />
 					</div>
@@ -149,7 +160,8 @@ class pk_blockfacebooklike extends Module
 // -----------------------------------------------------------------	
 	public function getFacebookData($name) {
 
-		$filecontent = file_get_contents('https://graph.facebook.com/'.$name);
+		$filecontent = file_get_contents('https://graph.facebook.com/'.$name.'?access_token='.Configuration::get('PLLB_FB_APP_ID'));
+		//echo 'https://graph.facebook.com/'.$name.'?access_token='.Configuration::get('PLLB_FB_APP_ID');
 		if ($filecontent == false)
 			$msg = '"allow_url_fopen" should be "on" in php.ini';
 		else {
@@ -189,7 +201,7 @@ class pk_blockfacebooklike extends Module
 		$cacheName = $this->cacheName;
 		$err = "";
 		// generate the cache version if it doesn't exist or it's too old!
-		$ageInSeconds = 0; // 1 hour
+		$ageInSeconds = 3600; // 1 hour
 
 		if(!file_exists($cacheName) || (filemtime($cacheName) + $ageInSeconds < time()) || (filesize($cacheName) == 0)) {	
 			//$dom = simplexml_load_file($cacheName);
@@ -199,6 +211,7 @@ class pk_blockfacebooklike extends Module
 			$locale = $local_parts[0].'_'.strtoupper($local_parts[1]);
 
 			$curl = 'https://www.facebook.com/plugins/likebox.php?href=https://www.facebook.com/'.$facebook_username.'&locale='.$locale.'&connections='.Configuration::get('PLLB_NUM');
+			//print_r($curl);
 			$ch = curl_init($curl);
 			
 		    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);

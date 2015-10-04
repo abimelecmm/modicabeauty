@@ -7,8 +7,6 @@ $_MODULE['<{statssales}prestashop>statssales_45c4b3e103155326596d6ccd2fea0f25'] 
 $_MODULE['<{statssales}prestashop>statssales_d2fb07753354576172a2b144c373a610'] = 'Adds graphics presenting the evolution of sales and orders to the Stats dashboard.';
 $_MODULE['<{statssales}prestashop>statssales_6602bbeb2956c035fb4cb5e844a4861b'] = 'Guide';
 $_MODULE['<{statssales}prestashop>statssales_bdaa0cab56c2880f8f60e6a2cef40e63'] = 'About order statuses';
-$_MODULE['<{statssales}prestashop>statssales_0bbd4e137201977de3d977ddfb06a364'] = 'In your Back-office, you can modify the following order statuses: Awaiting Check Payment, Payment Accepted, Preparation in Progress, Shipping, Delivered, Canceled, Refund, Payment Error, Out of Stock, and Awaiting Bank Wire Payment.';
-$_MODULE['<{statssales}prestashop>statssales_82b0aefc59fe709e96204c6cbaaeaec7'] = 'These order statuses cannot be removed from the Back-office; however you have the option to add more.';
 $_MODULE['<{statssales}prestashop>statssales_ddb21e1caa84c463bc744c412a7b05f5'] = 'The following graphs represent the evolution of your shop\'s orders and sales turnover for a selected period.';
 $_MODULE['<{statssales}prestashop>statssales_ef9c3c65723819a9c183d857a39ff403'] = 'You should often consult this screen, as it allows you to quickly monitor your shop\'s sustainability. It also allows you to monitor multiple time periods.';
 $_MODULE['<{statssales}prestashop>statssales_5cc6f5194e3ef633bcab4869d79eeefa'] = 'Only valid orders are graphically represented.';

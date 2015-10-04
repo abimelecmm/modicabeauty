@@ -11,6 +11,7 @@ $_MODULE['<{cheque}prestashop>cheque_a02758d758e8bec77a33d7f392eb3f8a'] = 'No cu
 $_MODULE['<{cheque}prestashop>cheque_81c6c3ba23ca2657a8eedc561f865ddb'] = 'The "Pay to the order of" field is required.';
 $_MODULE['<{cheque}prestashop>cheque_00a369029140cfd18857425d49b472f8'] = 'The "Address" field is required.';
 $_MODULE['<{cheque}prestashop>cheque_c888438d14855d7d96a2724ee9c306bd'] = 'Settings updated';
+$_MODULE['<{cheque}prestashop>cheque_a60468657881aa431a0a5fccc76258e2'] = 'Pay by Check';
 $_MODULE['<{cheque}prestashop>cheque_5dd532f0a63d89c5af0243b74732f63c'] = 'Contact details';
 $_MODULE['<{cheque}prestashop>cheque_4b2f62e281e9a6829c6df0e87d34233a'] = 'Pay to the order of (name)';
 $_MODULE['<{cheque}prestashop>cheque_dd7bf230fde8d4836917806aff6a6b27'] = 'Address';

@@ -43,7 +43,6 @@ $_MODULE['<{productcomments}prestashop>productcomments_49ee3087348e8d44e1feda191
 $_MODULE['<{productcomments}prestashop>productcomments_a1fa27779242b4902f7ae3bdd5c6d508'] = 'Type';
 $_MODULE['<{productcomments}prestashop>productcomments_ec53a8c4f07baed5d8825072c89799be'] = 'Status';
 $_MODULE['<{productcomments}prestashop>productcomments_8726894930330c61dd2c24ba8265364b'] = 'Add New Criterion';
-$_MODULE['<{productcomments}prestashop>productcomments_7e4bfd4a7edc975e301bb508a8f218f7'] = 'Review Criterions';
 $_MODULE['<{productcomments}prestashop>productcomments_2608831883bb20ab520b70b4350aa23a'] = 'Approved Reviews';
 $_MODULE['<{productcomments}prestashop>productcomments_f8a0aa69f5ce41287f02c2d182306f52'] = 'Review title';
 $_MODULE['<{productcomments}prestashop>productcomments_457dd55184faedb7885afd4009d70163'] = 'Review';

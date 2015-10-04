@@ -1,0 +1,47 @@
+#white_bg .main_color, #white_bg .main_color_hvr:hover, body .flexmenu > ul > li > a:hover, .pk_aboutus_text ul li:before, body .flexmenu > ul > li:hover > a, body .flexmenu > ul > li.current > a {
+				color:#febe3a}
+#white_bg .main_bg, #white_bg .main_bg_hvr:hover, ul.camera_pag_ul li:hover span, ul.camera_pag_ul li.cameracurrent span, ::selection, .flexmenuitem > a span:before, .ui-slider-range, .ui-slider-handle {
+				background-color:#febe3a}
+#white_bg .main_bord, #white_bg .main_bord_hvr:hover, .preset4 .carousel-title .flexisel-nav:hover {
+				border-color:#febe3a}
+#white_bg .bshadow, #white_bg .bshadow_hvr:hover {
+				box-shadow: 0 0 0 1px #febe3a,0 0 0 2px #febe3a}
+#white_bg .second_color, #footer #twitter-feed ul li a {
+				color:#abbdaf}
+#white_bg .sec_bg, #white_bg .sec_bg_hvr:hover, #sequence .slide-text h4 {
+				background-color:#abbdaf}
+#white_bg .sec_bshadow, #white_bg .sec_bshadow_hvr:hover {
+				box-shadow: 0 0 0 1px #abbdaf,0 0 0 2px #abbdaf}
+#white_bg .sec_bord_hvr:hover, #white_bg .sec_bord_hvr {
+				border-color:#abbdaf}
+.price, .our_price_display {
+				color:#febe3a}
+body #header #header_logo, .logo-container{
+				left:0px; top:0px; }
+#header_logo .logo, #logofont_example {
+				font: normal 80px/80px "Georgia";				
+				color:#424243
+}
+#header_logo .slogan, #sloganfont_example {
+				font-size:17px; 
+				font-family:"Arial"; 
+				color:#868686}
+input.button_mini,input.button_small,input.button,input.button_large,input.button_mini_disabled,input.button_small_disabled,input.button_disabled,input.button_large_disabled,input.exclusive_mini,input.exclusive_small,
+input.exclusive,input.exclusive_large,input.exclusive_mini_disabled,input.exclusive_small_disabled,input.exclusive_disabled,input.exclusive_large_disabled,a.button_mini,a.button_small,a.button,a.button_large,a.exclusive_mini,a.exclusive_small,a.exclusive,a.exclusive_large,span.button_mini,span.button_small,span.button,span.button_large,span.exclusive_mini,span.exclusive_small,span.exclusive,span.exclusive_large,span.exclusive_large_disabled,.compare-form .button,button.button, #id_new_comment_form .button {
+				background-color: #febe3a; 
+				color: #ffffff; 
+				font-family: "LMRoman10Regular"}
+input.button_mini:hover,input.button_small:hover,input.button:hover,input.button_large:hover,input.button_mini_disabled:hover,input.button_small_disabled:hover,input.button_disabled:hover,input.button_large_disabled:hover,input.exclusive_mini:hover,input.exclusive_small:hover,input.exclusive:hover,input.exclusive_large:hover,input.exclusive_mini_disabled:hover,input.exclusive_small_disabled:hover,input.exclusive_disabled:hover,input.exclusive_large_disabled:hover,a.button_mini:hover,a.button_small:hover,a.button:hover,a.button_large:hover,a.exclusive_mini:hover,a.exclusive_small:hover,a.exclusive:hover,a.exclusive_large:hover,span.button_mini:hover,span.button_small:hover,span.button:hover,span.button_large:hover,span.exclusive_mini:hover,span.exclusive_small:hover,span.exclusive:hover,span.exclusive_large:hover,span.exclusive_large_disabled:hover,.compare-form .button:hover,button.button:hover, #id_new_comment_form .button:hover {
+				background-color: #abbdaf; 
+				color: #141414}
+h1, #white_bg .lmroman, .tabcontent #heading-example h5 {
+				font-family: "LMRoman10Regular";}
+h6, #white_bg .lmromancaps, .tabcontent #heading-example h6 {
+				font-family: "LMRoman10Regular";}
+#page p, #page section .rte p, #page section .rte, .tabcontent #text-example {
+				font-family: "Georgia";}
+.price, .our_price_display {
+				font-family: "LMRoman10Regular";}
+#white_bg {background-color: #f9f9f9}
+#white_bg {}
+.additionalBg {}

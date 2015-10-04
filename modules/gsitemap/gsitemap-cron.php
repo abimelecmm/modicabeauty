@@ -1,7 +1,7 @@
 <?php
 
 /*
- *  2007-2014 PrestaShop
+ *  2007-2015 PrestaShop
  * 
  * NOTICE OF LICENSE
  * This source file is subject to the Academic Free License (AFL 3.0)
@@ -18,7 +18,7 @@
  * needs please refer to http://www.prestashop.com for more information.
  * 
  *  @author PrestaShop SA <contact@prestashop.com>
- *  @copyright  2007-2014 PrestaShop SA
+ *  @copyright  2007-2015 PrestaShop SA
  *  @version  Release: $Revision: 7515 $
  *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  *  International Registered Trademark & Property of PrestaShop SA
@@ -34,8 +34,7 @@ include(dirname(__FILE__).'/../../init.php');
 if (substr(Tools::encrypt('gsitemap/cron'), 0, 10) != Tools::getValue('token') || !Module::isInstalled('gsitemap'))
 	die('Bad token');
 
-include(dirname(__FILE__).'/gsitemap.php');
-$gsitemap = new Gsitemap();
+$gsitemap = Module::getInstanceByName('gsitemap');
 /* Check if the module is enabled */
 if ($gsitemap->active)
 {

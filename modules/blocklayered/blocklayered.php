@@ -1,6 +1,6 @@
 <?php
 /*
-* 2007-2014 PrestaShop
+* 2007-2015 PrestaShop
 *
 * NOTICE OF LICENSE
 *
@@ -19,7 +19,7 @@
 * needs please refer to http://www.prestashop.com for more information.
 *
 *  @author PrestaShop SA <contact@prestashop.com>
-*  @copyright  2007-2014 PrestaShop SA
+*  @copyright  2007-2015 PrestaShop SA
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registred Trademark & Property of PrestaShop SA
 */
@@ -37,7 +37,7 @@ class BlockLayered extends Module
 	{
 		$this->name = 'blocklayered';
 		$this->tab = 'front_office_features';
-		$this->version = '2.0.7';
+		$this->version = '2.1.2';
 		$this->author = 'PrestaShop';
 		$this->need_instance = 0;
 		$this->bootstrap = true;
@@ -53,30 +53,15 @@ class BlockLayered extends Module
 
 	public function install()
 	{
-		if (parent::install() && $this->registerHook('header')
+		if (parent::install() && $this->registerHook('header') && $this->registerHook('leftColumn')
 		&& $this->registerHook('categoryAddition') && $this->registerHook('categoryUpdate') && $this->registerHook('attributeGroupForm')
 		&& $this->registerHook('afterSaveAttributeGroup') && $this->registerHook('afterDeleteAttributeGroup') && $this->registerHook('featureForm')
 		&& $this->registerHook('afterDeleteFeature') && $this->registerHook('afterSaveFeature') && $this->registerHook('categoryDeletion')
 		&& $this->registerHook('afterSaveProduct') && $this->registerHook('productListAssign') && $this->registerHook('postProcessAttributeGroup')
 		&& $this->registerHook('postProcessFeature') && $this->registerHook('featureValueForm') && $this->registerHook('postProcessFeatureValue')
 		&& $this->registerHook('afterDeleteFeatureValue') && $this->registerHook('afterSaveFeatureValue') && $this->registerHook('attributeForm')
-		&& $this->registerHook('postProcessAttribute') && $this->registerHook('afterDeleteAttribute') && $this->registerHook('afterSaveAttribute'))
+		&& $this->registerHook('postProcessAttribute') && $this->registerHook('afterDeleteAttribute') && $this->registerHook('afterSaveAttribute') && $this->registerHook('leftColumn'))
 		{
-			if (version_compare(_PS_VERSION_, '1.6.0', '>=') === true)
-			{
-				// Hook the module either on the left or right column
-				$theme = new Theme(Context::getContext()->shop->id_theme);
-				if ((!$theme->default_left_column || !$this->registerHook('leftColumn'))
-					&& (!$theme->default_right_column || !$this->registerHook('rightColumn')))
-				{
-					// If there are no colums implemented by the template, throw an error and uninstall the module
-					$this->_errors[] = $this->l('This module need to be hooked in a column and your theme does not implement one');
-					parent::uninstall();
-					return false;
-				}
-			}
-			else
-				$this->registerHook('leftColumn');
 
 			Configuration::updateValue('PS_LAYERED_HIDE_0_VALUES', 1);
 			Configuration::updateValue('PS_LAYERED_SHOW_QTIES', 1);
@@ -88,6 +73,7 @@ class BlockLayered extends Module
 			Configuration::updateValue('PS_LAYERED_FILTER_INDEX_MNF', 0);
 			Configuration::updateValue('PS_LAYERED_FILTER_INDEX_CAT', 0);
 			Configuration::updateValue('PS_ATTRIBUTE_ANCHOR_SEPARATOR', '-');
+			Configuration::updateValue('PS_LAYERED_FILTER_PRICE_ROUNDING', 1);
 
 			$this->rebuildLayeredStructure();
 			$this->buildLayeredCategories();
@@ -132,6 +118,7 @@ class BlockLayered extends Module
 		Configuration::deleteByName('PS_LAYERED_FILTER_INDEX_CDT');
 		Configuration::deleteByName('PS_LAYERED_FILTER_INDEX_MNF');
 		Configuration::deleteByName('PS_LAYERED_FILTER_INDEX_CAT');
+		Configuration::deleteByName('PS_LAYERED_FILTER_PRICE_ROUNDING');
 
 		Db::getInstance()->execute('DROP TABLE IF EXISTS '._DB_PREFIX_.'layered_price_index');
 		Db::getInstance()->execute('DROP TABLE IF EXISTS '._DB_PREFIX_.'layered_friendly_url');
@@ -200,8 +187,8 @@ class BlockLayered extends Module
 		CREATE TABLE `'._DB_PREFIX_.'layered_indexable_attribute_group_lang_value` (
 		`id_attribute_group` INT NOT NULL,
 		`id_lang` INT NOT NULL,
-		`url_name` VARCHAR(20),
-		`meta_title` VARCHAR(20),
+		`url_name` VARCHAR(128),
+		`meta_title` VARCHAR(128),
 		PRIMARY KEY (`id_attribute_group`, `id_lang`)
 		) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=utf8;');
 
@@ -211,8 +198,8 @@ class BlockLayered extends Module
 		CREATE TABLE `'._DB_PREFIX_.'layered_indexable_attribute_lang_value` (
 		`id_attribute` INT NOT NULL,
 		`id_lang` INT NOT NULL,
-		`url_name` VARCHAR(20),
-		`meta_title` VARCHAR(20),
+		`url_name` VARCHAR(128),
+		`meta_title` VARCHAR(128),
 		PRIMARY KEY (`id_attribute`, `id_lang`)
 		) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=utf8;');
 
@@ -235,8 +222,8 @@ class BlockLayered extends Module
 		CREATE TABLE `'._DB_PREFIX_.'layered_indexable_feature_lang_value` (
 		`id_feature` INT NOT NULL,
 		`id_lang` INT NOT NULL,
-		`url_name` VARCHAR(20) NOT NULL,
-		`meta_title` VARCHAR(20),
+		`url_name` VARCHAR(128) NOT NULL,
+		`meta_title` VARCHAR(128),
 		PRIMARY KEY (`id_feature`, `id_lang`)
 		) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=utf8;');
 
@@ -246,8 +233,8 @@ class BlockLayered extends Module
 		CREATE TABLE `'._DB_PREFIX_.'layered_indexable_feature_value_lang_value` (
 		`id_feature_value` INT NOT NULL,
 		`id_lang` INT NOT NULL,
-		`url_name` VARCHAR(20),
-		`meta_title` VARCHAR(20),
+		`url_name` VARCHAR(128),
+		`meta_title` VARCHAR(128),
 		PRIMARY KEY (`id_feature_value`, `id_lang`)
 		) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=utf8;');
 	}
@@ -265,7 +252,8 @@ class BlockLayered extends Module
 		`id_product` int(10) unsigned NOT NULL,
 		`id_attribute_group` int(10) unsigned NOT NULL DEFAULT "0",
 		`id_shop` int(10) unsigned NOT NULL DEFAULT "1",
-		KEY `id_attribute` (`id_attribute`)
+		PRIMARY KEY (`id_attribute`, `id_product`, `id_shop`),
+		UNIQUE KEY `id_attribute_group` (`id_attribute_group`,`id_attribute`,`id_product`, `id_shop`)
 		) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=utf8;');
 	}
 
@@ -1067,7 +1055,7 @@ class BlockLayered extends Module
 
 					if ($id_layered_friendly_url == false)
 					{
-						Db::getInstance()->AutoExecute(_DB_PREFIX_.'layered_friendly_url', array('url_key' => $url_key, 'data' => serialize($selected_filters), 'id_lang' => (int)$id_lang), 'INSERT');
+						Db::getInstance()->insert('layered_friendly_url', array('url_key' => $url_key, 'data' => serialize($selected_filters), 'id_lang' => (int)$id_lang));
 						$id_layered_friendly_url = Db::getInstance()->Insert_ID();
 					}
 				}
@@ -1227,7 +1215,7 @@ class BlockLayered extends Module
 				$max_tax_rate = Db::getInstance()->getValue('
 					SELECT max(t.rate) max_rate
 					FROM `'._DB_PREFIX_.'product_shop` p
-					LEFT JOIN `'._DB_PREFIX_.'tax_rules_group` trg ON (trg.id_tax_rules_group = p.id_tax_rules_group AND p.id_shop = '.(int)$shop_list.')
+					LEFT JOIN `'._DB_PREFIX_.'tax_rules_group` trg ON (trg.id_tax_rules_group = p.id_tax_rules_group AND p.id_shop = '.(int)$id_shop.')
 					LEFT JOIN `'._DB_PREFIX_.'tax_rule` tr ON (tr.id_tax_rules_group = trg.id_tax_rules_group)
 					LEFT JOIN `'._DB_PREFIX_.'tax` t ON (t.id_tax = tr.id_tax AND t.active = 1)
 					WHERE id_product = '.(int)$id_product.'
@@ -1487,6 +1475,7 @@ class BlockLayered extends Module
 			Configuration::updateValue('PS_LAYERED_FILTER_INDEX_CDT', (int)Tools::getValue('ps_layered_filter_index_condition'));
 			Configuration::updateValue('PS_LAYERED_FILTER_INDEX_MNF', (int)Tools::getValue('ps_layered_filter_index_manufacturer'));
 			Configuration::updateValue('PS_LAYERED_FILTER_INDEX_CAT', (int)Tools::getValue('ps_layered_filter_index_category'));
+			Configuration::updateValue('PS_LAYERED_FILTER_PRICE_ROUNDING', (int)Tools::getValue('ps_layered_filter_price_rounding'));
 
 			if (version_compare(_PS_VERSION_, '1.6.0', '>=') === true)
 				$message = '<div class="alert alert-success">'.$this->l('Settings saved successfully').'</div>';
@@ -1610,7 +1599,7 @@ class BlockLayered extends Module
 				WHERE id_layered_filter = '.(int)Tools::getValue('id_layered_filter')
 			);
 
-			$filters = unserialize($template['filters']);
+			$filters = Tools::unSerialize($template['filters']);
 
 			if (version_compare(_PS_VERSION_, '1.6.0', '>=') === true)
 			{
@@ -1660,12 +1649,13 @@ class BlockLayered extends Module
 				'show_quantities' => Configuration::get('PS_LAYERED_SHOW_QTIES'),
 				'full_tree' => Configuration::get('PS_LAYERED_FULL_TREE'),
 				'category_depth' => Configuration::get('PS_LAYERED_FILTER_CATEGORY_DEPTH'),
-				'price_use_tax' => Configuration::get('PS_LAYERED_FILTER_PRICE_USETAX'),
+				'price_use_tax' => (bool)Configuration::get('PS_LAYERED_FILTER_PRICE_USETAX'),
 				'index_cdt' => Configuration::get('PS_LAYERED_FILTER_INDEX_CDT'),
 				'index_qty' => Configuration::get('PS_LAYERED_FILTER_INDEX_QTY'),
 				'index_mnf' => Configuration::get('PS_LAYERED_FILTER_INDEX_MNF'),
 				'index_cat' => Configuration::get('PS_LAYERED_FILTER_INDEX_CAT'),
-				'limit_warning' => $this->displayLimitPostWarning(21+count($attribute_groups)*3+count($features)*3)
+				'limit_warning' => $this->displayLimitPostWarning(21+count($attribute_groups)*3+count($features)*3),
+				'price_use_rounding' => (bool)Configuration::get('PS_LAYERED_FILTER_PRICE_ROUNDING')
 			));
 
 			if (version_compare(_PS_VERSION_, '1.6.0', '>=') === true)
@@ -1807,23 +1797,6 @@ class BlockLayered extends Module
 		$query_filters_from = '';
 
 		$parent = new Category((int)$id_parent);
-		if (!count($selected_filters['category']))
-		{
-			if (Configuration::get('PS_LAYERED_FULL_TREE'))
-				$query_filters_from .= ' INNER JOIN '._DB_PREFIX_.'category_product cp
-				ON p.id_product = cp.id_product
-				INNER JOIN '._DB_PREFIX_.'category c ON (c.id_category = cp.id_category AND
-				c.nleft >= '.(int)$parent->nleft.' AND c.nright <= '.(int)$parent->nright.'
-				AND c.active = 1)
-				RIGHT JOIN '._DB_PREFIX_.'layered_category lc ON (lc.id_category = '.(int)$id_parent.' AND
-				lc.id_shop = '.(int) Context::getContext()->shop->id.')';
-			else
-				$query_filters_from .= ' INNER JOIN '._DB_PREFIX_.'category_product cp
-				ON p.id_product = cp.id_product
-				INNER JOIN '._DB_PREFIX_.'category c ON (c.id_category = cp.id_category
-				AND c.id_category = '.(int)$id_parent.'
-				AND c.active = 1)';
-		}
 
 		foreach ($selected_filters as $key => $filter_values)
 		{
@@ -1885,7 +1858,7 @@ class BlockLayered extends Module
 						break;
 
 					$query_filters_where .= ' AND sa.quantity '.(!$selected_filters['quantity'][0] ? '<=' : '>').' 0 ';
-					$query_filters_from .= 'LEFT JOIN `'._DB_PREFIX_.'stock_available` sa ON (sa.id_product = p.id_product AND sa.id_shop = '.(int)Context::getContext()->shop->id.') ';
+					$query_filters_from .= 'LEFT JOIN `'._DB_PREFIX_.'stock_available` sa ON (sa.id_product = p.id_product '.StockAvailable::addSqlShopRestriction(null, null,  'sa').') ';
 				break;
 
 				case 'manufacturer':
@@ -1922,7 +1895,8 @@ class BlockLayered extends Module
 			}
 		}
 
-		$id_currency = (int)Context::getContext()->currency->id;
+		$context = Context::getContext();
+		$id_currency = (int)$context->currency->id;
 
 		$price_filter_query_in = ''; // All products with price range between price filters limits
 		$price_filter_query_out = ''; // All products with a price filters limit on it price range
@@ -1931,9 +1905,10 @@ class BlockLayered extends Module
 			$price_filter_query_in = 'INNER JOIN `'._DB_PREFIX_.'layered_price_index` psi
 			ON
 			(
-				psi.price_min >= '.(int)$price_filter['min'].'
-				AND psi.price_max <= '.(int)$price_filter['max'].'
+				psi.price_min <= '.(int)$price_filter['max'].'
+				AND psi.price_max >= '.(int)$price_filter['min'].'
 				AND psi.`id_product` = p.`id_product`
+				AND psi.`id_shop` = '.(int)$context->shop->id.'
 				AND psi.`id_currency` = '.$id_currency.'
 			)';
 
@@ -1943,78 +1918,158 @@ class BlockLayered extends Module
 				OR
 				(psi.price_max > '.(int)$price_filter['max'].' AND psi.price_min < '.(int)$price_filter['max'].'))
 				AND psi.`id_product` = p.`id_product`
+				AND psi.`id_shop` = '.(int)$context->shop->id.'
 				AND psi.`id_currency` = '.$id_currency;
 		}
 
 		$query_filters_from .= Shop::addSqlAssociation('product', 'p');
 
-		$all_products_out = self::query('
-		SELECT p.`id_product` id_product
-		FROM `'._DB_PREFIX_.'product` p
-		'.$price_filter_query_out.'
-		'.$query_filters_from.'
-		WHERE 1 '.$query_filters_where.' GROUP BY id_product');
+		Db::getInstance()->execute('DROP TEMPORARY TABLE IF EXISTS '._DB_PREFIX_.'cat_filter_restriction', false);
+		if (empty($selected_filters['category']))
+		{
+			/* Create the table which contains all the id_product in a cat or a tree */
+			Db::getInstance()->execute('CREATE TEMPORARY TABLE '._DB_PREFIX_.'cat_filter_restriction ENGINE=MEMORY
+														SELECT cp.id_product, MIN(cp.position) position FROM '._DB_PREFIX_.'category_product cp
+														INNER JOIN '._DB_PREFIX_.'category c ON (c.id_category = cp.id_category AND
+														'.(Configuration::get('PS_LAYERED_FULL_TREE') ? 'c.nleft >= '.(int)$parent->nleft.'
+														AND c.nright <= '.(int)$parent->nright : 'c.id_category = '.(int)$id_parent).'
+														AND c.active = 1)
+														JOIN `'._DB_PREFIX_.'product` p USING (id_product)
+														'.$price_filter_query_in.'
+														'.$query_filters_from.'
+														WHERE 1 '.$query_filters_where.'
+														GROUP BY cp.id_product ORDER BY position, id_product', false);
+		} else {
+			$categories = array_map('intval', $selected_filters['category']);
 
-		$all_products_in = self::query('
-		SELECT p.`id_product` id_product
-		FROM `'._DB_PREFIX_.'product` p
-		'.$price_filter_query_in.'
-		'.$query_filters_from.'
-		WHERE 1 '.$query_filters_where.' GROUP BY id_product');
+			Db::getInstance()->execute('CREATE TEMPORARY TABLE '._DB_PREFIX_.'cat_filter_restriction ENGINE=MEMORY
+														SELECT cp.id_product, MIN(cp.position) position FROM '._DB_PREFIX_.'category_product cp
+														JOIN `'._DB_PREFIX_.'product` p USING (id_product)
+														'.$price_filter_query_in.'
+														'.$query_filters_from.'
+														WHERE cp.`id_category` IN ('.implode(',', $categories).') '.$query_filters_where.'
+														GROUP BY cp.id_product ORDER BY position, id_product', false);
+		}
+		Db::getInstance()->execute('ALTER TABLE '._DB_PREFIX_.'cat_filter_restriction ADD PRIMARY KEY (id_product), ADD KEY (position, id_product) USING BTREE', false);
 
-		$product_id_list = array();
+		if (isset($price_filter) && $price_filter) {
+			static $ps_layered_filter_price_usetax = null;
+			static $ps_layered_filter_price_rounding = null;
 
-		while ($product = DB::getInstance()->nextRow($all_products_in))
-			$product_id_list[] = (int)$product['id_product'];
-
-		while ($product = DB::getInstance()->nextRow($all_products_out))
-			if (isset($price_filter) && $price_filter)
-			{
-				$price = (int)Product::getPriceStatic($product['id_product'], Configuration::get('PS_LAYERED_FILTER_PRICE_USETAX')); // Cast to int because we don't care about cents
-				if ($price < $price_filter['min'] || $price > $price_filter['max'])
-					continue;
-				$product_id_list[] = (int)$product['id_product'];
+			if ($ps_layered_filter_price_usetax === null) {
+				$ps_layered_filter_price_usetax = Configuration::get('PS_LAYERED_FILTER_PRICE_USETAX');
 			}
-		$this->nbr_products = count($product_id_list);
+
+			if ($ps_layered_filter_price_rounding === null) {
+				$ps_layered_filter_price_rounding = Configuration::get('PS_LAYERED_FILTER_PRICE_ROUNDING');
+			}
+
+			if (empty($selected_filters['category'])) {
+				$all_products_out = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS('
+				SELECT p.`id_product` id_product
+				FROM `'._DB_PREFIX_.'product` p JOIN '._DB_PREFIX_.'category_product cp USING (id_product)
+				INNER JOIN '._DB_PREFIX_.'category c ON (c.id_category = cp.id_category AND
+					'.(Configuration::get('PS_LAYERED_FULL_TREE') ? 'c.nleft >= '.(int)$parent->nleft.'
+					AND c.nright <= '.(int)$parent->nright : 'c.id_category = '.(int)$id_parent).'
+					AND c.active = 1)
+				'.$price_filter_query_out.'
+				'.$query_filters_from.'
+				WHERE 1 '.$query_filters_where.' GROUP BY cp.id_product');
+			} else {
+				$all_products_out = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS('
+				SELECT p.`id_product` id_product
+				FROM `'._DB_PREFIX_.'product` p JOIN '._DB_PREFIX_.'category_product cp USING (id_product)
+				'.$price_filter_query_out.'
+				'.$query_filters_from.'
+				WHERE cp.`id_category` IN ('.implode(',', $categories).') '.$query_filters_where.' GROUP BY cp.id_product');
+			}
+
+			/* for this case, price could be out of range, so we need to compute the real price */
+			foreach($all_products_out as $product) {
+				$price = Product::getPriceStatic($product['id_product'], $ps_layered_filter_price_usetax);
+				if ($ps_layered_filter_price_rounding) {
+					$price = (int)$price;
+				}
+				if ($price < $price_filter['min'] || $price > $price_filter['max']) {
+					// out of range price, exclude the product
+					$product_id_delete_list[] = (int)$product['id_product'];
+				}
+			}
+			if (!empty($product_id_delete_list)) {
+				Db::getInstance()->execute('DELETE FROM '._DB_PREFIX_.'cat_filter_restriction WHERE id_product IN ('.implode(',', $product_id_delete_list).')');
+			}
+		}
+		$this->nbr_products = Db::getInstance()->getValue('SELECT COUNT(*) FROM '._DB_PREFIX_.'cat_filter_restriction');
 
 		if ($this->nbr_products == 0)
 			$this->products = array();
 		else
 		{
+			$product_per_page = isset($this->context->cookie->nb_item_per_page) ? (int)$this->context->cookie->nb_item_per_page : Configuration::get('PS_PRODUCTS_PER_PAGE'); 
 			$n = (int)Tools::getValue('n', Configuration::get('PS_PRODUCTS_PER_PAGE'));
 			$nb_day_new_product = (Validate::isUnsignedInt(Configuration::get('PS_NB_DAYS_NEW_PRODUCT')) ? Configuration::get('PS_NB_DAYS_NEW_PRODUCT') : 20);
 
-			$this->products = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS('
-			SELECT
-				p.*,
-				'.($alias_where == 'p' ? '' : 'product_shop.*,' ).'
-				'.$alias_where.'.id_category_default,
-				pl.*,
-				MAX(image_shop.`id_image`) id_image,
-				il.legend,
-				m.name manufacturer_name,
-				MAX(product_attribute_shop.id_product_attribute) id_product_attribute,
-				DATEDIFF('.$alias_where.'.`date_add`, DATE_SUB(NOW(), INTERVAL '.(int)$nb_day_new_product.' DAY)) > 0 AS new,
-				stock.out_of_stock, IFNULL(stock.quantity, 0) as quantity
-			FROM `'._DB_PREFIX_.'category_product` cp
-			LEFT JOIN '._DB_PREFIX_.'category c ON (c.id_category = cp.id_category)
-			LEFT JOIN `'._DB_PREFIX_.'product` p ON p.`id_product` = cp.`id_product`
-			'.Shop::addSqlAssociation('product', 'p').'
-			LEFT JOIN `'._DB_PREFIX_.'product_attribute` pa ON (p.`id_product` = pa.`id_product`)
-			'.Shop::addSqlAssociation('product_attribute', 'pa', false, 'product_attribute_shop.`default_on` = 1').'
-			'.Product::sqlStock('p', 'product_attribute_shop', false, Context::getContext()->shop).'
-			LEFT JOIN '._DB_PREFIX_.'product_lang pl ON (pl.id_product = p.id_product'.Shop::addSqlRestrictionOnLang('pl').' AND pl.id_lang = '.(int)$cookie->id_lang.')
-			LEFT JOIN `'._DB_PREFIX_.'image` i  ON (i.`id_product` = p.`id_product`)'.
-			Shop::addSqlAssociation('image', 'i', false, 'image_shop.cover=1').'
-			LEFT JOIN `'._DB_PREFIX_.'image_lang` il ON (image_shop.`id_image` = il.`id_image` AND il.`id_lang` = '.(int)$cookie->id_lang.')
-			LEFT JOIN '._DB_PREFIX_.'manufacturer m ON (m.id_manufacturer = p.id_manufacturer)
-			WHERE '.$alias_where.'.`active` = 1 AND '.$alias_where.'.`visibility` IN ("both", "catalog")
-			AND '.(Configuration::get('PS_LAYERED_FULL_TREE') ? 'c.nleft >= '.(int)$parent->nleft.' AND c.nright <= '.(int)$parent->nright : 'c.id_category = '.(int)$id_parent).'
-			AND c.active = 1
-			AND p.id_product IN ('.implode(',', $product_id_list).')
-			GROUP BY product_shop.id_product
-			ORDER BY '.Tools::getProductsOrder('by', Tools::getValue('orderby'), true).' '.Tools::getProductsOrder('way', Tools::getValue('orderway')).
-			' LIMIT '.(((int)$this->page - 1) * $n.','.$n));
+			if (version_compare(_PS_VERSION_, '1.6.1', '>=') === true)
+			{
+				$this->products = Db::getInstance()->executeS('
+				SELECT
+					p.*,
+					'.($alias_where == 'p' ? '' : 'product_shop.*,' ).'
+					'.$alias_where.'.id_category_default,
+					pl.*,
+					image_shop.`id_image` id_image,
+					il.legend,
+					m.name manufacturer_name,
+					'.(Combination::isFeatureActive() ? 'product_attribute_shop.id_product_attribute id_product_attribute,' : '').'
+					DATEDIFF('.$alias_where.'.`date_add`, DATE_SUB("'.date('Y-m-d').' 00:00:00", INTERVAL '.(int)$nb_day_new_product.' DAY)) > 0 AS new,
+					stock.out_of_stock, IFNULL(stock.quantity, 0) as quantity'.(Combination::isFeatureActive() ? ', product_attribute_shop.minimal_quantity AS product_attribute_minimal_quantity' : '').'
+				FROM '._DB_PREFIX_.'cat_filter_restriction cp
+				LEFT JOIN `'._DB_PREFIX_.'product` p ON p.`id_product` = cp.`id_product`
+				'.Shop::addSqlAssociation('product', 'p').
+				(Combination::isFeatureActive() ?
+				' LEFT JOIN `'._DB_PREFIX_.'product_attribute_shop` product_attribute_shop
+					ON (p.`id_product` = product_attribute_shop.`id_product` AND product_attribute_shop.`default_on` = 1 AND product_attribute_shop.id_shop='.(int)$context->shop->id.')':'').'
+				LEFT JOIN '._DB_PREFIX_.'product_lang pl ON (pl.id_product = p.id_product'.Shop::addSqlRestrictionOnLang('pl').' AND pl.id_lang = '.(int)$cookie->id_lang.')
+				LEFT JOIN `'._DB_PREFIX_.'image_shop` image_shop
+					ON (image_shop.`id_product` = p.`id_product` AND image_shop.cover=1 AND image_shop.id_shop='.(int)$context->shop->id.')
+				LEFT JOIN `'._DB_PREFIX_.'image_lang` il ON (image_shop.`id_image` = il.`id_image` AND il.`id_lang` = '.(int)$cookie->id_lang.')
+				LEFT JOIN '._DB_PREFIX_.'manufacturer m ON (m.id_manufacturer = p.id_manufacturer)
+				'.Product::sqlStock('p', 0).'
+				WHERE '.$alias_where.'.`active` = 1 AND '.$alias_where.'.`visibility` IN ("both", "catalog")
+				ORDER BY '.Tools::getProductsOrder('by', Tools::getValue('orderby'), true).' '.Tools::getProductsOrder('way', Tools::getValue('orderway')).' , cp.id_product'.
+				' LIMIT '.(((int)$this->page - 1) * $n.','.$n));
+			}
+			else
+			{
+				$this->products = Db::getInstance()->executeS('
+				SELECT
+					p.*,
+					'.($alias_where == 'p' ? '' : 'product_shop.*,' ).'
+					'.$alias_where.'.id_category_default,
+					pl.*,
+					MAX(image_shop.`id_image`) id_image,
+					il.legend,
+					m.name manufacturer_name,
+					'.(Combination::isFeatureActive() ? 'MAX(product_attribute_shop.id_product_attribute) id_product_attribute,' : '').'
+					DATEDIFF('.$alias_where.'.`date_add`, DATE_SUB("'.date('Y-m-d').' 00:00:00", INTERVAL '.(int)$nb_day_new_product.' DAY)) > 0 AS new,
+					stock.out_of_stock, IFNULL(stock.quantity, 0) as quantity'.(Combination::isFeatureActive() ? ', MAX(product_attribute_shop.minimal_quantity) AS product_attribute_minimal_quantity' : '').'
+				FROM '._DB_PREFIX_.'cat_filter_restriction cp
+				LEFT JOIN `'._DB_PREFIX_.'product` p ON p.`id_product` = cp.`id_product`
+				'.Shop::addSqlAssociation('product', 'p').
+				(Combination::isFeatureActive() ?
+				'LEFT JOIN `'._DB_PREFIX_.'product_attribute` pa ON (p.`id_product` = pa.`id_product`)
+				'.Shop::addSqlAssociation('product_attribute', 'pa', false, 'product_attribute_shop.`default_on` = 1 AND product_attribute_shop.id_shop='.(int)$context->shop->id):'').'
+				LEFT JOIN '._DB_PREFIX_.'product_lang pl ON (pl.id_product = p.id_product'.Shop::addSqlRestrictionOnLang('pl').' AND pl.id_lang = '.(int)$cookie->id_lang.')
+				LEFT JOIN `'._DB_PREFIX_.'image` i  ON (i.`id_product` = p.`id_product`)'.
+				Shop::addSqlAssociation('image', 'i', false, 'image_shop.cover=1').'
+				LEFT JOIN `'._DB_PREFIX_.'image_lang` il ON (image_shop.`id_image` = il.`id_image` AND il.`id_lang` = '.(int)$cookie->id_lang.')
+				LEFT JOIN '._DB_PREFIX_.'manufacturer m ON (m.id_manufacturer = p.id_manufacturer)
+				'.Product::sqlStock('p', 0).'
+				WHERE '.$alias_where.'.`active` = 1 AND '.$alias_where.'.`visibility` IN ("both", "catalog")
+				GROUP BY product_shop.id_product
+				ORDER BY '.Tools::getProductsOrder('by', Tools::getValue('orderby'), true).' '.Tools::getProductsOrder('way', Tools::getValue('orderway')).' , cp.id_product'.
+				' LIMIT '.(((int)$this->page - 1) * $n.','.$n));
+			}
 		}
 
 		if (Tools::getProductsOrder('by', Tools::getValue('orderby'), true) == 'p.price')
@@ -2033,9 +2088,11 @@ class BlockLayered extends Module
 		global $cookie;
 		static $cache = null;
 
-		$id_lang = Context::getContext()->language->id;
-		$currency = Context::getContext()->currency;
-		$id_shop = (int) Context::getContext()->shop->id;
+		$context = Context::getContext();
+
+		$id_lang = $context->language->id;
+		$currency = $context->currency;
+		$id_shop = (int) $context->shop->id;
 		$alias = 'product_shop';
 
 		if (is_array($cache))
@@ -2050,11 +2107,32 @@ class BlockLayered extends Module
 
 		/* Get the filters for the current category */
 		$filters = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS('
-			SELECT * FROM '._DB_PREFIX_.'layered_category
+			SELECT type, id_value, filter_show_limit, filter_type FROM '._DB_PREFIX_.'layered_category
 			WHERE id_category = '.(int)$id_parent.'
 				AND id_shop = '.$id_shop.'
 			GROUP BY `type`, id_value ORDER BY position ASC'
 		);
+
+		/* Create the table which contains all the id_product in a cat or a tree */
+
+		Db::getInstance()->execute('DROP TEMPORARY TABLE IF EXISTS '._DB_PREFIX_.'cat_restriction', false);
+		Db::getInstance()->execute('CREATE TEMPORARY TABLE '._DB_PREFIX_.'cat_restriction ENGINE=MEMORY
+													SELECT DISTINCT cp.id_product, p.id_manufacturer, product_shop.condition, p.weight FROM '._DB_PREFIX_.'category_product cp
+													INNER JOIN '._DB_PREFIX_.'category c ON (c.id_category = cp.id_category AND
+													'.(Configuration::get('PS_LAYERED_FULL_TREE') ? 'c.nleft >= '.(int)$parent->nleft.'
+													AND c.nright <= '.(int)$parent->nright : 'c.id_category = '.(int)$id_parent).'
+													AND c.active = 1)
+													INNER JOIN '._DB_PREFIX_.'product_shop product_shop ON (product_shop.id_product = cp.id_product
+													AND product_shop.id_shop = '.(int)$context->shop->id.')
+													INNER JOIN '._DB_PREFIX_.'product p ON (p.id_product=cp.id_product)
+													WHERE product_shop.`active` = 1 AND product_shop.`visibility` IN ("both", "catalog")', false);
+
+
+		Db::getInstance()->execute('ALTER TABLE '._DB_PREFIX_.'cat_restriction ADD PRIMARY KEY (id_product),
+													ADD KEY `id_manufacturer` (`id_manufacturer`,`id_product`) USING BTREE,
+													ADD KEY `condition` (`condition`,`id_product`) USING BTREE,
+													ADD KEY `weight` (`weight`,`id_product`) USING BTREE', false);
+
 		// Remove all empty selected filters
 		foreach ($selected_filters as $key => $value)
 			switch ($key)
@@ -2076,42 +2154,46 @@ class BlockLayered extends Module
 			$sql_query = array('select' => '', 'from' => '', 'join' => '', 'where' => '', 'group' => '', 'second_query' => '');
 			switch ($filter['type'])
 			{
-				// conditions + quantities + weight + price
 				case 'price':
+					$sql_query['select'] = 'SELECT p.`id_product`, psi.price_min, psi.price_max ';
+					// price slider is not filter dependent
+					$sql_query['from'] = '
+					FROM '._DB_PREFIX_.'cat_restriction p';
+					$sql_query['join'] = 'INNER JOIN `'._DB_PREFIX_.'layered_price_index` psi
+								ON (psi.id_product = p.id_product AND psi.id_currency = '.(int)$context->currency->id.' AND psi.id_shop='.(int)$context->shop->id.')';
+					$sql_query['where'] = 'WHERE 1';
+					break;
 				case 'weight':
+					$sql_query['select'] = 'SELECT p.`id_product`, p.`weight` ';
+					// price slider is not filter dependent
+					$sql_query['from'] = '
+					FROM '._DB_PREFIX_.'cat_restriction p';
+					$sql_query['where'] = 'WHERE 1';
+					break;
 				case 'condition':
+					$sql_query['select'] = 'SELECT p.`id_product`, product_shop.`condition` ';
+					$sql_query['from'] = '
+					FROM '._DB_PREFIX_.'cat_restriction p';
+					$sql_query['where'] = 'WHERE 1';
+					$sql_query['from'] .= Shop::addSqlAssociation('product', 'p');
+					break;
 				case 'quantity':
-
-					$sql_query['select'] = 'SELECT p.`id_product`, product_shop.`condition`, p.`id_manufacturer`, sa.`quantity`, p.`weight` ';
+					$sql_query['select'] = 'SELECT p.`id_product`, sa.`quantity`, sa.`out_of_stock` ';
 
 					$sql_query['from'] = '
-					FROM '._DB_PREFIX_.'product p ';
-					$sql_query['join'] = '
-					INNER JOIN '._DB_PREFIX_.'category_product cp ON (cp.id_product = p.id_product)
-					INNER JOIN '._DB_PREFIX_.'category c ON (c.id_category = cp.id_category AND
-					'.(Configuration::get('PS_LAYERED_FULL_TREE') ? 'c.nleft >= '.(int)$parent->nleft.'
-					AND c.nright <= '.(int)$parent->nright : 'c.id_category = '.(int)$id_parent).'
-					AND c.active = 1) ';
+					FROM '._DB_PREFIX_.'cat_restriction p';
 
 					$sql_query['join'] .= 'LEFT JOIN `'._DB_PREFIX_.'stock_available` sa
-						ON (sa.id_product = p.id_product AND sa.id_shop = '.(int)$this->context->shop->id.') ';
-					$sql_query['where'] = 'WHERE product_shop.`active` = 1 AND product_shop.`visibility` IN ("both", "catalog") ';
-
-					$sql_query['group'] = ' GROUP BY p.id_product ';
+						ON (sa.id_product = p.id_product AND sa.id_product_attribute=0 '.StockAvailable::addSqlShopRestriction(null, null,  'sa').') ';
+					$sql_query['where'] = 'WHERE 1';
 					break;
 
 				case 'manufacturer':
-					$sql_query['select'] = 'SELECT m.name, COUNT(DISTINCT p.id_product) nbr, m.id_manufacturer ';
+					$sql_query['select'] = 'SELECT COUNT(DISTINCT p.id_product) nbr, m.id_manufacturer, m.name ';
 					$sql_query['from'] = '
-					FROM `'._DB_PREFIX_.'category_product` cp
-					INNER JOIN  `'._DB_PREFIX_.'category` c ON (c.id_category = cp.id_category)
-					INNER JOIN '._DB_PREFIX_.'product p ON (p.id_product = cp.id_product)
+					FROM '._DB_PREFIX_.'cat_restriction p
 					INNER JOIN '._DB_PREFIX_.'manufacturer m ON (m.id_manufacturer = p.id_manufacturer) ';
-					$sql_query['where'] = 'WHERE
-					'.(Configuration::get('PS_LAYERED_FULL_TREE') ? 'c.nleft >= '.(int)$parent->nleft.'
-					AND c.nright <= '.(int)$parent->nright : 'c.id_category = '.(int)$id_parent).'
-					AND c.active = 1
-					AND '.$alias.'.active = 1 AND '.$alias.'.`visibility` IN ("both", "catalog")';
+					$sql_query['where'] = 'WHERE 1';
 					$sql_query['group'] = ' GROUP BY p.id_manufacturer ORDER BY m.name';
 
 					if (!Configuration::get('PS_LAYERED_HIDE_0_VALUES'))
@@ -2119,23 +2201,16 @@ class BlockLayered extends Module
 						$sql_query['second_query'] = '
 							SELECT m.name, 0 nbr, m.id_manufacturer
 
-							FROM `'._DB_PREFIX_.'category_product` cp'.
-							Shop::addSqlAssociation('product', 'cp').'
-							INNER JOIN  `'._DB_PREFIX_.'category` c ON (c.id_category = cp.id_category)
-							INNER JOIN '._DB_PREFIX_.'product p ON (p.id_product = cp.id_product)
+							FROM '._DB_PREFIX_.'cat_restriction p
 							INNER JOIN '._DB_PREFIX_.'manufacturer m ON (m.id_manufacturer = p.id_manufacturer)
-
-							WHERE '.(Configuration::get('PS_LAYERED_FULL_TREE') ? 'c.nleft >= '.(int)$parent->nleft.'
-							AND c.nright <= '.(int)$parent->nright : 'c.id_category = '.(int)$id_parent).'
-							AND c.active = 1
-							AND '.$alias.'.active = 1 AND '.$alias.'.`visibility` IN ("both", "catalog")
+							WHERE 1
 							GROUP BY p.id_manufacturer ORDER BY m.name';
 					}
 
 					break;
 				case 'id_attribute_group':// attribute group
 					$sql_query['select'] = '
-					SELECT COUNT(DISTINCT p.id_product) nbr, lpa.id_attribute_group,
+					SELECT COUNT(DISTINCT lpa.id_product) nbr, lpa.id_attribute_group,
 					a.color, al.name attribute_name, agl.public_name attribute_group_name , lpa.id_attribute, ag.is_color_group,
 					liagl.url_name name_url_name, liagl.meta_title name_meta_title, lial.url_name value_url_name, lial.meta_title value_meta_title';
 					$sql_query['from'] = '
@@ -2145,7 +2220,7 @@ class BlockLayered extends Module
 					INNER JOIN '._DB_PREFIX_.'attribute_lang al
 					ON al.id_attribute = a.id_attribute
 					AND al.id_lang = '.(int)$id_lang.'
-					INNER JOIN '._DB_PREFIX_.'product as p
+					INNER JOIN '._DB_PREFIX_.'cat_restriction p
 					ON p.id_product = lpa.id_product
 					INNER JOIN '._DB_PREFIX_.'attribute_group ag
 					ON ag.id_attribute_group = lpa.id_attribute_group
@@ -2157,17 +2232,8 @@ class BlockLayered extends Module
 					LEFT JOIN '._DB_PREFIX_.'layered_indexable_attribute_lang_value lial
 					ON (lial.id_attribute = lpa.id_attribute AND lial.id_lang = '.(int)$id_lang.') ';
 
-					$sql_query['where'] = 'WHERE a.id_attribute_group = '.(int)$filter['id_value'];
-					$sql_query['where'] .= ' AND lpa.`id_shop` = '.(int)Context::getContext()->shop->id;
-					$sql_query['where'] .= ' AND '.$alias.'.active = 1 AND '.$alias.'.`visibility` IN ("both", "catalog")
-					AND p.id_product IN (
-						SELECT id_product
-						FROM '._DB_PREFIX_.'category_product cp
-						INNER JOIN '._DB_PREFIX_.'category c ON (c.id_category = cp.id_category AND
-						'.(Configuration::get('PS_LAYERED_FULL_TREE') ? 'c.nleft >= '.(int)$parent->nleft.'
-						AND c.nright <= '.(int)$parent->nright : 'c.id_category = '.(int)$id_parent).'
-						AND c.active = 1)
-					) ';
+					$sql_query['where'] = 'WHERE lpa.id_attribute_group = '.(int)$filter['id_value'];
+					$sql_query['where'] .= ' AND lpa.`id_shop` = '.(int)$context->shop->id;
 					$sql_query['group'] = '
 					GROUP BY lpa.id_attribute
 					ORDER BY ag.`position` ASC, a.`position` ASC';
@@ -2195,9 +2261,8 @@ class BlockLayered extends Module
 								ON (liagl.id_attribute_group = lpa.id_attribute_group AND liagl.id_lang = '.(int)$id_lang.')
 							LEFT JOIN '._DB_PREFIX_.'layered_indexable_attribute_lang_value lial
 								ON (lial.id_attribute = lpa.id_attribute AND lial.id_lang = '.(int)$id_lang.')
-							WHERE '.$alias.'.active = 1 AND '.$alias.'.`visibility` IN ("both", "catalog")
-							AND a.id_attribute_group = '.(int)$filter['id_value'].'
-							AND lpa.`id_shop` = '.(int)Context::getContext()->shop->id.'
+							WHERE lpa.id_attribute_group = '.(int)$filter['id_value'].'
+							AND lpa.`id_shop` = '.(int)$context->shop->id.'
 							GROUP BY lpa.id_attribute
 							ORDER BY id_attribute_group, id_attribute';
 					}
@@ -2209,7 +2274,8 @@ class BlockLayered extends Module
 					lifl.url_name name_url_name, lifl.meta_title name_meta_title, lifvl.url_name value_url_name, lifvl.meta_title value_meta_title ';
 					$sql_query['from'] = '
 					FROM '._DB_PREFIX_.'feature_product fp
-					INNER JOIN '._DB_PREFIX_.'product p ON (p.id_product = fp.id_product)
+					INNER JOIN '._DB_PREFIX_.'cat_restriction p
+					ON p.id_product = fp.id_product
 					LEFT JOIN '._DB_PREFIX_.'feature_lang fl ON (fl.id_feature = fp.id_feature AND fl.id_lang = '.$id_lang.')
 					INNER JOIN '._DB_PREFIX_.'feature_value fv ON (fv.id_feature_value = fp.id_feature_value AND (fv.custom IS NULL OR fv.custom = 0))
 					LEFT JOIN '._DB_PREFIX_.'feature_value_lang fvl ON (fvl.id_feature_value = fp.id_feature_value AND fvl.id_lang = '.$id_lang.')
@@ -2217,15 +2283,7 @@ class BlockLayered extends Module
 					ON (lifl.id_feature = fp.id_feature AND lifl.id_lang = '.$id_lang.')
 					LEFT JOIN '._DB_PREFIX_.'layered_indexable_feature_value_lang_value lifvl
 					ON (lifvl.id_feature_value = fp.id_feature_value AND lifvl.id_lang = '.$id_lang.') ';
-					$sql_query['where'] = 'WHERE '.$alias.'.`active` = 1 AND '.$alias.'.`visibility` IN ("both", "catalog")
-					AND fp.id_feature = '.(int)$filter['id_value'].'
-					AND p.id_product IN (
-					SELECT id_product
-					FROM '._DB_PREFIX_.'category_product cp
-					INNER JOIN '._DB_PREFIX_.'category c ON (c.id_category = cp.id_category AND
-					'.(Configuration::get('PS_LAYERED_FULL_TREE') ? 'c.nleft >= '.(int)$parent->nleft.'
-					AND c.nright <= '.(int)$parent->nright : 'c.id_category = '.(int)$id_parent).'
-					AND c.active = 1)) ';
+					$sql_query['where'] = 'WHERE fp.id_feature = '.(int)$filter['id_value'];
 					$sql_query['group'] = 'GROUP BY fv.id_feature_value ';
 
 					if (!Configuration::get('PS_LAYERED_HIDE_0_VALUES'))
@@ -2245,8 +2303,7 @@ class BlockLayered extends Module
 								ON (lifl.id_feature = fp.id_feature AND lifl.id_lang = '.(int)$id_lang.')
 							LEFT JOIN '._DB_PREFIX_.'layered_indexable_feature_value_lang_value lifvl
 								ON (lifvl.id_feature_value = fp.id_feature_value AND lifvl.id_lang = '.(int)$id_lang.')
-							WHERE '.$alias.'.`active` = 1 AND '.$alias.'.`visibility` IN ("both", "catalog")
-							AND fp.id_feature = '.(int)$filter['id_value'].'
+							WHERE fp.id_feature = '.(int)$filter['id_value'].'
 							GROUP BY fv.id_feature_value';
 					}
 
@@ -2280,12 +2337,15 @@ class BlockLayered extends Module
 					'.($depth ? 'AND c.level_depth <= '.($parent->level_depth+(int)$depth) : '').'
 					AND c.active = 1
 					GROUP BY c.id_category ORDER BY c.nleft, c.position';
+
+					$sql_query['from'] .= Shop::addSqlAssociation('product', 'p');
 			}
+
 			foreach ($filters as $filter_tmp)
 			{
 				$method_name = 'get'.ucfirst($filter_tmp['type']).'FilterSubQuery';
 				if (method_exists('BlockLayered', $method_name) &&
-				(!in_array($filter['type'], array('price', 'weight')) && $filter['type'] != $filter_tmp['type'] || $filter['type'] == $filter_tmp['type']))
+				($filter['type'] != 'price' && $filter['type'] != 'weight' && $filter['type'] != $filter_tmp['type'] || $filter['type'] == $filter_tmp['type']))
 				{
 					if ($filter['type'] == $filter_tmp['type'] && $filter['id_value'] == $filter_tmp['id_value'])
 						$sub_query_filter = self::$method_name(array(), true);
@@ -2305,24 +2365,17 @@ class BlockLayered extends Module
 			$products = false;
 			if (!empty($sql_query['from']))
 			{
-				$sql_query['from'] .= Shop::addSqlAssociation('product', 'p');
-				$products = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($sql_query['select']."\n".$sql_query['from']."\n".$sql_query['join']."\n".$sql_query['where']."\n".$sql_query['group']);
+				$products = Db::getInstance()->executeS($sql_query['select']."\n".$sql_query['from']."\n".$sql_query['join']."\n".$sql_query['where']."\n".$sql_query['group']);
 			}
 
-			foreach ($filters as $filter_tmp)
-			{
-				$method_name = 'filterProductsBy'.ucfirst($filter_tmp['type']);
-				if (method_exists('BlockLayered', $method_name) &&
-				(!in_array($filter['type'], array('price', 'weight')) && $filter['type'] != $filter_tmp['type'] || $filter['type'] == $filter_tmp['type']))
-					if ($filter['type'] == $filter_tmp['type'])
-						$products = self::$method_name(array(), $products);
-					else
-						$products = self::$method_name(@$selected_filters[$filter_tmp['type']], $products);
+			// price & weight have slidebar, so it's ok to not complete recompute the product list
+			if (!empty($selected_filters['price']) && $filter['type'] != 'price' && $filter['type'] != 'weight') {
+				$products = self::filterProductsByPrice(@$selected_filters['price'], $products);
 			}
 
 			if (!empty($sql_query['second_query']))
 			{
-				$res = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($sql_query['second_query']);
+				$res = Db::getInstance()->executeS($sql_query['second_query']);
 				if ($res)
 					$products = array_merge($products, $res);
 			}
@@ -2481,7 +2534,7 @@ class BlockLayered extends Module
 						foreach ($products as $product)
 						{
 							//If oosp move all not available quantity to available quantity
-							if ((int)$product['quantity'] > 0 || Product::isAvailableWhenOutOfStock(StockAvailable::outOfStock($product['id_product'])))
+							if ((int)$product['quantity'] > 0 || Product::isAvailableWhenOutOfStock($product['out_of_stock']))
 								$quantity_array[1]['nbr']++;
 							else
 								$quantity_array[0]['nbr']++;
@@ -2681,14 +2734,16 @@ class BlockLayered extends Module
 			$attr_key = $type_filter['type'].'_'.$type_filter['id_key'];
 
 			$param_group_selected = '';
+			$lower_filter = strtolower($type_filter['type']);
+			$filter_name_rewritten = Tools::link_rewrite($filter_name);
 
-			if (in_array(strtolower($type_filter['type']), array('price', 'weight'))
+			if (($lower_filter == 'price' || $lower_filter == 'weight')
 				&& (float)$type_filter['values'][0] > (float)$type_filter['min']
 				&& (float)$type_filter['values'][1] > (float)$type_filter['max'])
 			{
 				$param_group_selected .= $this->getAnchor().str_replace($this->getAnchor(), '_', $type_filter['values'][0])
 					.$this->getAnchor().str_replace($this->getAnchor(), '_', $type_filter['values'][1]);
-				$param_group_selected_array[Tools::link_rewrite($filter_name)][] = Tools::link_rewrite($filter_name);
+				$param_group_selected_array[$filter_name_rewritten][] = $filter_name_rewritten;
 
 				if (!isset($title_values[$filter_meta]))
 					$title_values[$filter_meta] = array();
@@ -2706,7 +2761,7 @@ class BlockLayered extends Module
 						$value_name = !empty($value['url_name']) ? $value['url_name'] : $value['name'];
 						$value_meta = !empty($value['meta_title']) ? $value['meta_title'] : $value['name'];
 						$param_group_selected .= $this->getAnchor().str_replace($this->getAnchor(), '_', Tools::link_rewrite($value_name));
-						$param_group_selected_array[Tools::link_rewrite($filter_name)][] = Tools::link_rewrite($value_name);
+						$param_group_selected_array[$filter_name_rewritten][] = Tools::link_rewrite($value_name);
 
 						if (!isset($title_values[$filter_meta]))
 							$title_values[$filter_meta] = array();
@@ -2716,18 +2771,18 @@ class BlockLayered extends Module
 						$meta_values[$attr_key]['values'][] = $value_meta;
 					}
 					else
-						$param_group_selected_array[Tools::link_rewrite($filter_name)][] = array();
+						$param_group_selected_array[$filter_name_rewritten][] = array();
 				}
 			}
 
 			if (!empty($param_group_selected))
 			{
-				$param_selected .= '/'.str_replace($this->getAnchor(), '_', Tools::link_rewrite($filter_name)).$param_group_selected;
-				$option_checked_array[Tools::link_rewrite($filter_name)] = $param_group_selected;
+				$param_selected .= '/'.str_replace($this->getAnchor(), '_', $filter_name_rewritten).$param_group_selected;
+				$option_checked_array[$filter_name_rewritten] = $param_group_selected;
 			}
 			// select only attribute and group attribute to display an unique product combination link
 			if (!empty($param_group_selected) && $type_filter['type'] == 'id_attribute_group')
-				$param_product_url .= '/'.str_replace($this->getAnchor(), '_', Tools::link_rewrite($filter_name)).$param_group_selected;
+				$param_product_url .= '/'.str_replace($this->getAnchor(), '_', $filter_name_rewritten).$param_group_selected;
 
 		}
 
@@ -2746,10 +2801,12 @@ class BlockLayered extends Module
 			$blacklist[] = 'category';
 
 		$global_nofollow = false;
+		$categorie_link = Context::getContext()->link->getCategoryLink($parent, null, null);
 
 		foreach ($filter_blocks as &$type_filter)
 		{
 			$filter_name = (!empty($type_filter['url_name']) ? $type_filter['url_name'] : $type_filter['name']);
+			$filter_link_rewrite = Tools::link_rewrite($filter_name);
 
 			if (count($type_filter) > 0 && !isset($type_filter['slider']))
 			{
@@ -2764,25 +2821,25 @@ class BlockLayered extends Module
 					// If not filters checked, add parameter
 					$value_name = !empty($values['url_name']) ? $values['url_name'] : $values['name'];
 
-					if (!in_array(Tools::link_rewrite($value_name), $param_group_selected_array[Tools::link_rewrite($filter_name)]))
+					if (!in_array(Tools::link_rewrite($value_name), $param_group_selected_array[$filter_link_rewrite]))
 					{
 						// Update parameter filter checked before
-						if (array_key_exists(Tools::link_rewrite($filter_name), $option_checked_array))
+						if (array_key_exists($filter_link_rewrite, $option_checked_array))
 						{
-							$option_checked_clone_array[Tools::link_rewrite($filter_name)] = $option_checked_clone_array[Tools::link_rewrite($filter_name)].$this->getAnchor().str_replace($this->getAnchor(), '_', Tools::link_rewrite($value_name));
+							$option_checked_clone_array[$filter_link_rewrite] = $option_checked_clone_array[$filter_link_rewrite].$this->getAnchor().str_replace($this->getAnchor(), '_', Tools::link_rewrite($value_name));
 
 							if (in_array($type_filter['type'], $blacklist))
 								$nofollow = true;
 						}
 						else
-							$option_checked_clone_array[Tools::link_rewrite($filter_name)] = $this->getAnchor().str_replace($this->getAnchor(), '_', Tools::link_rewrite($value_name));
+							$option_checked_clone_array[$filter_link_rewrite] = $this->getAnchor().str_replace($this->getAnchor(), '_', Tools::link_rewrite($value_name));
 					}
 					else
 					{
 						// Remove selected parameters
-						$option_checked_clone_array[Tools::link_rewrite($filter_name)] = str_replace($this->getAnchor().str_replace($this->getAnchor(), '_', Tools::link_rewrite($value_name)), '', $option_checked_clone_array[Tools::link_rewrite($filter_name)]);
-						if (empty($option_checked_clone_array[Tools::link_rewrite($filter_name)]))
-							unset($option_checked_clone_array[Tools::link_rewrite($filter_name)]);
+						$option_checked_clone_array[$filter_link_rewrite] = str_replace($this->getAnchor().str_replace($this->getAnchor(), '_', Tools::link_rewrite($value_name)), '', $option_checked_clone_array[$filter_link_rewrite]);
+						if (empty($option_checked_clone_array[$filter_link_rewrite]))
+							unset($option_checked_clone_array[$filter_link_rewrite]);
 					}
 					$parameters = '';
 					ksort($option_checked_clone_array); // Order parameters
@@ -2802,13 +2859,14 @@ class BlockLayered extends Module
 						if (strpos($parameters, '/'.$value) !== false)
 							$nofollow = true;
 
-					$type_filter['values'][$key]['link'] = Context::getContext()->link->getCategoryLink($parent, null, null).'#'.ltrim($parameters, '/');
+					$type_filter['values'][$key]['link'] = $categorie_link.'#'.ltrim($parameters, '/');
 					$type_filter['values'][$key]['rel'] = ($nofollow) ? 'nofollow' : '';
 				}
 			}
 		}
 
 		$n_filters = 0;
+
 		if (isset($selected_filters['price']))
 			if ($price_array['min'] == $selected_filters['price'][0] && $price_array['max'] == $selected_filters['price'][1])
 				unset($selected_filters['price']);
@@ -2873,7 +2931,7 @@ class BlockLayered extends Module
 			return false;
 	}
 
-	private static function getPriceFilterSubQuery($filter_value)
+	private static function getPriceFilterSubQuery($filter_value, $ignore_join = false)
 	{
 		$id_currency = (int)Context::getContext()->currency->id;
 
@@ -2882,64 +2940,76 @@ class BlockLayered extends Module
 			$price_filter_query = '
 			INNER JOIN `'._DB_PREFIX_.'layered_price_index` psi ON (psi.id_product = p.id_product AND psi.id_currency = '.(int)$id_currency.'
 			AND psi.price_min <= '.(int)$filter_value[1].' AND psi.price_max >= '.(int)$filter_value[0].' AND psi.id_shop='.(int)Context::getContext()->shop->id.') ';
+			return array('join' => $price_filter_query);
 		}
-		else
-		{
-			$price_filter_query = '
-			INNER JOIN `'._DB_PREFIX_.'layered_price_index` psi
-			ON (psi.id_product = p.id_product AND psi.id_currency = '.(int)$id_currency.' AND psi.id_shop='.(int)Context::getContext()->shop->id.') ';
-		}
-
-		return array('join' => $price_filter_query, 'select' => ', psi.price_min, psi.price_max');
+		return array();
 	}
 
 	private static function filterProductsByPrice($filter_value, $product_collection)
 	{
+		static $ps_layered_filter_price_usetax = null;
+		static $ps_layered_filter_price_rounding = null;
+
 		if (empty($filter_value))
 			return $product_collection;
+
+		if ($ps_layered_filter_price_usetax === null) {
+			$ps_layered_filter_price_usetax = Configuration::get('PS_LAYERED_FILTER_PRICE_USETAX');
+		}
+
+		if ($ps_layered_filter_price_rounding === null) {
+			$ps_layered_filter_price_rounding = Configuration::get('PS_LAYERED_FILTER_PRICE_ROUNDING');
+		}
+
 		foreach ($product_collection as $key => $product)
 		{
 			if (isset($filter_value) && $filter_value && isset($product['price_min']) && isset($product['id_product'])
-			&& ((int)$filter_value[0] > $product['price_min'] || (int)$filter_value[1] < $product['price_max']))
+			&& (($product['price_min'] < (int)$filter_value[0] && $product['price_max'] > (int)$filter_value[0])
+				|| ($product['price_max'] > (int)$filter_value[1] && $product['price_min'] < (int)$filter_value[1])))
 			{
-				$price = Product::getPriceStatic($product['id_product'], Configuration::get('PS_LAYERED_FILTER_PRICE_USETAX'));
-				if ($price < $filter_value[0] || $price > $filter_value[1])
-					continue;
-				unset($product_collection[$key]);
+				$price = Product::getPriceStatic($product['id_product'], $ps_layered_filter_price_usetax);
+				if ($ps_layered_filter_price_rounding) {
+					$price = (int)$price;
+				}
+				if ($price < $filter_value[0] || $price > $filter_value[1]) {
+					unset($product_collection[$key]);
+				}
 			}
 		}
 		return $product_collection;
 	}
 
-	private static function getWeightFilterSubQuery($filter_value, $ignore_join)
+	private static function getWeightFilterSubQuery($filter_value, $ignore_join = false)
 	{
-		if (isset($filter_value) && $filter_value)
-			if ($filter_value[0] != 0 || $filter_value[1] != 0)
+		if (isset($filter_value) && $filter_value) {
+			if ($filter_value[0] != 0 || $filter_value[1] != 0) {
 				return array('where' => ' AND p.`weight` BETWEEN '.(float)($filter_value[0] - 0.001).' AND '.(float)($filter_value[1] + 0.001).' ');
+			}
+		}
 
 		return array();
 	}
 
-	private static function getId_featureFilterSubQuery($filter_value, $ignore_join)
+	private static function getId_featureFilterSubQuery($filter_value, $ignore_join = false)
 	{
 		if (empty($filter_value))
 			return array();
-		$query_filters = ' AND p.id_product IN (SELECT id_product FROM '._DB_PREFIX_.'feature_product fp WHERE ';
+		$query_filters = ' AND EXISTS (SELECT * FROM '._DB_PREFIX_.'feature_product fp WHERE fp.id_product = p.id_product AND ';
 		foreach ($filter_value as $filter_val)
 			$query_filters .= 'fp.`id_feature_value` = '.(int)$filter_val.' OR ';
 		$query_filters = rtrim($query_filters, 'OR ').') ';
 
 		return array('where' => $query_filters);
 	}
-	private static function getId_attribute_groupFilterSubQuery($filter_value, $ignore_join)
+	private static function getId_attribute_groupFilterSubQuery($filter_value, $ignore_join = false)
 	{
 		if (empty($filter_value))
 			return array();
 		$query_filters = '
-		AND p.id_product IN (SELECT pa.`id_product`
+		AND EXISTS (SELECT *
 		FROM `'._DB_PREFIX_.'product_attribute_combination` pac
 		LEFT JOIN `'._DB_PREFIX_.'product_attribute` pa ON (pa.`id_product_attribute` = pac.`id_product_attribute`)
-		WHERE ';
+		WHERE pa.id_product = p.id_product AND ';
 
 		foreach ($filter_value as $filter_val)
 			$query_filters .= 'pac.`id_attribute` = '.(int)$filter_val.' OR ';
@@ -2948,20 +3018,19 @@ class BlockLayered extends Module
 		return array('where' => $query_filters);
 	}
 
-	private static function getCategoryFilterSubQuery($filter_value, $ignore_join)
+	private static function getCategoryFilterSubQuery($filter_value, $ignore_join = false)
 	{
 		if (empty($filter_value))
 			return array();
-		$query_filters_join = '';
-		$query_filters_where = ' AND p.id_product IN (SELECT id_product FROM '._DB_PREFIX_.'category_product cp WHERE ';
+		$query_filters_where = ' AND EXISTS (SELECT * FROM '._DB_PREFIX_.'category_product cp WHERE id_product = p.id_product AND ';
 		foreach ($filter_value as $id_category)
 			$query_filters_where .= 'cp.`id_category` = '.(int)$id_category.' OR ';
 		$query_filters_where = rtrim($query_filters_where, 'OR ').') ';
 
-		return array('where' => $query_filters_where, 'join' => $query_filters_join);
+		return array('where' => $query_filters_where);
 	}
 
-	private static function getQuantityFilterSubQuery($filter_value, $ignore_join)
+	private static function getQuantityFilterSubQuery($filter_value, $ignore_join = false)
 	{
 		if (count($filter_value) == 2 || empty($filter_value))
 			return array();
@@ -2974,7 +3043,7 @@ class BlockLayered extends Module
 		return array('where' => $query_filters, 'join' => $query_filters_join);
 	}
 
-	private static function getManufacturerFilterSubQuery($filter_value, $ignore_join)
+	private static function getManufacturerFilterSubQuery($filter_value, $ignore_join = false)
 	{
 		if (empty($filter_value))
 			$query_filters = '';
@@ -2984,17 +3053,17 @@ class BlockLayered extends Module
 			$query_filters = ' AND p.id_manufacturer IN ('.implode($filter_value, ',').')';
 		}
 			if ($ignore_join)
-				return array('where' => $query_filters, 'select' => ', m.name');
+				return array('where' => $query_filters);
 			else
-				return array('where' => $query_filters, 'select' => ', m.name', 'join' => 'LEFT JOIN `'._DB_PREFIX_.'manufacturer` m ON (m.id_manufacturer = p.id_manufacturer) ');
+				return array('where' => $query_filters, 'join' => 'LEFT JOIN `'._DB_PREFIX_.'manufacturer` m ON (m.id_manufacturer = p.id_manufacturer) ');
 	}
 
-	private static function getConditionFilterSubQuery($filter_value, $ignore_join)
+	private static function getConditionFilterSubQuery($filter_value, $ignore_join = false)
 	{
 		if (count($filter_value) == 3 || empty($filter_value))
 			return array();
 
-		$query_filters = ' AND product_shop.condition IN (';
+		$query_filters = ' AND p.condition IN (';
 
 		foreach ($filter_value as $cond)
 			$query_filters .= '\''.$cond.'\',';
@@ -3016,6 +3085,14 @@ class BlockLayered extends Module
 		// Clean duplicate values
 		$nArray = array_unique($nArray);
 		asort($nArray);
+
+		Hook::exec(
+			'actionProductListModifier',
+			array(
+				'nb_products' => &$nb_products,
+				'cat_products' => &$products,
+			)
+		);
 
 		if (version_compare(_PS_VERSION_, '1.6.0', '>=') === true)
 			$this->context->controller->addColorsToProductList($products);
@@ -3044,7 +3121,7 @@ class BlockLayered extends Module
 
 		$meta_description = $category_metas['meta_description'];
 
-		$keywords = substr(strtolower($keywords), 0, 1000);
+		$keywords = Tools::substr(Tools::strtolower($keywords), 0, 1000);
 		if (!empty($keywords))
 			$meta_keywords = rtrim($category_title.', '.$keywords.', '.$category_metas['meta_keywords'], ', ');
 
@@ -3112,6 +3189,7 @@ class BlockLayered extends Module
 		$nb_products = $this->nbr_products;
 		$range = 2; /* how many pages around page selected */
 
+		$product_per_page = isset($this->context->cookie->nb_item_per_page) ? (int)$this->context->cookie->nb_item_per_page : Configuration::get('PS_PRODUCTS_PER_PAGE');
 		$n = (int)Tools::getValue('n', Configuration::get('PS_PRODUCTS_PER_PAGE'));
 
 		if ($n <= 0)
@@ -3274,67 +3352,64 @@ class BlockLayered extends Module
 
 			$filter_data['shop_list'] = $shop_list;
 
-			foreach ($shop_list as $id_shop)
+			foreach ($c as $id_category => $category)
 			{
-				foreach ($c as $id_category => $category)
-				{
-					if (!in_array($id_category, $filter_data['categories']))
-						$filter_data['categories'][] = $id_category;
+				if (!in_array($id_category, $filter_data['categories']))
+					$filter_data['categories'][] = $id_category;
 
-					if (!isset($n_categories[(int)$id_category]))
-						$n_categories[(int)$id_category] = 1;
-					if (!isset($done_categories[(int)$id_category]['cat']))
-					{
-						$filter_data['layered_selection_subcategories'] = array('filter_type' => 0, 'filter_show_limit' => 0);
-						$done_categories[(int)$id_category]['cat'] = true;
-						$to_insert = true;
-					}
-					if (is_array($attribute_groups_by_id) && count($attribute_groups_by_id) > 0)
-						foreach ($a as $k_attribute => $attribute)
-							if (!isset($done_categories[(int)$id_category]['a'.(int)$attribute_groups_by_id[(int)$k_attribute]]))
-							{
-								$filter_data['layered_selection_ag_'.(int)$attribute_groups_by_id[(int)$k_attribute]] = array('filter_type' => 0, 'filter_show_limit' => 0);
-								$done_categories[(int)$id_category]['a'.(int)$attribute_groups_by_id[(int)$k_attribute]] = true;
-								$to_insert = true;
-							}
-					if (is_array($attribute_groups_by_id) && count($attribute_groups_by_id) > 0)
-						foreach ($f as $k_feature => $feature)
-							if (!isset($done_categories[(int)$id_category]['f'.(int)$features_by_id[(int)$k_feature]]))
-							{
-								$filter_data['layered_selection_feat_'.(int)$features_by_id[(int)$k_feature]] = array('filter_type' => 0, 'filter_show_limit' => 0);
-								$done_categories[(int)$id_category]['f'.(int)$features_by_id[(int)$k_feature]] = true;
-								$to_insert = true;
-							}
-					if (!isset($done_categories[(int)$id_category]['q']))
-					{
-						$filter_data['layered_selection_stock'] = array('filter_type' => 0, 'filter_show_limit' => 0);
-						$done_categories[(int)$id_category]['q'] = true;
-						$to_insert = true;
-					}
-					if (!isset($done_categories[(int)$id_category]['m']))
-					{
-						$filter_data['layered_selection_manufacturer'] = array('filter_type' => 0, 'filter_show_limit' => 0);
-						$done_categories[(int)$id_category]['m'] = true;
-						$to_insert = true;
-					}
-					if (!isset($done_categories[(int)$id_category]['c']))
-					{
-						$filter_data['layered_selection_condition'] = array('filter_type' => 0, 'filter_show_limit' => 0);
-						$done_categories[(int)$id_category]['c'] = true;
-						$to_insert = true;
-					}
-					if (!isset($done_categories[(int)$id_category]['w']))
-					{
-						$filter_data['layered_selection_weight_slider'] = array('filter_type' => 0, 'filter_show_limit' => 0);
-						$done_categories[(int)$id_category]['w'] = true;
-						$to_insert = true;
-					}
-					if (!isset($done_categories[(int)$id_category]['p']))
-					{
-						$filter_data['layered_selection_price_slider'] = array('filter_type' => 0, 'filter_show_limit' => 0);
-						$done_categories[(int)$id_category]['p'] = true;
-						$to_insert = true;
-					}
+				if (!isset($n_categories[(int)$id_category]))
+					$n_categories[(int)$id_category] = 1;
+				if (!isset($done_categories[(int)$id_category]['cat']))
+				{
+					$filter_data['layered_selection_subcategories'] = array('filter_type' => 0, 'filter_show_limit' => 0);
+					$done_categories[(int)$id_category]['cat'] = true;
+					$to_insert = true;
+				}
+				if (is_array($attribute_groups_by_id) && count($attribute_groups_by_id) > 0)
+					foreach ($a as $k_attribute => $attribute)
+						if (!isset($done_categories[(int)$id_category]['a'.(int)$attribute_groups_by_id[(int)$k_attribute]]))
+						{
+							$filter_data['layered_selection_ag_'.(int)$attribute_groups_by_id[(int)$k_attribute]] = array('filter_type' => 0, 'filter_show_limit' => 0);
+							$done_categories[(int)$id_category]['a'.(int)$attribute_groups_by_id[(int)$k_attribute]] = true;
+							$to_insert = true;
+						}
+				if (is_array($attribute_groups_by_id) && count($attribute_groups_by_id) > 0)
+					foreach ($f as $k_feature => $feature)
+						if (!isset($done_categories[(int)$id_category]['f'.(int)$features_by_id[(int)$k_feature]]))
+						{
+							$filter_data['layered_selection_feat_'.(int)$features_by_id[(int)$k_feature]] = array('filter_type' => 0, 'filter_show_limit' => 0);
+							$done_categories[(int)$id_category]['f'.(int)$features_by_id[(int)$k_feature]] = true;
+							$to_insert = true;
+						}
+				if (!isset($done_categories[(int)$id_category]['q']))
+				{
+					$filter_data['layered_selection_stock'] = array('filter_type' => 0, 'filter_show_limit' => 0);
+					$done_categories[(int)$id_category]['q'] = true;
+					$to_insert = true;
+				}
+				if (!isset($done_categories[(int)$id_category]['m']))
+				{
+					$filter_data['layered_selection_manufacturer'] = array('filter_type' => 0, 'filter_show_limit' => 0);
+					$done_categories[(int)$id_category]['m'] = true;
+					$to_insert = true;
+				}
+				if (!isset($done_categories[(int)$id_category]['c']))
+				{
+					$filter_data['layered_selection_condition'] = array('filter_type' => 0, 'filter_show_limit' => 0);
+					$done_categories[(int)$id_category]['c'] = true;
+					$to_insert = true;
+				}
+				if (!isset($done_categories[(int)$id_category]['w']))
+				{
+					$filter_data['layered_selection_weight_slider'] = array('filter_type' => 0, 'filter_show_limit' => 0);
+					$done_categories[(int)$id_category]['w'] = true;
+					$to_insert = true;
+				}
+				if (!isset($done_categories[(int)$id_category]['p']))
+				{
+					$filter_data['layered_selection_price_slider'] = array('filter_type' => 0, 'filter_show_limit' => 0);
+					$done_categories[(int)$id_category]['p'] = true;
+					$to_insert = true;
 				}
 			}
 		}

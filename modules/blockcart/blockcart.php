@@ -1,6 +1,6 @@
 <?php
 /*
-* 2007-2014 PrestaShop
+* 2007-2015 PrestaShop
 *
 * NOTICE OF LICENSE
 *
@@ -19,7 +19,7 @@
 * needs please refer to http://www.prestashop.com for more information.
 *
 *  @author PrestaShop SA <contact@prestashop.com>
-*  @copyright  2007-2014 PrestaShop SA
+*  @copyright  2007-2015 PrestaShop SA
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 */
@@ -33,7 +33,7 @@ class BlockCart extends Module
 	{
 		$this->name = 'blockcart';
 		$this->tab = 'front_office_features';
-		$this->version = '1.5.7';
+		$this->version = '1.6.0';
 		$this->author = 'PrestaShop';
 		$this->need_instance = 0;
 
@@ -99,20 +99,28 @@ class BlockCart extends Module
 			}
 			if ($cart_rule['gift_product'])
 			{
-				foreach ($products as &$product)
+				foreach ($products as $key => &$product)
+				{
 					if ($product['id_product'] == $cart_rule['gift_product']
 						&& $product['id_product_attribute'] == $cart_rule['gift_product_attribute'])
 					{
-						$product['is_gift'] = 1;
 						$product['total_wt'] = Tools::ps_round($product['total_wt'] - $product['price_wt'],
 							(int)$currency->decimals * _PS_PRICE_DISPLAY_PRECISION_);
 						$product['total'] = Tools::ps_round($product['total'] - $product['price'],
 							(int)$currency->decimals * _PS_PRICE_DISPLAY_PRECISION_);
+						if ($product['cart_quantity'] > 1)
+						{
+							array_splice($products, $key, 0, array($product));
+							$products[$key]['cart_quantity'] = $product['cart_quantity'] - 1;
+							$product['cart_quantity'] = 1;
+						}
+						$product['is_gift'] = 1;
 						$cart_rule['value_real'] = Tools::ps_round($cart_rule['value_real'] - $product['price_wt'],
 							(int)$currency->decimals * _PS_PRICE_DISPLAY_PRECISION_);
 						$cart_rule['value_tax_exc'] = Tools::ps_round($cart_rule['value_tax_exc'] - $product['price'],
 							(int)$currency->decimals * _PS_PRICE_DISPLAY_PRECISION_);
 					}
+				}
 			}
 		}
 

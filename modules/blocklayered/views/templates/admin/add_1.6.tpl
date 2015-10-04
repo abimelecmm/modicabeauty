@@ -7,13 +7,19 @@
 			<label class="control-label col-lg-3">{l s='Template name:' mod='blocklayered'}</label>
 			<div class="col-lg-9">
 				<input type="text" id="layered_tpl_name" name="layered_tpl_name" maxlength="64" value="{$template_name}" />
-				<p class="help-block">{l s='Only as a reminder' mod='blocklayered'}</p>		
+				<p class="help-block">{l s='Only as a reminder' mod='blocklayered'}</p>
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="control-label col-lg-3">{l s='Categories used for this template:' mod='blocklayered'}</label>
 			<div class="col-lg-9">
-				{$categories_tree}
+				{if trim($categories_tree) != ''}
+					{$categories_tree}
+				{else}
+					<div class="alert alert-warning">
+						{l s='Categories selection is disabled because you have no categories or you are in a "all shops" context.' mod='blocklayered'}
+					</div>
+				{/if}
 			</div>
 		</div>
 		{if isset($asso_shops)}
@@ -358,7 +364,7 @@
 		<div class="panel-footer" id="toolbar-footer">
 			<button class="btn btn-default pull-right" id="submit-filter" name="SubmitFilter" type="submit"><i class="process-icon-save"></i> <span>{l s='Save' mod='blocklayered'}</span></button>
 			<a class="btn btn-default" href="{$current_url}">
-				<i class="process-icon-cancel "></i> <span>Cancel</span>
+				<i class="process-icon-cancel"></i> <span>{l s='Cancel' mod='blocklayered'}</span>
 			</a>
 		</div>
 	</form>

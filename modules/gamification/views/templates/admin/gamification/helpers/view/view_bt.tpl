@@ -1,5 +1,5 @@
 {*
-* 2007-2014 PrestaShop
+* 2007-2015 PrestaShop
 *
 * NOTICE OF LICENSE
 *
@@ -18,7 +18,7 @@
 * needs please refer to http://www.prestashop.com for more information.
 *
 *  @author PrestaShop SA <contact@prestashop.com>
-*  @copyright  2007-2014 PrestaShop SA
+*  @copyright  2007-2015 PrestaShop SA
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 *}
@@ -56,10 +56,6 @@
 		<div id="right_intro">
 			<h4>{l s="Our team is available to help. Contact us today!" mod='gamification'}</h4><br/>
 			<ul>
-				<li>
-					<img src="../modules/gamification/views/img/phone_icon.png" alt="{l s="Phone" mod='gamification'}" />
-					<span>{l s="Call us: +1 (888) 947-6543" mod='gamification'}</span>
-				</li>
 				<li>
 					<img src="../modules/gamification/views/img/mail_icon.png" alt="{l s="Email" mod='gamification' mod='gamification'}" />
 					<a href="http://www.prestashop.com/en/contact-us?utm_source=gamification">{l s="Fill out a contact form" mod='gamification'}</a>

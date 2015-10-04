@@ -1,0 +1,160 @@
+/* styles for product-edit */
+.redname {color:red; text-decoration: none; }
+option.defcat {background-color: #ff2222;}
+table.triplemain tr td table { border-spacing: 0px; border-collapse: collapse; }
+table.triplemain tr td table tr td input { width: 30px; }
+.datum { width: 66px; }
+.prijs { width: 45px; }
+div.TinyLine {text-align:center; font-size:75%}
+
+table.triplehome
+{ width:100%;
+  padding: 0;
+}
+
+table.tripleswitch td
+{ text-align:center;
+}
+
+table.suppliertable tr td input
+{ width:100px !important;
+}
+
+table.triplesearch
+{ border:1px;
+  width: 100%;
+}
+
+table.tripleminimal
+{ border:0;
+  padding: 0;
+  width: 100%;
+}
+
+table.triplesearch, table.tripleswitch, table.triplemain
+{	margin: 1px 1px 1px 1px;
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+table.triplesearch, table.tripleswitch
+{ width: 100%;
+} 
+
+table.triplemain  td, table.triplemain  th,
+table.tripleswitch  td, 
+table.triplesearch  td
+{	border: 1px solid #888888;
+}
+table.triplesearch  td  table td
+{	border: 0px;
+}
+
+table.triplemain  td 
+{ padding:2px;
+  empty-cells:show;
+}
+
+table.triplemain  td table td, 
+{ padding: 0px;
+}
+
+tr.notpaid, td.notpaid
+{ background-color: #FFE0A8;
+}
+
+.attachlink
+{ white-space:nowrap; 
+  font-size: 10pt;
+  color: #554411;
+}
+
+textarea.masstarea
+{ overflow: auto;
+  width: 130px;
+  height: 25px;
+  vertical-align: middle;
+
+}
+
+div.menuBar,
+div.menuBar a,
+div.menu,
+div.menu a {
+  font-family: "MS Sans Serif", Arial, sans-serif;
+  font-size: 10pt;
+  font-style: normal;
+  font-weight: normal;
+  color: #000000;
+}
+
+div.menuBar {
+  background-color: #e0e0e0;
+  border: 0;
+  padding: 4px 0px 4px 0px;
+  text-align: left;
+  width: 100%;
+  margin-bottom: 7px;
+}
+
+div.menuBar a {
+  background-color: transparent;
+  border: 1px solid #f0f0f0;
+  color: #000000;
+  cursor: default;
+  left: 0px;
+  margin: 1px;
+  padding: 2px 6px 2px 6px;
+  position: relative;
+  text-decoration: none;
+  top: 0px;
+  z-index: 100;
+}
+
+div.menuBar a:hover {
+  background-color: transparent;
+  border: 1px outset #e0e0e0;
+  color: #000000;
+}
+
+div.menuBar a.menuButtonActive,
+div.menuBar a.menuButtonActive:hover {
+  background-color: #5050f0;
+  border: 1px inset #e0e0e0;
+  text-decoration: none;
+  color: #ffffff;
+  left: 1px;
+  top: 1px;
+}
+
+div.menu {
+  background-color: #e0e0e0;
+  border: 2px outset #e0e0e0;
+  left: 0px;
+  padding: 0px 1px 1px 0px;
+  position: absolute;
+  top: 0px;
+  visibility: hidden;
+  z-index: 101;
+}
+
+div.menu a {
+  color: #000000;
+  cursor: default;
+  display: block;
+  padding: 3px 1em;
+  text-align: left;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+div.menu a:hover {
+  background-color: #5050f0;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+div.menu div.menuItemSep {
+  border: 1px inset #e0e0e0;
+  margin: 4px 2px;
+}

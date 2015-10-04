@@ -1,6 +1,6 @@
 <?php
 /*
-* 2007-2014 PrestaShop
+* 2007-2015 PrestaShop
 *
 * NOTICE OF LICENSE
 *
@@ -19,7 +19,7 @@
 * needs please refer to http://www.prestashop.com for more information.
 *
 *  @author PrestaShop SA <contact@prestashop.com>
-*  @copyright  2007-2014 PrestaShop SA
+*  @copyright  2007-2015 PrestaShop SA
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 */
@@ -39,7 +39,7 @@ class BlockWishList extends Module
 	{
 		$this->name = 'blockwishlist';
 		$this->tab = 'front_office_features';
-		$this->version = '1.2.3';
+		$this->version = '1.3.1';
 		$this->author = 'PrestaShop';
 		$this->need_instance = 0;
 
@@ -375,10 +375,13 @@ class BlockWishList extends Module
 
 	public function renderForm()
 	{
-		$customers = Customer::getCustomers();
+		$_customers = WishList::getCustomers();
 
-		foreach ($customers as $key => $val)
-			$customers[$key]['name'] = $val['firstname'].' '.$val['lastname'];
+        	foreach ($_customers as $c)
+        	{
+            		$_customers[$c['id_customer']]['id_customer'] = $c['id_customer'];
+            		$_customers[$c['id_customer']]['name'] = $c['firstname'].' '.$c['lastname'];
+        	}
 
 		$fields_form = array(
 			'form' => array(
@@ -393,7 +396,7 @@ class BlockWishList extends Module
 						'name' => 'id_customer',
 						'options' => array(
 							'default' => array('value' => 0, 'label' => $this->l('Choose customer')),
-							'query' => $customers,
+							'query' => $_customers,
 							'id' => 'id_customer',
 							'name' => 'name'
 						),

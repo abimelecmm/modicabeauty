@@ -1,6 +1,6 @@
 <?php
 /*
-* 2007-2014 PrestaShop
+* 2007-2015 PrestaShop
 *
 * NOTICE OF LICENSE
 *
@@ -19,7 +19,7 @@
 * needs please refer to http://www.prestashop.com for more information.
 *
 *  @author PrestaShop SA <contact@prestashop.com>
-*  @copyright  2007-2014 PrestaShop SA
+*  @copyright  2007-2015 PrestaShop SA
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 */
@@ -33,7 +33,7 @@ class Gapi extends Module
 	{
 		$this->name = 'gapi';
 		$this->tab = 'administration';
-		$this->version = '1.0.3';
+		$this->version = '1.2.0';
 		$this->author = 'PrestaShop';
 		$this->need_instance = 0;
 		$this->bootstrap = true;
@@ -62,7 +62,7 @@ class Gapi extends Module
 		$allow_url_fopen = ini_get('allow_url_fopen');
 		$openssl = extension_loaded('openssl');
 		$curl = extension_loaded('curl');
-		$ping = (($allow_url_fopen || $curl) && $openssl && Tools::file_get_contents('https://www.google.com/'));
+		$ping = (($allow_url_fopen || $curl) && $openssl && Tools::file_get_contents('https://developers.google.com/'));
 		$online = (in_array(Tools::getRemoteAddr(), array('127.0.0.1', '::1')) ? false : true);
 
 		if (!$ping || !$online)
@@ -104,7 +104,7 @@ class Gapi extends Module
 							13 => $this->l('v1.3: easy to configure but deprecated and less secure'),
 							30 => $this->l('v3.0 with OAuth 2.0: most powerful and up-to-date version')
 						),
-						'visibility' => Shop::CONTEXT_ALL
+						'visibility' => Shop::CONTEXT_SHOP
 					)
 				),
 				'submit' => array('title' => $this->l('Save and configure')),
@@ -132,12 +132,13 @@ class Gapi extends Module
 
 	public function api_3_0_authenticate()
 	{
+		$shop = new Shop(Shop::getContextShopID(true));
 		// https://developers.google.com/accounts/docs/OAuth2WebServer
 		$params = array(
 			'response_type' => 'code',
 			'client_id' => Configuration::get('PS_GAPI30_CLIENT_ID_TMP'),
 			'scope' => 'https://www.googleapis.com/auth/analytics.readonly',
-			'redirect_uri' => Tools::getShopDomain(true, false).__PS_BASE_URI__.'modules/'.$this->name.'/oauth2callback.php',
+			'redirect_uri' => $shop->getBaseURL(true).'modules/'.$this->name.'/oauth2callback.php',
 			'state' => $this->context->employee->id.'-'.Tools::encrypt($this->context->employee->id.Configuration::get('PS_GAPI30_CLIENT_ID_TMP')),
 			'approval_prompt' => 'force',
 			'access_type' => 'offline'
@@ -160,9 +161,10 @@ class Gapi extends Module
 		}
 		else
 		{
+			$shop = new Shop(Shop::getContextShopID(true));
 			$params['grant_type'] = 'authorization_code';
 			$params['code'] = Configuration::get('PS_GAPI30_AUTHORIZATION_CODE');
-			$params['redirect_uri'] = Tools::getShopDomain(true, false).__PS_BASE_URI__.'modules/'.$this->name.'/oauth2callback.php';
+			$params['redirect_uri'] = $shop->getBaseURL(true).'modules/'.$this->name.'/oauth2callback.php';
 		}
 
 		$content = http_build_query($params);
@@ -233,8 +235,9 @@ class Gapi extends Module
 
 		if ($display_slider)
 		{
-			$authorized_origin = Tools::getShopDomain(false, false);
-			$authorized_redirect = Tools::getShopDomain(false, false).__PS_BASE_URI__.'modules/'.$this->name.'/oauth2callback.php';
+			$shop = new Shop(Shop::getContextShopID(true));
+			$authorized_origin = $shop->domain;
+			$authorized_redirect = $shop->domain.$shop->getBaseURI().'modules/'.$this->name.'/oauth2callback.php';
 			$slides = array(
 				'Google API - 01 - Start.png' => $this->l('Go to https://code.google.com/apis/console and click the "Create Project" button'),
 				'Google API - 02 - Services.png' => $this->l('In the "APIS & AUTH > APIs" tab, switch on the Analytics API'),
@@ -344,11 +347,11 @@ class Gapi extends Module
 			$oauth2callback = 'success';
 		}
 
-		Configuration::deleteByName('PS_GAPI30_CLIENT_ID_TMP');
-		Configuration::deleteByName('PS_GAPI30_CLIENT_SECRET_TMP');
-		Configuration::deleteByName('PS_GAPI_PROFILE_TMP');
-		Configuration::deleteByName('PS_GAPI30_REQUEST_URI_TMP');
-		Configuration::deleteByName('PS_GAPI30_REFRESH_TOKEN');
+		Configuration::deleteFromContext('PS_GAPI30_CLIENT_ID_TMP');
+		Configuration::deleteFromContext('PS_GAPI30_CLIENT_SECRET_TMP');
+		Configuration::deleteFromContext('PS_GAPI_PROFILE_TMP');
+		Configuration::deleteFromContext('PS_GAPI30_REQUEST_URI_TMP');
+		Configuration::deleteFromContext('PS_GAPI30_REFRESH_TOKEN');
 
 		Tools::redirectAdmin($url.'&oauth2callback='.$oauth2callback);
 	}

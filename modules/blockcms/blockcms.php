@@ -1,6 +1,6 @@
 <?php
 /*
- * 2007-2014 PrestaShop
+ * 2007-2015 PrestaShop
  *
  * NOTICE OF LICENSE
  *
@@ -19,7 +19,7 @@
  * needs please refer to http://www.prestashop.com for more information.
  *
  *  @author PrestaShop SA <contact@prestashop.com>
- *  @copyright  2007-2014 PrestaShop SA
+ *  @copyright  2007-2015 PrestaShop SA
  *  @version  Release: $Revision: 7060 $
  *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  *  International Registered Trademark & Property of PrestaShop SA
@@ -32,14 +32,14 @@ include_once(dirname(__FILE__) . '/BlockCMSModel.php');
 
 class BlockCms extends Module
 {
-	private $_html;
-	private $_display;
+	protected $_html;
+	protected $_display;
 
 	public function __construct()
 	{
 		$this->name = 'blockcms';
 		$this->tab = 'front_office_features';
-		$this->version = '2.0.4';
+		$this->version = '2.1.1';
 		$this->author = 'PrestaShop';
 		$this->need_instance = 0;
 
@@ -545,7 +545,7 @@ class BlockCms extends Module
 		return;
 	}
 
-	private function initForm()
+	protected function initForm()
 	{
 		$helper = new HelperForm();
 
@@ -663,7 +663,7 @@ class BlockCms extends Module
 		return true;
 	}
 
-	private function _postProcess()
+	protected function _postProcess()
 	{
 		if ($this->_postValidation() == false)
 			return false;
@@ -763,7 +763,7 @@ class BlockCms extends Module
 			Configuration::updateValue('FOOTER_CONTACT', (int)Tools::getValue('cms_footer_display_contact_on'));
 			Configuration::updateValue('FOOTER_SITEMAP', (int)Tools::getValue('cms_footer_display_sitemap_on'));
 
-			$this->_html .= $this->displayConfirmation($this->l('Update your footer\'s information.'));
+			$this->_html .= $this->displayConfirmation($this->l('Your footer information has been updated.'));
 		}
 		elseif (Tools::isSubmit('addBlockCMSConfirmation'))
 			$this->_html .= $this->displayConfirmation($this->l('CMS block added.'));

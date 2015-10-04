@@ -1,6 +1,6 @@
 <?php
 /*
-* 2007-2014 PrestaShop
+* 2007-2015 PrestaShop
 *
 * NOTICE OF LICENSE
 *
@@ -19,7 +19,7 @@
 * needs please refer to http://www.prestashop.com for more information.
 *
 *  @author PrestaShop SA <contact@prestashop.com>
-*  @copyright  2007-2014 PrestaShop SA
+*  @copyright  2007-2015 PrestaShop SA
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 */
@@ -40,7 +40,7 @@ class Cheque extends PaymentModule
 	{
 		$this->name = 'cheque';
 		$this->tab = 'payments_gateways';
-		$this->version = '2.5.6';
+		$this->version = '2.6.0';
 		$this->author = 'PrestaShop';
 		$this->controllers = array('payment', 'validation');
 		$this->is_eu_compatible = 1;
@@ -155,11 +155,13 @@ class Cheque extends PaymentModule
 		if (!$this->checkCurrency($params['cart']))
 			return;
 
-		return array(
+		$payment_options = array(
 			'cta_text' => $this->l('Pay by Check'),
-			'logo' => Media::getMediaPath(dirname(__FILE__).'/cheque.png'),
+			'logo' => Media::getMediaPath(dirname(__FILE__).'/cheque.jpg'),
 			'action' => $this->context->link->getModuleLink($this->name, 'validation', array(), true)
 		);
+
+		return $payment_options;
 	}
 
 	public function hookPaymentReturn($params)

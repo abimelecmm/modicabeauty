@@ -31,6 +31,8 @@ $_MODULE['<{dashproducts}prestashop>dashproducts_735b8c7f6d50b4c6f818deeab3cdea4
 $_MODULE['<{dashproducts}prestashop>dashproducts_14d24dddc4c67abf8364b980b2ccd5a2'] = 'Number of "Most Viewed" to display';
 $_MODULE['<{dashproducts}prestashop>dashproducts_f1ee1eaab342241138d45f35f4d8466a'] = 'Number of "Top Searches" to display';
 $_MODULE['<{dashproducts}prestashop>dashboard_zone_two_3e361ce73ecabd6524af286d55809ed7'] = 'Products and Sales';
+$_MODULE['<{dashproducts}prestashop>dashboard_zone_two_f1206f9fadc5ce41694f69129aecac26'] = 'Configure';
+$_MODULE['<{dashproducts}prestashop>dashboard_zone_two_63a6a88c066880c5ac42394a22803ca6'] = 'Refresh';
 $_MODULE['<{dashproducts}prestashop>dashboard_zone_two_254f642527b45bc260048e30704edb39'] = 'Configuration';
 $_MODULE['<{dashproducts}prestashop>dashboard_zone_two_fd3458547ef9c3a8bd0e1e1b4ef2b4dd'] = 'Recent Orders';
 $_MODULE['<{dashproducts}prestashop>dashboard_zone_two_d7b2933ba512ada478c97fa43dd7ebe6'] = 'Best Sellers';

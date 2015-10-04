@@ -1,0 +1,50 @@
+#pninlineeditor-submit{
+	position:fixed; 
+	right:0; 
+	top:50%;
+	min-height: 80px;
+    width: 60px;
+
+	background-color: #2574A9;
+	border: 1px solid #2574A9;
+	color: #fcfcfc;
+	text-align: center;
+	vertical-align: middle;
+	z-index: 100;
+	 
+    -moz-transition: 0.8s linear; 
+    -webkit-transition: 0.8s linear; 
+    transition: 0.8s linear; 
+
+
+
+}
+
+#pninlineeditor-submit:hover{
+
+	width: 150px;
+    
+	
+}
+
+.pnrojo {
+	color: white !important;
+	border: 0px solid #CF000F !important;
+	background: #CF000F !important;
+}
+
+.pnrojo i{
+	color: white !important;
+	
+}
+
+.pnverde {
+	color: white !important;
+	border: 0px solid #00B16A !important;
+	background: #00B16A !important;
+}
+
+.pnverde i{
+	color: white !important;
+	
+}

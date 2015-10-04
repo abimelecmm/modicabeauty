@@ -2,7 +2,7 @@
 <module>
 	<name>pk_blockfacebooklike</name>
 	<displayName><![CDATA[Facebook Like Box]]></displayName>
-	<version><![CDATA[2.3]]></version>
+	<version><![CDATA[2.5]]></version>
 	<description><![CDATA[Put your Facebook fan page like box on your site.]]></description>
 	<author><![CDATA[promokit.eu]]></author>
 	<tab><![CDATA[front_office_features]]></tab>

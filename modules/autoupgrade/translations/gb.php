@@ -338,7 +338,6 @@ $_MODULE['<{autoupgrade}prestashop>adminselfupgrade_3bb38e7d0bfd5a02f7c06cae446f
 $_MODULE['<{autoupgrade}prestashop>adminselfupgrade_b4302e98d94591ee9afa09e769b2ee63'] = 'action "%1$s" not found';
 $_MODULE['<{autoupgrade}prestashop>adminselfupgrade_760c4026bc5a0bd5378e6efc3f1370b4'] = 'Too long!';
 $_MODULE['<{autoupgrade}prestashop>adminselfupgrade_4f2e28904946a09d8c7f36dd3ee72457'] = 'Fields are different!';
-$_MODULE['<{autoupgrade}prestashop>adminselfupgrade_e5110300599f995b9d8cfbe930fba83e'] = 'This email address is wrong!';
 $_MODULE['<{autoupgrade}prestashop>adminselfupgrade_2e170dfd78c2171a25605ececc0950a4'] = 'Impossible to send the email!';
 $_MODULE['<{autoupgrade}prestashop>adminselfupgrade_015463558b0e4910ecff6b418977c872'] = 'Cannot create settings file, if /config/settings.inc.php exists, please give the public write permissions to this file, else please create a file named settings.inc.php in config directory.';
 $_MODULE['<{autoupgrade}prestashop>adminselfupgrade_128a6722ff88445b488e4eb3319fa5b7'] = 'Cannot write settings file, please create a file named settings.inc.php in the "config" directory.';

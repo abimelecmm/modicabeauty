@@ -4,11 +4,13 @@ global $_MODULE;
 $_MODULE = array();
 
 $_MODULE['<{cronjobs}prestashop>cronjobsforms_c9cc8cce247e49bae79f15173ce97354'] = 'Save';
+$_MODULE['<{cronjobs}prestashop>cronjobsforms_d4169d52732e9ae8df56d2cbcad81a94'] = 'Task description';
 $_MODULE['<{cronjobs}prestashop>cronjobsforms_70d4968bea9a6e76c0333904b9d385e4'] = 'Update my currencies';
 $_MODULE['<{cronjobs}prestashop>cronjobsforms_0eff773cf33456a033e913f6ed18045c'] = 'Target link';
 $_MODULE['<{cronjobs}prestashop>cronjobsforms_07045abc579615634804f42bc0b2b4bb'] = 'Enter a description for this task.';
 $_MODULE['<{cronjobs}prestashop>cronjobsforms_43773e69610c99be6c15daa4a2036443'] = 'Set the link of your cron task.';
 $_MODULE['<{cronjobs}prestashop>cronjobsforms_3a21e2309e8e6aa3759e466154508f2c'] = 'Do not forget to use an absolute URL to make it valid! The link also has to be on the same domain as the shop.';
+$_MODULE['<{cronjobs}prestashop>cronjobsforms_be938fb8c5582085599dfa95368fb489'] = 'Task frequency';
 $_MODULE['<{cronjobs}prestashop>cronjobsforms_f4f70727dc34561dfde1a3c529b6205c'] = 'Settings';
 $_MODULE['<{cronjobs}prestashop>cronjobsforms_b3419e63398ccc41c062f36631bebd9a'] = 'Cron mode';
 $_MODULE['<{cronjobs}prestashop>cronjobsforms_972e73b7a882d0802a4e3a16946a2f94'] = 'Basic';

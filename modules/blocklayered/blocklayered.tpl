@@ -1,5 +1,5 @@
 {*
-* 2007-2014 PrestaShop
+* 2007-2015 PrestaShop
 *
 * NOTICE OF LICENSE
 *
@@ -18,12 +18,11 @@
 * needs please refer to http://www.prestashop.com for more information.
 *
 *  @author PrestaShop SA <contact@prestashop.com>
-*  @copyright  2007-2014 PrestaShop SA
+*  @copyright  2007-2015 PrestaShop SA
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registred Trademark & Property of PrestaShop SA
 *}
 
-<!-- Block layered navigation module -->
 {if $nbr_filterBlocks != 0}
 <script type="text/javascript">
 current_friendly_url = '#{$current_friendly_url}';
@@ -34,7 +33,7 @@ param_product_url = '';
 {/if}
 </script>
 <div id="layered_block_left" class="block">
-	<h4 class="title_block">{l s='Catalog' mod='blocklayered'}</h4>
+	<h4 class="title_block">{l s='Product filter' mod='blocklayered'}</h4>
 	<div class="block_content">
 		<form action="#" id="layered_form">
 			<div>
@@ -251,4 +250,3 @@ param_product_url = '';
 	</div>
 </div>
 {/if}
-<!-- /Block layered navigation module -->
