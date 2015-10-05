@@ -78,6 +78,7 @@ $_TABS['AdminShopUrl'] = 'Shop URLs';
 $_TABS['AdminBlockCategories'] = 'BlockCategories';
 $_TABS['AdminDashgoals'] = 'Dashgoals';
 $_TABS['AdminCronJobs'] = 'Cron Jobs';
+$_TABS['AdminGanalyticsAjax'] = 'Google Analytics Ajax';
 $_TABS['AdminInformation'] = 'Configuration Information';
 $_TABS['AdminPerformance'] = 'Performance';
 $_TABS['AdminEmails'] = 'E-mail';
