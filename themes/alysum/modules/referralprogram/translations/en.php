@@ -25,11 +25,6 @@ $_MODULE['<{referralprogram}alysum>referralprogram_8b80d4b6307990874b832cc15a92e
 $_MODULE['<{referralprogram}alysum>referralprogram_f4f70727dc34561dfde1a3c529b6205c'] = 'Settings';
 $_MODULE['<{referralprogram}alysum>referralprogram_b99212fd7697557380441442dc4f965e'] = 'Minimum number of orders a customer must place to become a sponsor';
 $_MODULE['<{referralprogram}alysum>referralprogram_624f983eb0713e10faf35ff3889e8d68'] = 'Number of friends in the referral program invitation form (customer account, referral program section):';
-$_MODULE['<{referralprogram}alysum>referralprogram_4f4d12992df26f70a2cfeed3ff78999f'] = '';
-$_MODULE['<{referralprogram}alysum>referralprogram_7734f7aa1359bd49ff7e5609a6f04328'] = '';
-$_MODULE['<{referralprogram}alysum>referralprogram_c281280c48971d94eec54e61b5dc9049'] = '';
-$_MODULE['<{referralprogram}alysum>referralprogram_93cba07454f06a4a960172bbd6e2a435'] = '';
-$_MODULE['<{referralprogram}alysum>referralprogram_bafd7322c6e97d25b6299b5d6fe8920b'] = '';
 $_MODULE['<{referralprogram}alysum>referralprogram_6e043d6d6f5a7b9d42a81f9f8bf4956c'] = 'Voucher type :';
 $_MODULE['<{referralprogram}alysum>referralprogram_46da7ad7d01e209241016d308f9fafce'] = 'Voucher offering a percentage';
 $_MODULE['<{referralprogram}alysum>referralprogram_97839379a0f447599405341b852e2e24'] = 'Voucher offering a fixed amount (by currency)';

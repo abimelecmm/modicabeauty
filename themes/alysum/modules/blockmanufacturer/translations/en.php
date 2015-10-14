@@ -20,4 +20,3 @@ $_MODULE['<{blockmanufacturer}alysum>blockmanufacturer_2377be3c2ad9b435ba277a73f
 $_MODULE['<{blockmanufacturer}alysum>blockmanufacturer_c70ad5f80e4c6f299013e08cabc980df'] = 'More about %s';
 $_MODULE['<{blockmanufacturer}alysum>blockmanufacturer_bf24faeb13210b5a703f3ccef792b000'] = 'All brands';
 $_MODULE['<{blockmanufacturer}alysum>blockmanufacturer_1c407c118b89fa6feaae6b0af5fc0970'] = 'No brand';
-$_MODULE['<{blockmanufacturer}alysum>blockmanufacturer_84be54bb4bd1b755a27d86388700d097'] = '';

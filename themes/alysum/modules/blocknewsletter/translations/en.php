@@ -7,7 +7,6 @@ $_MODULE['<{blocknewsletter}alysum>blocknewsletter_ba457fab18d697d978befb95e827e
 $_MODULE['<{blocknewsletter}alysum>blocknewsletter_396c88991101b5ca362932952293d291'] = 'Are you sure that you want to delete all of your contacts?';
 $_MODULE['<{blocknewsletter}alysum>blocknewsletter_417d63b1effb110e438d4b4b9f0fbd95'] = 'The voucher code is invalid.';
 $_MODULE['<{blocknewsletter}alysum>blocknewsletter_c888438d14855d7d96a2724ee9c306bd'] = 'Settings updated';
-$_MODULE['<{blocknewsletter}alysum>blocknewsletter_d37faa29432d65368723e141a02fb55c'] = 'Export as CSV';
 $_MODULE['<{blocknewsletter}alysum>blocknewsletter_b718adec73e04ce3ec720dd11a06a308'] = 'ID';
 $_MODULE['<{blocknewsletter}alysum>blocknewsletter_9f82518d468b9fee614fcc92f76bb163'] = 'Shop';
 $_MODULE['<{blocknewsletter}alysum>blocknewsletter_019ec3132cdf8ee0f2e2a75cf5d3e459'] = 'Gender';
@@ -17,7 +16,6 @@ $_MODULE['<{blocknewsletter}alysum>blocknewsletter_ce8ae9da5b7cd6c3df2929543a9af
 $_MODULE['<{blocknewsletter}alysum>blocknewsletter_808c7457c768423c5651cbf676d9f6d7'] = 'Subscribed';
 $_MODULE['<{blocknewsletter}alysum>blocknewsletter_ec59738d441f28011a81e62bdcea6200'] = 'Subscribed on';
 $_MODULE['<{blocknewsletter}alysum>blocknewsletter_3a1205098d0a13a9c41a8d538fd6a34a'] = 'Newsletter registrations';
-$_MODULE['<{blocknewsletter}alysum>blocknewsletter_0095a9fa74d1713e43e370a7d7846224'] = 'Export';
 $_MODULE['<{blocknewsletter}alysum>blocknewsletter_4351cfebe4b61d8aa5efa1d020710005'] = 'View';
 $_MODULE['<{blocknewsletter}alysum>blocknewsletter_4182c8f19d40c7ca236a5f4f83faeb6b'] = 'Unsubscribe';
 $_MODULE['<{blocknewsletter}alysum>blocknewsletter_e267e2be02cf3e29f4ba53b5d97cf78a'] = 'Invalid email address.';
@@ -38,8 +36,6 @@ $_MODULE['<{blocknewsletter}alysum>blocknewsletter_b37f32d509cf5aabe806b16791588
 $_MODULE['<{blocknewsletter}alysum>blocknewsletter_506e58042922bff5bd753dc612e84f5b'] = 'Welcome voucher code';
 $_MODULE['<{blocknewsletter}alysum>blocknewsletter_1d612b943b8f4792bff603384a46e5f1'] = 'Leave blank to disable by default.';
 $_MODULE['<{blocknewsletter}alysum>blocknewsletter_c9cc8cce247e49bae79f15173ce97354'] = 'Save';
-$_MODULE['<{blocknewsletter}alysum>blocknewsletter_b192ab83a19105bbf1e2d1fab548249a'] = 'Export Newsletter Subscribers';
-$_MODULE['<{blocknewsletter}alysum>blocknewsletter_c97b56b16c6fda0ef4e93f2135479647'] = 'Generate a .CSV file based on BlockNewsletter subscribers data. Only subscribers without an account on the shop will be exported.';
 $_MODULE['<{blocknewsletter}alysum>blocknewsletter_dbb392a2dc9b38722e69f6032faea73e'] = 'Export .CSV file';
 $_MODULE['<{blocknewsletter}alysum>blocknewsletter_f6df4ad6dc4798f26d1f2460eef4f2e9'] = 'Search for addresses';
 $_MODULE['<{blocknewsletter}alysum>blocknewsletter_375afa60efcc1d48300bd339cb8154b0'] = 'Email address to search';
@@ -47,4 +43,3 @@ $_MODULE['<{blocknewsletter}alysum>blocknewsletter_e347582d22a4ba3c822de504b23d4
 $_MODULE['<{blocknewsletter}alysum>blocknewsletter_13348442cc6a27032d2b4aa28b75a5d3'] = 'Search';
 $_MODULE['<{blocknewsletter}alysum>blocknewsletter_ffb7e666a70151215b4c55c6268d7d72'] = 'Newsletter';
 $_MODULE['<{blocknewsletter}alysum>blocknewsletter_416f61a2ce16586f8289d41117a2554e'] = 'your e-mail';
-$_MODULE['<{blocknewsletter}alysum>blocknewsletter_dd28be21b4b75581e00eff919712230d'] = '';

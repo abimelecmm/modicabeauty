@@ -35,7 +35,7 @@ class BlockBestSellers extends Module
 	{
 		$this->name = 'blockbestsellers';
 		$this->tab = 'front_office_features';
-		$this->version = '1.7.0';
+		$this->version = '1.8.0';
 		$this->author = 'PrestaShop';
 		$this->need_instance = 0;
 		$this->bootstrap = true;
@@ -214,7 +214,7 @@ class BlockBestSellers extends Module
 		return $this->display(__FILE__, 'tab.tpl', $this->getCacheId('blockbestsellers-tab'));
 	}
 
-	public function hookDisplayHomeTabContent($params)
+	public function hookDisplayHome($params)
 	{
 		if (!$this->isCached('blockbestsellers-home.tpl', $this->getCacheId('blockbestsellers-home')))
 		{
@@ -228,6 +228,11 @@ class BlockBestSellers extends Module
 			return false;
 
 		return $this->display(__FILE__, 'blockbestsellers-home.tpl', $this->getCacheId('blockbestsellers-home'));
+	}
+
+	public function hookDisplayHomeTabContent($params)
+	{
+		return $this->hookDisplayHome($params);
 	}
 
 	public function hookRightColumn($params)

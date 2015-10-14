@@ -39,7 +39,7 @@ class Ganalytics extends Module
 	{
 		$this->name = 'ganalytics';
 		$this->tab = 'analytics_stats';
-		$this->version = '2.2.0';
+		$this->version = '2.3.1';
 		$this->author = 'PrestaShop';
 		$this->module_key = 'fd2aaefea84ac1bb512e6f1878d990b8';
 		$this->bootstrap = true;
@@ -179,6 +179,24 @@ class Ganalytics extends Module
 					'required' => true,
 					'hint' => $this->l('This information is available in your Google Analytics account')
 				),
+				array(
+					'type' => 'radio',
+					'label' => $this->l('Enable User-ID tracking'),
+					'name' => 'GA_USERID_ENABLED',
+					'hint' => $this->l('The User ID is set at the property level. To find a property, click Admin, then select an account and a property. From the Property column, click Tracking Info then User ID'),
+					'values'    => array(
+						array(
+							'id' => 'ga_userid_enabled',
+							'value' => 1,
+							'label' => $this->l('Enabled')
+						),
+						array(
+							'id' => 'ga_userid_disabled',
+							'value' => 0,
+							'label' => $this->l('Disabled')
+						),
+					),
+				),
 			),
 			'submit' => array(
 				'title' => $this->l('Save'),
@@ -187,6 +205,7 @@ class Ganalytics extends Module
 
 		// Load current value
 		$helper->fields_value['GA_ACCOUNT_ID'] = Configuration::get('GA_ACCOUNT_ID');
+		$helper->fields_value['GA_USERID_ENABLED'] = Configuration::get('GA_USERID_ENABLED');
 
 		return $helper->generateForm($fields_form);
 	}
@@ -204,7 +223,13 @@ class Ganalytics extends Module
 			{
 				Configuration::updateValue('GA_ACCOUNT_ID', $ga_account_id);
 				Configuration::updateValue('GANALYTICS_CONFIGURATION_OK', true);
-				$output .= $this->displayConfirmation($this->l('Settings updated successfully'));
+				$output .= $this->displayConfirmation($this->l('Account ID updated successfully'));
+			}
+			$ga_userid_enabled = Tools::getValue('GA_USERID_ENABLED');
+			if (null !== $ga_userid_enabled)
+			{
+				Configuration::updateValue('GA_USERID_ENABLED', (bool)$ga_userid_enabled);
+				$output .= $this->displayConfirmation($this->l('Settings for User-ID updated successfully'));
 			}
 		}
 
@@ -223,6 +248,13 @@ class Ganalytics extends Module
 
 	protected function _getGoogleAnalyticsTag($back_office = false)
 	{
+		$user_id = null;
+		if (Configuration::get('GA_USERID_ENABLED') &&
+			$this->context->customer && $this->context->customer->isLogged()
+		){
+			$user_id = (int)$this->context->customer->id;
+		}
+
 		return '
 			<script type="text/javascript">
 				(window.gaDevIds=window.gaDevIds||[]).push(\'d6YPbH\');
@@ -231,9 +263,10 @@ class Ganalytics extends Module
 				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 				})(window,document,\'script\',\'//www.google-analytics.com/analytics.js\',\'ga\');
 				ga(\'create\', \''.Tools::safeOutput(Configuration::get('GA_ACCOUNT_ID')).'\', \'auto\');
-				ga(\'require\', \'ec\');
-				'.($back_office ? 'ga(\'set\', \'nonInteraction\', true);' : '').'
-			</script>';
+				ga(\'require\', \'ec\');'
+				.(($user_id && !$back_office) ? 'ga(\'set\', \'&uid\', \''.$user_id.'\');': '')
+				.($back_office ? 'ga(\'set\', \'nonInteraction\', true);' : '')
+			.'</script>';
 	}
 
 	public function hookHeader()
@@ -672,19 +705,29 @@ class Ganalytics extends Module
 			$ga_scripts = '';
 			if ($this->context->controller->controller_name == 'AdminOrders')
 			{
-				$ga_order_records = Db::getInstance()->ExecuteS('SELECT * FROM `'._DB_PREFIX_.'ganalytics` WHERE sent = 0 AND id_shop = \''.(int)$this->context->shop->id.'\' AND DATE_ADD(date_add, INTERVAL 30 minute) < NOW()');
-
-				if ($ga_order_records)
-					foreach ($ga_order_records as $row)
-					{
-						$transaction = $this->wrapOrder($row['id_order']);
-						if (!empty($transaction))
+				if (Tools::getValue('id_order'))
+				{
+					$ga_order_sent = Db::getInstance()->getValue('SELECT id_order FROM `'._DB_PREFIX_.'ganalytics` WHERE id_order = '.(int)Tools::getValue('id_order'));
+					if ($ga_order_sent === false)
+						Db::getInstance()->Execute('INSERT IGNORE INTO `'._DB_PREFIX_.'ganalytics` (id_order, id_shop, sent, date_add) VALUES ('.(int)Tools::getValue('id_order').', '.(int)$this->context->shop->id.', 0, NOW())');
+				}
+				else
+				{
+					$ga_order_records = Db::getInstance()->ExecuteS('SELECT * FROM `'._DB_PREFIX_.'ganalytics` WHERE sent = 0 AND id_shop = \''.(int)$this->context->shop->id.'\' AND DATE_ADD(date_add, INTERVAL 30 minute) < NOW()');
+	
+					if ($ga_order_records)
+						foreach ($ga_order_records as $row)
 						{
-							Db::getInstance()->execute('UPDATE `'._DB_PREFIX_.'ganalytics` SET date_add = NOW() WHERE id_order = '.(int)$row['id_order'].' AND id_shop = \''.(int)$this->context->shop->id.'\' LIMIT 1');
-							$transaction = Tools::jsonEncode($transaction);
-							$ga_scripts .= 'MBG.addTransaction('.$transaction.');';
+							$transaction = $this->wrapOrder($row['id_order']);
+							if (!empty($transaction))
+							{
+								Db::getInstance()->execute('UPDATE `'._DB_PREFIX_.'ganalytics` SET date_add = NOW() WHERE id_order = '.(int)$row['id_order'].' AND id_shop = \''.(int)$this->context->shop->id.'\' LIMIT 1');
+								$transaction = Tools::jsonEncode($transaction);
+								$ga_scripts .= 'MBG.addTransaction('.$transaction.');';
+							}
 						}
-					}
+				
+				}
 			}
 			return $js.$this->_getGoogleAnalyticsTag(true).$this->_runJs($ga_scripts, 1);
 		}
@@ -798,7 +841,7 @@ class Ganalytics extends Module
 			foreach (array('2.0.0', '2.0.4', '2.0.5', '2.0.6', '2.1.0') as $version)
 			{
 				$file = dirname(__FILE__).'/upgrade/Upgrade-'.$version.'.php';
-				if (Configuration::get('GANALYTICS') < $version && file_exists($file))
+				if (version_compare(Configuration::get('GANALYTICS'), $version, '<') && file_exists($file))
 				{
 					include_once($file);
 					call_user_func('upgrade_module_'.str_replace('.', '_', $version), $this);

@@ -17,7 +17,6 @@ $_MODULE['<{themeconfigurator}alysum>themeconfigurator_b9f5c797ebbf55adccdd8539a
 $_MODULE['<{themeconfigurator}alysum>themeconfigurator_f4f70727dc34561dfde1a3c529b6205c'] = 'Settings';
 $_MODULE['<{themeconfigurator}alysum>themeconfigurator_c9cc8cce247e49bae79f15173ce97354'] = 'Save';
 $_MODULE['<{themeconfigurator}alysum>themeconfigurator_4351cfebe4b61d8aa5efa1d020710005'] = 'View';
-$_MODULE['<{themeconfigurator}alysum>themeconfigurator_3b41baf5b2f335fc796a083a1945116b'] = '';
 $_MODULE['<{themeconfigurator}alysum>themeconfigurator_6e3670bb5e3826106c5243b242cc52d9'] = 'Display links to your store\'s social accounts (Twitter, Facebook, etc.)';
 $_MODULE['<{themeconfigurator}alysum>themeconfigurator_1334ff714a38e8004e9cdc755baa5afb'] = 'Display your contact information';
 $_MODULE['<{themeconfigurator}alysum>themeconfigurator_2f4fe84a25dc0024c9e80b4efd1d68f6'] = 'Display social sharing buttons on the product\'s page';
@@ -25,7 +24,6 @@ $_MODULE['<{themeconfigurator}alysum>themeconfigurator_6080ab31226b39af728c2d40f
 $_MODULE['<{themeconfigurator}alysum>themeconfigurator_2debd734d0a150ccfd48e8d1e8e914b0'] = 'Display the custom CMS information block';
 $_MODULE['<{themeconfigurator}alysum>themeconfigurator_bfebda351190d4dbbd3499558175c7b9'] = 'Display quick view window on homepage and category pages';
 $_MODULE['<{themeconfigurator}alysum>themeconfigurator_5e8fbd010bca773512f58a4dcd89ed13'] = 'Display categories as a list of products instead of the default grid-based display';
-$_MODULE['<{themeconfigurator}alysum>themeconfigurator_4e15ce9f3df1555d6932a9938d34a2cc'] = '';
 $_MODULE['<{themeconfigurator}alysum>themeconfigurator_419e2c499b79ae49a7d50b510cddc28e'] = 'Display top banner';
 $_MODULE['<{themeconfigurator}alysum>themeconfigurator_2393b3a8e21e442273b6ad9219f4786c'] = 'Display logos of available payment methods';
 $_MODULE['<{themeconfigurator}alysum>themeconfigurator_905791e2e93ced2cb9b092985604cc55'] = 'Display Live Configurator';

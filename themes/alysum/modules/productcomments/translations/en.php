@@ -83,7 +83,7 @@ $_MODULE['<{productcomments}alysum>productcomments_ea4788705e6873b424c65e91c2846
 $_MODULE['<{productcomments}alysum>products-comparison_8413c683b4b27cc3f4dbd4c90329d8ba'] = 'Comments';
 $_MODULE['<{productcomments}alysum>products-comparison_b1897515d548a960afe49ecf66a29021'] = 'Average';
 $_MODULE['<{productcomments}alysum>products-comparison_bc976f6c3405523cde61f63a7cbe224b'] = 'view comments';
-$_MODULE['<{productcomments}alysum>tab_8413c683b4b27cc3f4dbd4c90329d8ba'] = 'Comments';
+$_MODULE['<{productcomments}alysum>tab_8413c683b4b27cc3f4dbd4c90329d8ba'] = 'Reviews';
 $_MODULE['<{productcomments}alysum>default_da3e413ae5dde1a6b986203857fb1a59'] = 'Product ID is incorrect';
 $_MODULE['<{productcomments}alysum>default_7b0bf23ae4079e07a3a4cb4d07e2caef'] = 'Title is incorrect';
 $_MODULE['<{productcomments}alysum>default_ddbd56de5feb78ef1aaf60401f8c472b'] = 'Comment is incorrect';

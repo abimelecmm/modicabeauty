@@ -1,6 +1,6 @@
 <?php
 /**
- * 2007-2014 PrestaShop
+ * 2007-2015 PrestaShop
  *
  * NOTICE OF LICENSE
  *
@@ -19,7 +19,7 @@
  * needs please refer to http://www.prestashop.com for more information.
  *
  *  @author    PrestaShop SA <contact@prestashop.com>
- *  @copyright 2007-2014 PrestaShop SA
+ *  @copyright 2007-2015 PrestaShop SA
  *  @version	Release: $Revision: 17142 $
  *  @license   http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  *  International Registered Trademark & Property of PrestaShop SA
@@ -35,7 +35,7 @@ class GAdwords extends Module
 	{
 		$this->name = 'gadwords';
 		$this->tab = 'advertising_marketing';
-		$this->version = '1.3.5';
+		$this->version = '1.3.6';
 		$this->author = 'PrestaShop';
 		$this->need_instance = 1;
 
@@ -114,38 +114,37 @@ class GAdwords extends Module
 				$landing_page = 'http://www.google.co.uk/adwords/start';
 		}
 
+		$is_local = preg_match('/^172\.16\.|^192\.168\.|^10\.|^127\.|^localhost|\.local$/', Configuration::get('PS_SHOP_DOMAIN'));
+
 		//Prepare data for voucher code
 		$data = array(
 			'campaign' => $this->name,
 			'iso_country' => $this->context->country->iso_code,
 			'iso_lang' => $this->context->language->iso_code,
 			'ps_version' => _PS_VERSION_,
-			'host' => Configuration::get('PS_SHOP_DOMAIN')
+			'host' => Configuration::get('PS_SHOP_DOMAIN'),
+			'is_local' => $is_local,
+			'email' => $is_local ? Configuration::get('PS_SHOP_EMAIL') : ''
 		);
 
 		$code = '----';
-		$is_local = preg_match('/^172\.16\.|^192\.168\.|^10\.|^127\.|^localhost|\.local$/', $data['host']);
 
 		// Call to get voucher code
-		if (!$is_local)
+		$content = Tools::jsonDecode(Tools::file_get_contents('https://gamification.prestashop.com/get_campaign.php?'.http_build_query($data)));
+		if ($content)
 		{
-			$content = Tools::jsonDecode(Tools::file_get_contents('https://gamification.prestashop.com/get_campaign.php?'.http_build_query($data)));
-			if ($content)
+			if (isset($content->error) && isset($content->code))
 			{
-				if (isset($content->error) && isset($content->code))
-				{
-					if ($content->error === false)
-						$code = $content->code;
-					else
-						Logger::addLog('Module Google AdWords: Error returned by the Gamification ('.$content->code.').', 3);
-				}
+				if ($content->error === false)
+					$code = $content->code;
 				else
-					Logger::addLog('Module Google AdWords: Missing required fields.', 3);
+					Logger::addLog('Module Google AdWords: Error returned by the Gamification ('.$content->code.').', 3);
 			}
 			else
-				Logger::addLog('Module Google AdWords: Unexpected data returned from the Gamification.', 3);
+				Logger::addLog('Module Google AdWords: Missing required fields.', 3);
 		}
-		else $this->adminDisplayWarning('Your shop seems to be unreachable from Internet. Please check your configuration before using Google AdWords');
+		else
+			Logger::addLog('Module Google AdWords: Unexpected data returned from the Gamification.', 3);
 
 		$this->context->smarty->assign(array(
 			'module_dir' => $this->_path,

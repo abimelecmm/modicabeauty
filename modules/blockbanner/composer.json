@@ -1,7 +1,7 @@
 {
-  "name": "prestashop/blockbestsellers",
-  "description": "PrestaShop module blockbestsellers",
-  "homepage": "https://github.com/PrestaShop/blockbestsellers",
+  "name": "prestashop/blockbanner",
+  "description": "PrestaShop module blockbanner",
+  "homepage": "https://github.com/PrestaShop/blockbanner",
   "license": "AFL - Academic Free License (AFL 3.0)",
   "authors": [
     {

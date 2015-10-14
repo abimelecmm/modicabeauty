@@ -3,6 +3,14 @@
 /*#pattern #header { height: 100px}
 body #header #header_logo, #pattern #header_logo { margin-top: 50px; left: 0}*/
 
+.topbanner {
+background-color: #abbeaf;
+}
+
+.topbanner img {
+height: 40px;
+}
+
 .header {
   background: white;
   width: 100%;
