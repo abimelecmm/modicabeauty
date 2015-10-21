@@ -53,5 +53,3 @@ $_MODULE['<{bankwire}alysum>payment_return_66fcf4c223bbf4c7c886d4784e1f62e4'] = 
 $_MODULE['<{bankwire}alysum>payment_return_d15feee53d81ea16269e54d4784fa123'] = 'We noticed a problem with your order. If you think this is an error, feel free to contact our';
 $_MODULE['<{bankwire}alysum>payment_5e1695822fc5af98f6b749ea3cbc9b4c'] = 'Pay by bank wire';
 $_MODULE['<{bankwire}alysum>payment_4e1fb9f4b46556d64db55d50629ee301'] = '(order processing will be longer)';
-$_MODULE['<{bankwire}alysum>payment_execution_99227bacb2b4dfa29ce1701ac265a923'] = '';
-$_MODULE['<{bankwire}alysum>payment_execution_b939c4940deb5588f47ee8f12c61f11f'] = '';

@@ -1,5 +1,5 @@
 {*
-* 2007-2014 PrestaShop
+* 2007-2015 PrestaShop
 *
 * NOTICE OF LICENSE
 *
@@ -18,7 +18,7 @@
 * needs please refer to http://www.prestashop.com for more information.
 *
 *  @author PrestaShop SA <contact@prestashop.com>
-*  @copyright  2007-2014 PrestaShop SA
+*  @copyright  2007-2015 PrestaShop SA
 *  @version  Release: $Revision: 14985 $
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
@@ -42,20 +42,16 @@
 						{l s='Show your ad to people at the very moment they are searching for what you offer. Google and PrestaShop increase your advertising investment by offering free advertising after you start spending!' mod='gadwords'}
 					</b>
 				</p>
-				
+
 				<ul>
 					<li>{l s='Add your promotional code from Prestashop after entering billing details, and we will automatically credit your account when you spend a minimum credit*.' mod='gadwords'}</li>
 					<li>{l s='Got questions? Call at 0800 169 0489, and a Google AdWords expert will help you build your first campaign and offer tips on how to get the most out of AdWords.' mod='gadwords'}</li>
 				</ul>
 				<br/>
 				<div class="col-xs-12 text-center">
-					{if $is_local == false}
 						<h4>{l s='Your Google AdWords promotional code for your shop is' mod='gadwords'}:</h4>
 						<pre id="adwords_voucher">{$code|escape:htmlall}</pre>
 						<p><a href="{$landing_page|escape:htmlall}" target="_blank" title="Google AdWords">{l s='Start your campaign now with your promotional code' mod='gadwords'}</a></p>
-					{else}
-						<p><a href="{$landing_page|escape:htmlall}" target="_blank" title="Google AdWords">{l s='Start your campaign' mod='gadwords'}</a></p>
-					{/if}
 				</div>
 				<em class="small">
 					* {l s='terms and conditions apply.' mod='gadwords'}

@@ -3,7 +3,6 @@
 global $_MODULE;
 $_MODULE = array();
 $_MODULE['<{dashtrends}alysum>dashtrends_ee653ade5f520037ef95e9dc2a42364c'] = 'Dashboard Trends';
-$_MODULE['<{dashtrends}alysum>dashtrends_f2d0efa68eb71bfd5209abeb9f4b0943'] = '';
 $_MODULE['<{dashtrends}alysum>dashtrends_2d125dc25b158f28a1960bd96a9fa8d1'] = '%s points';
 $_MODULE['<{dashtrends}alysum>dashtrends_11ff9f68afb6b8b5b8eda218d7c83a65'] = 'Sales';
 $_MODULE['<{dashtrends}alysum>dashtrends_7442e29d7d53e549b78d93c46b8cdcfc'] = 'Orders';

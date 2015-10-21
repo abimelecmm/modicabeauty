@@ -15,10 +15,8 @@ $_MODULE['<{autoupgrade}alysum>adminselfupgrade_655d20c1ca69519ca647684edbb2db35
 $_MODULE['<{autoupgrade}alysum>adminselfupgrade_26f07ad840fb1c17d29f5be0f428f015'] = 'Disable non-native modules';
 $_MODULE['<{autoupgrade}alysum>adminselfupgrade_70c06c37194d755dd9aef11cf0469981'] = 'As non-native modules can experience some compatibility issues, we recommend to disable them by default.';
 $_MODULE['<{autoupgrade}alysum>adminselfupgrade_469ab377c49ea68b2ecdfe76d628a53b'] = 'Keeping them enabled might prevent you from loading the \"Modules\" page properly after the upgrade.';
-$_MODULE['<{autoupgrade}alysum>adminselfupgrade_41c3c9c784cd8e1de5350e5761068f9c'] = 'Upgrade and switch to the default theme of the new version';
-$_MODULE['<{autoupgrade}alysum>adminselfupgrade_c7ae0af8d5653beb68b344415aca135d'] = 'This will change your theme: your shop will then use the default theme of the version of PrestaShop you are upgrading to.';
 $_MODULE['<{autoupgrade}alysum>adminselfupgrade_837f859cdd8b16024d72169ed315e9b5'] = 'If you customized the default PrestaShop theme in its folder (folder name \"prestashop\" in 1.4, \"default\" in 1.5, \"bootstrap-default\" in 1.6), enabling this option will lose your modifications.';
-$_MODULE['<{autoupgrade}alysum>adminselfupgrade_b5fe2591b57a6b462dd5af5e0976c89d'] = 'If you are using your own theme, enabling this option will switch your shop to the updated default theme, and your own theme will be safe.';
+$_MODULE['<{autoupgrade}alysum>adminselfupgrade_c7ae0af8d5653beb68b344415aca135d'] = 'This will change your theme: your shop will then use the default theme of the version of PrestaShop you are upgrading to.';
 $_MODULE['<{autoupgrade}alysum>adminselfupgrade_5a6925648fc1286cae7924e80690d3a7'] = 'Upgrade the default e-mails';
 $_MODULE['<{autoupgrade}alysum>adminselfupgrade_9770c64dad08073b1291334767e0f99c'] = 'This will upgrade the default PrestaShop e-mails.';
 $_MODULE['<{autoupgrade}alysum>adminselfupgrade_bd25c8f0a4d9745cbefc666500c45c84'] = 'If you customized the default PrestaShop e-mail templates, enabling this option will lose your modifications.';
@@ -34,8 +32,6 @@ $_MODULE['<{autoupgrade}alysum>adminselfupgrade_56195ded2802813800f43e3be1babe1c
 $_MODULE['<{autoupgrade}alysum>adminselfupgrade_a520e5cbdc465c7b7d39c98f78fe2506'] = 'Restoration process done. Congratulations! You can now reactivate your shop.';
 $_MODULE['<{autoupgrade}alysum>adminselfupgrade_2a7e17be5dc799b0c478ec5f576f0713'] = 'Upgrade process done. Congratulations! You can now reactivate your shop.';
 $_MODULE['<{autoupgrade}alysum>adminselfupgrade_7a32329d6776ff98d77f7344caf7e00b'] = 'Upgrade process done, but some warnings have been found.';
-$_MODULE['<{autoupgrade}alysum>adminselfupgrade_d2b9f1e39aa8e96bb61f3a4bfe133f58'] = '';
-$_MODULE['<{autoupgrade}alysum>adminselfupgrade_75802ba44ba3369defd92ef897bf2f21'] = '';
 $_MODULE['<{autoupgrade}alysum>adminselfupgrade_93cba07454f06a4a960172bbd6e2a435'] = 'Yes';
 $_MODULE['<{autoupgrade}alysum>adminselfupgrade_bafd7322c6e97d25b6299b5d6fe8920b'] = 'No';
 $_MODULE['<{autoupgrade}alysum>adminselfupgrade_38fb7d24e0d60a048f540ecb18e13376'] = '   Save   ';
@@ -174,7 +170,6 @@ $_MODULE['<{autoupgrade}alysum>adminselfupgrade_f36d7ee6cae92008008a95bf5898daf2
 $_MODULE['<{autoupgrade}alysum>adminselfupgrade_f39b870765d50b64ba7a6facea83010d'] = 'All files have been added to archive.';
 $_MODULE['<{autoupgrade}alysum>adminselfupgrade_995d693d79b7f8a95c6b7b195970eed2'] = '%1$s added to archive. %2$s files left.';
 $_MODULE['<{autoupgrade}alysum>adminselfupgrade_4f1030e1e84ec150a7786a243cd7fb08'] = 'Error when trying to add %1$s to archive %2$s.';
-$_MODULE['<{autoupgrade}alysum>adminselfupgrade_0800a1e6039f6249a7c9012d1d4e7ebd'] = '';
 $_MODULE['<{autoupgrade}alysum>adminselfupgrade_d85360d9b6992f471292bf16fe32a16d'] = 'File %1$s (size: %2$s) added to archive.';
 $_MODULE['<{autoupgrade}alysum>adminselfupgrade_6e30d5ad868a1053455a9219e14883fc'] = 'File %1$s (size: %2$s) has been skipped during backup.';
 $_MODULE['<{autoupgrade}alysum>adminselfupgrade_8a5062d4832b42720342c513d7d52f7d'] = '[ERROR] Error on backup using PclZip: %s.';
@@ -203,7 +198,6 @@ $_MODULE['<{autoupgrade}alysum>adminselfupgrade_3bb38e7d0bfd5a02f7c06cae446fee86
 $_MODULE['<{autoupgrade}alysum>adminselfupgrade_b4302e98d94591ee9afa09e769b2ee63'] = 'action \"%1$s\" not found';
 $_MODULE['<{autoupgrade}alysum>adminselfupgrade_760c4026bc5a0bd5378e6efc3f1370b4'] = 'Too long!';
 $_MODULE['<{autoupgrade}alysum>adminselfupgrade_4f2e28904946a09d8c7f36dd3ee72457'] = 'Fields are different!';
-$_MODULE['<{autoupgrade}alysum>adminselfupgrade_e5110300599f995b9d8cfbe930fba83e'] = '';
 $_MODULE['<{autoupgrade}alysum>adminselfupgrade_2e170dfd78c2171a25605ececc0950a4'] = 'Impossible to send the email!';
 $_MODULE['<{autoupgrade}alysum>adminselfupgrade_015463558b0e4910ecff6b418977c872'] = 'Cannot create settings file, if /config/settings.inc.php exists, please give the public write permissions to this file, else please create a file named settings.inc.php in config directory.';
 $_MODULE['<{autoupgrade}alysum>adminselfupgrade_128a6722ff88445b488e4eb3319fa5b7'] = 'Cannot write settings file, please create a file named settings.inc.php in the \"config\" directory.';
@@ -213,12 +207,10 @@ $_MODULE['<{autoupgrade}alysum>adminselfupgrade_8fd007bf08e0717537825a3e91cb4fcc
 $_MODULE['<{autoupgrade}alysum>adminselfupgrade_17a90b480e6f6b8d1214df46c8678015'] = 'Cannot access a MySQL content file.';
 $_MODULE['<{autoupgrade}alysum>adminselfupgrade_3d5c8f1d29b1a1dc4ea0673122e0d277'] = 'Error while inserting data in the database:';
 $_MODULE['<{autoupgrade}alysum>adminselfupgrade_17e1581d01152347bfaacd153b961379'] = 'The password is incorrect (alphanumeric string at least 8 characters).';
-$_MODULE['<{autoupgrade}alysum>adminselfupgrade_26b66034d6aa1380df1d30fe33e2e0f6'] = '';
 $_MODULE['<{autoupgrade}alysum>adminselfupgrade_bc5e1163a15106f9e941a7603124709d'] = 'This is not a valid file name.';
 $_MODULE['<{autoupgrade}alysum>adminselfupgrade_a9d82945b8603f0c8807958d7db9a24d'] = 'This is not a valid image file.';
 $_MODULE['<{autoupgrade}alysum>adminselfupgrade_b37eef07b764ea58eec9afe624e20a40'] = 'Error while creating the /config/settings.inc.php file.';
 $_MODULE['<{autoupgrade}alysum>adminselfupgrade_3d9f514d46849760ef1b1412e314fd99'] = 'Error:';
-$_MODULE['<{autoupgrade}alysum>adminselfupgrade_c5bcaf2cc3be924182f0ec0e3124ed99'] = '';
 $_MODULE['<{autoupgrade}alysum>adminselfupgrade_d7a99f61bb284d096ea4f221784af85a'] = 'An error occurred while resizing the picture.';
 $_MODULE['<{autoupgrade}alysum>adminselfupgrade_428c933bafbf262d693fbf1c22c03e5d'] = 'Database connection is available!';
 $_MODULE['<{autoupgrade}alysum>adminselfupgrade_76bd190129b7aefb90fdf42f09ec3ec7'] = 'Database Server is available but database is not found';

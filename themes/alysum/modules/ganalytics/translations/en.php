@@ -10,7 +10,6 @@ $_MODULE['<{ganalytics}alysum>ganalytics_630f6dc397fe74e52d5189e2c80f282b'] = 'B
 $_MODULE['<{ganalytics}alysum>ganalytics_f4f70727dc34561dfde1a3c529b6205c'] = 'Settings';
 $_MODULE['<{ganalytics}alysum>ganalytics_851bd83a102d143ee17d97f9e15e15af'] = 'Google Analytics Tracking ID';
 $_MODULE['<{ganalytics}alysum>ganalytics_ad8e83a47926dcb12e8a8fccd7fcf604'] = 'This information is available in your Google Analytics account';
-$_MODULE['<{ganalytics}alysum>ganalytics_462390017ab0938911d2d4e964c0cab7'] = 'Settings updated successfully';
 $_MODULE['<{ganalytics}alysum>configuration_1f13d86a35be758509f9bdfcce5ec55d'] = 'Your customers go everywhere; shouldn\'t your analytics.';
 $_MODULE['<{ganalytics}alysum>configuration_7063e771c3bb338ba74ac4e4716dbae1'] = 'Google Analytics shows you the full customer picture across ads and videos, websites and social tools, tables and smartphones. That makes it easier to serve your current customers and win new ones.';
 $_MODULE['<{ganalytics}alysum>configuration_df15c5cf264eb769b087f9d81aff029f'] = 'With ecommerce functionality in Google Analytics you can gain clear insight into important metrics about shopper behavior and conversion, including:';

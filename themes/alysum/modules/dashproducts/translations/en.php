@@ -3,12 +3,10 @@
 global $_MODULE;
 $_MODULE = array();
 $_MODULE['<{dashproducts}alysum>dashproducts_6655df4af87b2038afd507a33545a56d'] = 'Dashboard Products';
-$_MODULE['<{dashproducts}alysum>dashproducts_4a528e24be5aca96e8a15b256efe1f31'] = '';
 $_MODULE['<{dashproducts}alysum>dashproducts_2ea989f83006e233627987293f4bde0a'] = 'Customer Name';
 $_MODULE['<{dashproducts}alysum>dashproducts_068f80c7519d0528fb08e82137a72131'] = 'Products';
 $_MODULE['<{dashproducts}alysum>dashproducts_96b0141273eabab320119c467cdcaf17'] = 'Total';
 $_MODULE['<{dashproducts}alysum>dashproducts_44749712dbec183e983dcd78a7736c41'] = 'Date';
-$_MODULE['<{dashproducts}alysum>dashproducts_004bf6c9a40003140292e97330236c53'] = 'Action';
 $_MODULE['<{dashproducts}alysum>dashproducts_3ec365dd533ddb7ef3d1c111186ce872'] = 'Details';
 $_MODULE['<{dashproducts}alysum>dashproducts_be53a0541a6d36f6ecb879fa2c584b08'] = 'Image';
 $_MODULE['<{dashproducts}alysum>dashproducts_deb10517653c255364175796ace3553f'] = 'Product';

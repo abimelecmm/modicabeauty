@@ -15,4 +15,3 @@ $_MODULE['<{blockmyaccountfooter}alysum>blockmyaccountfooter_b4b80a59559e84e8497
 $_MODULE['<{blockmyaccountfooter}alysum>blockmyaccountfooter_63b1ba91576576e6cf2da6fab7617e58'] = 'My personal info';
 $_MODULE['<{blockmyaccountfooter}alysum>blockmyaccountfooter_95d2137c196c7f84df5753ed78f18332'] = 'My vouchers';
 $_MODULE['<{blockmyaccountfooter}alysum>blockmyaccountfooter_c87aacf5673fada1108c9f809d354311'] = 'Sign out';
-$_MODULE['<{blockmyaccountfooter}alysum>blockmyaccountfooter_b6d4223e60986fa4c9af77ee5f7149c5'] = '';
