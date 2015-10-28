@@ -56,6 +56,8 @@ body #shopping_cart > a { height: 36px; }*/
 
 /***** FOOTER *****/
 
+#footer {margin-top: 0px;}
+
 @media (min-width: 1170px) {
 #footer .block {margin-right: 30px;}
 #footer {padding: 50px 25px 0 25px;}
@@ -100,6 +102,31 @@ body #shopping_cart > a { height: 36px; }*/
 
 .nivoSlider {
   height: auto !important;
+}
+
+/* NEWSLETTER */
+input.button_mini:hover {
+background-color: #e1423c;
+}
+
+/* OUR VALUES */
+
+
+#pk_features {
+margin-bottom: 0px;
+background-image: url(../../pk_features/img/our-values-bg.jpg);
+}
+
+#pk_features li {
+background-color: #ebebeb;
+}
+#pk_features li h5, #pk_features li span {
+color: #555
+}
+
+#pk_features li img {
+max-width: 60%;
+max-height: 60%;
 }
 
 /***** PRODUCT DETAIL *****/

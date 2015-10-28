@@ -33,7 +33,7 @@ class Gapi extends Module
 	{
 		$this->name = 'gapi';
 		$this->tab = 'administration';
-		$this->version = '1.2.0';
+		$this->version = '1.2.1';
 		$this->author = 'PrestaShop';
 		$this->need_instance = 0;
 		$this->bootstrap = true;
@@ -132,7 +132,7 @@ class Gapi extends Module
 
 	public function api_3_0_authenticate()
 	{
-		$shop = new Shop(Shop::getContextShopID(true));
+		$shop = new Shop(Shop::getContextShopID());
 		// https://developers.google.com/accounts/docs/OAuth2WebServer
 		$params = array(
 			'response_type' => 'code',
@@ -161,7 +161,7 @@ class Gapi extends Module
 		}
 		else
 		{
-			$shop = new Shop(Shop::getContextShopID(true));
+			$shop = new Shop(Shop::getContextShopID());
 			$params['grant_type'] = 'authorization_code';
 			$params['code'] = Configuration::get('PS_GAPI30_AUTHORIZATION_CODE');
 			$params['redirect_uri'] = $shop->getBaseURL(true).'modules/'.$this->name.'/oauth2callback.php';
@@ -235,7 +235,7 @@ class Gapi extends Module
 
 		if ($display_slider)
 		{
-			$shop = new Shop(Shop::getContextShopID(true));
+			$shop = new Shop(Shop::getContextShopID());
 			$authorized_origin = $shop->domain;
 			$authorized_redirect = $shop->domain.$shop->getBaseURI().'modules/'.$this->name.'/oauth2callback.php';
 			$slides = array(
@@ -373,20 +373,14 @@ class Gapi extends Module
 			'end-date' => $date_to,
 			'start-index' => $start,
 			'max-results' => $limit,
+			'access_token' => $bearer,
 		);
 		if ($filters !== null)
 			$params['filters'] = $filters;
 		$content = str_replace('&amp;', '&', urldecode(http_build_query($params)));
 
-		$stream_context = stream_context_create(array(
-			'http' => array(
-				'method'=> 'GET',
-				'header'  => 'Authorization: Bearer '.$bearer."\r\n",
-				'timeout' => 5,
-			)
-		));
 		$api = ($date_from && $date_to) ? 'ga' : 'realtime';
-		if (!$response_json = Tools::file_get_contents('https://www.googleapis.com/analytics/v3/data/'.$api.'?'.$content, false, $stream_context))
+		if (!$response_json = Tools::file_get_contents('https://www.googleapis.com/analytics/v3/data/'.$api.'?'.$content, false))
 			return false;
 
 		// https://developers.google.com/analytics/devguides/reporting/core/v3/reference
