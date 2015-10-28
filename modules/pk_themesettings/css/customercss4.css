@@ -57,25 +57,21 @@ body #shopping_cart > a { height: 36px; }*/
 /***** FOOTER *****/
 
 #footer {margin-top: 0px;}
-
 @media (min-width: 1170px) {
 #footer .block {margin-right: 30px;}
 #footer {padding: 50px 25px 0 25px;}
 #footer #payment-icons {padding-right:50px}
 }
 
-.wide-bottom-map {
-  display: none;
-}
+.wide-bottom-map { display: none; }
 
-.fb_fans {
-  display: none;
-}
+/* SOCIAL NETWORKS */
 
 /*@media (min-width: 1170px) {
   #footer .block, #footer #twitter-feed { margin-right: 0; margin-left: 40px; }
 }*/
-
+.fb_fans { display: none; }
+#socialnetworks li { width: 60px; height: 60px; }
 
 /***** HOME *****/
 
