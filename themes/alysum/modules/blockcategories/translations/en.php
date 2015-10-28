@@ -28,5 +28,3 @@ $_MODULE['<{blockcategories}alysum>blockcategories_cf3fb1ff52ea1eed3347ac5401ee7
 $_MODULE['<{blockcategories}alysum>blockcategories_5f73e737cedf8f4ccf880473a7823005'] = 'How many footer columns would you like?';
 $_MODULE['<{blockcategories}alysum>blockcategories_c9cc8cce247e49bae79f15173ce97354'] = 'Save';
 $_MODULE['<{blockcategories}alysum>blockcategories_af1b98adf7f686b84cd0b443e022b7a0'] = 'Categories';
-$_MODULE['<{blockcategories}alysum>blockcategories_admin_c69d9eead832257f587f7c9ec0026fe2'] = 'You can upload a maximum of 3 images.';
-$_MODULE['<{blockcategories}alysum>blockcategories_admin_acc66e14d297c1bfc20986bf593cb054'] = 'Thumbnails';
