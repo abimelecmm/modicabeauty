@@ -93,7 +93,7 @@
                             </span>      
                             {/if}
                           {if $products_types=="bes"}
-                          <a class="f_title ellipsis" href="{$productLink}" title="{$product.data.legend}">{$product.data.name|escape:htmlall:'UTF-8'|truncate:35}</a>
+                          <a class="f_title ellipsis" href="{$productLink}" title="{$product.data.legend}">{$product.data.name|escape:htmlall:'UTF-8'|truncate:70}</a>
                             {if $product.data.price AND !isset($restricted_country_mode) AND !$PS_CATALOG_MODE}
                               {if isset($p_price) && ($p_price == 1)}
                                 <div class="content_price smooth02 price-bg{if isset($product.data.specific_prices.price)} oldprice-exist{/if}">
@@ -119,7 +119,7 @@
                           
                             <!-- END BESTSELLERS -->
                           {else}
-                            <a class="f_title ellipsis" href="{$productLink}" title="{$product.data.legend}">{$product.data.name|escape:htmlall:'UTF-8'|truncate:35}</a>
+                            <a class="f_title ellipsis" href="{$productLink}" title="{$product.data.legend}">{$product.data.name|escape:htmlall:'UTF-8'|truncate:70}</a>
                             {if $product.data.show_price AND !isset($restricted_country_mode) AND !$PS_CATALOG_MODE}
                               {if isset($p_price) && ($p_price == 1)}
                                 <div class="content_price smooth02 price-bg{if isset($product.data.specific_prices.price)} oldprice-exist{/if}">
