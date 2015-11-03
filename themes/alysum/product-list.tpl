@@ -121,10 +121,18 @@
 								{$product.name|escape:'html':'UTF-8'}
 							</a>
 						</h3>														
-						{hook h='displayProductListReviews' product=$product}
 						<p class="product-desc" itemprop="description">
 							{$product.description_short|strip_tags:'UTF-8'|truncate:360:'...'}
 						</p>
+						{hook h='displayProductListReviews' product=$product}
+
+						{if isset($manufacturer)}
+							{if ($manufacturer->meta_keywords|strstr:"force_list")}
+								<p class="product-desc" itemprop="description">
+									{$product.description|strip_tags:'UTF-8'|truncate:1000:'...'}
+								</p>
+							{/if}
+						{/if}
 						{hook h="displayProductDeliveryTime" product=$product}
 						{hook h="displayProductPriceBlock" product=$product type="weight"}					
 					</div>

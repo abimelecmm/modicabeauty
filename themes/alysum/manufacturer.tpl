@@ -77,12 +77,16 @@
 						{assign var='view_type' value="view_list"}
 					{/if}
 				{/if}
-				{if isset($theme_settings) && ($theme_settings.lc_buttons == 1)}
-				<div class="views dib">
-					<div class="view_btn dib{if $view_type == 'view_grid'} active{/if} smooth02" id="view_grid" title="grid"></div><span class="grid_title">{l s='Grid'}</span>
-					<div class="view_btn dib{if $view_type == 'view_list'} active{/if} smooth02" id="view_list" title="list"></div><span class="list_title">{l s='List'}</span>
-				</div>					
-				{/if}	
+				{if ($manufacturer->meta_keywords|strstr:"force_list")}
+					{assign var='view_type' value="view_list"}
+				{else}
+					{if isset($theme_settings) && ($theme_settings.lc_buttons == 1)}
+					<div class="views dib">
+						<div class="view_btn dib{if $view_type == 'view_grid'} active{/if} smooth02" id="view_grid" title="grid"></div><span class="grid_title">{l s='Grid'}</span>
+						<div class="view_btn dib{if $view_type == 'view_list'} active{/if} smooth02" id="view_list" title="list"></div><span class="list_title">{l s='List'}</span>
+					</div>					
+					{/if}	
+				{/if}
 			</div>
 		</div>
 		<div id="listing_view" class="{$view_type}">
