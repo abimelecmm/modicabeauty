@@ -130,7 +130,10 @@
             <state name="refusesale">
                 <lengow>canceled</lengow>
             </state>
-            <state name="CLOSED">
+            <state name="closed">
+                <lengow>shipped</lengow>
+            </state>
+             <state name="CLOSED">
                 <lengow>shipped</lengow>
             </state>
             <state name="CANCELLED">
@@ -2384,9 +2387,6 @@
     <marketplace name="darty">
         <api>https://wsdl.lengow.com/wsdl/darty/#ID_FLUX#/#ORDER_ID#/#ACTION#.xml</api>
         <states>
-            <state name="RECEIVED">
-                <lengow>new</lengow>
-            </state>
             <state name="STAGING">
                 <lengow>new</lengow>
             </state>
@@ -2458,9 +2458,6 @@
     <marketplace name="menlook">
         <api>https://wsdl.lengow.com/wsdl/menlook/#ID_FLUX#/#ORDER_ID#/#ACTION#.xml</api>
         <states>
-            <state name="RECEIVED">
-                <lengow>new</lengow>
-            </state>
             <state name="STAGING">
                 <lengow>new</lengow>
             </state>
@@ -2532,9 +2529,6 @@
     <marketplace name="privalia">
         <api>https://wsdl.lengow.com/wsdl/privalia/#ID_FLUX#/#ORDER_ID#/#ACTION#.xml</api>
         <states>
-            <state name="RECEIVED">
-                <lengow>new</lengow>
-            </state>
             <state name="STAGING">
                 <lengow>new</lengow>
             </state>
@@ -2611,9 +2605,6 @@
     <marketplace name="delamaison">
         <api>https://wsdl.lengow.com/wsdl/delamaison/#ID_FLUX#/#ORDER_ID#/#ACTION#.xml</api>
         <states>
-            <state name="RECEIVED">
-                <lengow>new</lengow>
-            </state>
             <state name="STAGING">
                 <lengow>new</lengow>
             </state>
@@ -2691,9 +2682,6 @@
     <marketplace name="comptoirsante">
         <api>https://wsdl.lengow.com/wsdl/comptoirsante/#ID_FLUX#/#ORDER_ID#/#ACTION#.xml</api>
         <states>
-            <state name="RECEIVED">
-                <lengow>new</lengow>
-            </state>
             <state name="STAGING">
                 <lengow>new</lengow>
             </state>
@@ -2771,9 +2759,6 @@
     <marketplace name="immochan_v2">
         <api>https://wsdl.lengow.com/wsdl/immochan_v2/#ID_FLUX#/#ORDER_ID#/#ACTION#.xml</api>
         <states>
-            <state name="RECEIVED">
-                <lengow>new</lengow>
-            </state>
             <state name="STAGING">
                 <lengow>new</lengow>
             </state>
@@ -2845,9 +2830,6 @@
     <marketplace name="privalia">
         <api>https://wsdl.lengow.com/wsdl/privalia/#ID_FLUX#/#ORDER_ID#/#ACTION#.xml</api>
         <states>
-            <state name="RECEIVED">
-                <lengow>new</lengow>
-            </state>
             <state name="STAGING">
                 <lengow>new</lengow>
             </state>
@@ -2925,9 +2907,6 @@
     <marketplace name="galeries_lafayette">
         <api>https://wsdl.lengow.com/wsdl/galeries_lafayette/#ID_FLUX#/#ORDER_ID#/#ACTION#.xml</api>
         <states>
-            <state name="RECEIVED">
-                <lengow>new</lengow>
-            </state>
             <state name="STAGING">
                 <lengow>new</lengow>
             </state>
@@ -2999,9 +2978,6 @@
     <marketplace name="natdec">
         <api>https://wsdl.lengow.com/wsdl/natdec/#ID_FLUX#/#ORDER_ID#/#ACTION#.xml</api>
         <states>
-            <state name="RECEIVED">
-                <lengow>new</lengow>
-            </state>
             <state name="STAGING">
                 <lengow>new</lengow>
             </state>
@@ -3209,9 +3185,6 @@
     <marketplace name="mistergooddeal">
         <api>https://wsdl.lengow.com/wsdl/mistergooddeal/#ID_FLUX#/#ORDER_ID#/#ACTION#.xml</api>
         <states>
-            <state name="RECEIVED">
-                <lengow>new</lengow>
-            </state>
             <state name="STAGING">
                 <lengow>new</lengow>
             </state>
