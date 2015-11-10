@@ -7,8 +7,14 @@ body #header #header_logo, #pattern #header_logo { margin-top: 50px; left: 0}*/
 background-color: #abbeaf;
 }
 
+.topbanner a {
+overflow: hidden;
+}
+
 .topbanner img {
-height: 40px;
+height: auto;
+width: auto;
+max-width: 100%;
 }
 
 .header {
@@ -43,6 +49,8 @@ max-width: 300px
   background: none;
 }*/
 
+body .flexmenu > ul > li > a span { padding: 0 5px; }
+
 @media (min-width: 729px) {
   .flexmenu > ul > li.narrow div.submenu {
     width: 250px;
@@ -56,7 +64,14 @@ body #shopping_cart > a { height: 36px; }*/
 
 /***** FOOTER *****/
 
-#footer {margin-top: 0px;}
+#footer {
+margin-top: 60px;
+}
+
+#index #footer {
+margin-top: 0px;
+}
+
 @media (min-width: 1170px) {
 #footer .block {margin-right: 30px;}
 #footer {padding: 50px 25px 0 25px;}
@@ -208,11 +223,19 @@ table#cart_summary td span#total_price {
   display: inline;
 }
 
+.ph_simpleblog .ph_col.ph_col_2 {
+  margin-top: 60px;
+}
+
 /***** EVERYWHERE *****/
 
 /* Fix tweets inline */
 .block li a {
   display: inline;
+}
+
+.view_grid .product_list > li {
+  min-height: 340px;
 }
 
 /* remove dotted product name */
@@ -224,7 +247,15 @@ table#cart_summary td span#total_price {
 
 /* size of product name title in lists */
 .product_list > li h3 {
-  height: 70px;
+  height: auto;
+}
+
+.product_list>li p.product-desc, .product_list>li p.product-desc a {
+  padding-bottom: 15px;
+}
+
+.view_list .comments_note {
+  display: block;
 }
 
 /* buttons style in wishlist popup */
