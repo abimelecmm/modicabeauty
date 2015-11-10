@@ -39,7 +39,7 @@ class Ganalytics extends Module
 	{
 		$this->name = 'ganalytics';
 		$this->tab = 'analytics_stats';
-		$this->version = '2.3.1';
+		$this->version = '2.3.2';
 		$this->author = 'PrestaShop';
 		$this->module_key = 'fd2aaefea84ac1bb512e6f1878d990b8';
 		$this->bootstrap = true;
@@ -181,7 +181,7 @@ class Ganalytics extends Module
 				),
 				array(
 					'type' => 'radio',
-					'label' => $this->l('Enable User-ID tracking'),
+					'label' => $this->l('Enable User ID tracking'),
 					'name' => 'GA_USERID_ENABLED',
 					'hint' => $this->l('The User ID is set at the property level. To find a property, click Admin, then select an account and a property. From the Property column, click Tracking Info then User ID'),
 					'values'    => array(
@@ -229,7 +229,7 @@ class Ganalytics extends Module
 			if (null !== $ga_userid_enabled)
 			{
 				Configuration::updateValue('GA_USERID_ENABLED', (bool)$ga_userid_enabled);
-				$output .= $this->displayConfirmation($this->l('Settings for User-ID updated successfully'));
+				$output .= $this->displayConfirmation($this->l('Settings for User ID updated successfully'));
 			}
 		}
 
@@ -303,7 +303,7 @@ class Ganalytics extends Module
 	public function hookOrderConfirmation($params)
 	{
 		$order = $params['objOrder'];
-		if (Validate::isLoadedObject($order) && $order->current_state != (int)Configuration::get('PS_OS_ERROR'))
+		if (Validate::isLoadedObject($order) && $order->getCurrentState() != (int)Configuration::get('PS_OS_ERROR'))
 		{
 			$ga_order_sent = Db::getInstance()->getValue('SELECT id_order FROM `'._DB_PREFIX_.'ganalytics` WHERE id_order = '.(int)$order->id);
 			if ($ga_order_sent === false)
@@ -318,7 +318,7 @@ class Ganalytics extends Module
 
 					$transaction = array(
 						'id' => $order->id,
-						'affiliation' => Shop::isFeatureActive() ? $this->context->shop->name : Configuration::get('PS_SHOP_NAME'),
+						'affiliation' => (version_compare(_PS_VERSION_, '1.5', '>=') && Shop::isFeatureActive()) ? $this->context->shop->name : Configuration::get('PS_SHOP_NAME'),
 						'revenue' => $order->total_paid,
 						'shipping' => $order->total_shipping,
 						'tax' => $order->total_paid_tax_incl - $order->total_paid_tax_excl,
@@ -513,7 +513,7 @@ class Ganalytics extends Module
 			$product_id = $product['id_product'];
 		else if (!empty($product['id']))
 			$product_id = $product['id'];
-			
+
 		if (!empty($product['id_product_attribute']))
 			$product_id .= '-'. $product['id_product_attribute'];
 
@@ -544,7 +544,7 @@ class Ganalytics extends Module
 			$ga_product = array(
 				'id' => $product_id,
 				'name' => Tools::jsonEncode($product['name'])
-			);				
+			);
 		}
 		return $ga_product;
 	}
@@ -645,12 +645,9 @@ class Ganalytics extends Module
 	{
 		if (Configuration::get('GA_ACCOUNT_ID'))
 		{
-
-			if (($this->js_state) != 1 && ($backoffice == 0))
-				$js_code .= 'ga(\'send\', \'pageview\');';
-
+			$runjs_code = '';
 			if (!empty($js_code))
-				return '
+				$runjs_code .= '
 				<script type="text/javascript">
 					jQuery(document).ready(function(){
 						var MBG = GoogleAnalyticEnhancedECommerce;
@@ -658,6 +655,14 @@ class Ganalytics extends Module
 						'.$js_code.'
 					});
 				</script>';
+
+			if (($this->js_state) != 1 && ($backoffice == 0))
+				$runjs_code .= '
+				<script type="text/javascript">
+					ga(\'send\', \'pageview\');
+				</script>';
+
+			return $runjs_code;
 		}
 	}
 
@@ -693,7 +698,7 @@ class Ganalytics extends Module
 
 		$ga_account_id = Configuration::get('GA_ACCOUNT_ID');
 
-		if (!empty($ga_account_id))
+		if (!empty($ga_account_id) && $this->active)
 		{
 			if (version_compare(_PS_VERSION_, '1.5', '>=') == true)
 				$this->context->controller->addJs($this->_path.'views/js/GoogleAnalyticActionLib.js');
@@ -714,7 +719,7 @@ class Ganalytics extends Module
 				else
 				{
 					$ga_order_records = Db::getInstance()->ExecuteS('SELECT * FROM `'._DB_PREFIX_.'ganalytics` WHERE sent = 0 AND id_shop = \''.(int)$this->context->shop->id.'\' AND DATE_ADD(date_add, INTERVAL 30 minute) < NOW()');
-	
+
 					if ($ga_order_records)
 						foreach ($ga_order_records as $row)
 						{
@@ -726,7 +731,7 @@ class Ganalytics extends Module
 								$ga_scripts .= 'MBG.addTransaction('.$transaction.');';
 							}
 						}
-				
+
 				}
 			}
 			return $js.$this->_getGoogleAnalyticsTag(true).$this->_runJs($ga_scripts, 1);
