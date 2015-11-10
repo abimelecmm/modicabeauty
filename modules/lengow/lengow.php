@@ -374,10 +374,10 @@ class Lengow extends Module
 
 		if (Configuration::get('LENGOW_VERSION') < '2.1.0')
 		{
-			$log_table_sql = 'ALTER TABLE '._DB_PREFIX_.'lengow_logs_import DROP COLUMN `is_processing`';
-			Db::getInstance()->execute($log_table_sql);
-			$lengow_orders_sql = 'ALTER TABLE '._DB_PREFIX_.'lengow_orders ADD `is_disabled` tinyint(1) UNSIGNED DEFAULT \'0\'';
-			Db::getInstance()->execute($lengow_orders_sql);
+			//$log_table_sql = 'ALTER TABLE '._DB_PREFIX_.'lengow_logs_import DROP COLUMN `is_processing`';
+			//Db::getInstance()->execute($log_table_sql);
+			//$lengow_orders_sql = 'ALTER TABLE '._DB_PREFIX_.'lengow_orders ADD `is_disabled` tinyint(1) UNSIGNED DEFAULT \'0\'';
+			//Db::getInstance()->execute($lengow_orders_sql);
 			Configuration::updateValue('LENGOW_IMPORT_SHIPPED_BY_MP', false);
 			Configuration::updateValue('LENGOW_EXPORT_ALL_VARIATIONS', Configuration::get('LENGOW_EXPORT_ALL_ATTRIBUTES'));
 			Configuration::updateValue('LENGOW_VERSION', '2.1.0');
