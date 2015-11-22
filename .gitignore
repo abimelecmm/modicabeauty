@@ -36,3 +36,5 @@ themes/alysum/cache/
 # Modules
 
 modules/pk_twitterwidget/*.json
+modules/lengow/logs/logs*
+
