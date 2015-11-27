@@ -38,15 +38,18 @@
 				<div class="short_desc">
 					{$manufacturer->short_description}
 				</div>
-				<div class="hide_desc">
-					{$manufacturer->description}
-				</div>
-				<a href="#" class="lnk_more" onclick="$(this).prev().slideDown('slow'); $(this).hide(); $(this).next().show(); return false;">
-					<!--{l s='More'}-->{l s='Learn more about'}&nbsp;{$manufacturer->name|escape:'html':'UTF-8'}
-				</a>
-				<a href="#" class="lnk_more" style="display:none;" onclick="$(this).prev().prev().slideUp('slow'); $(this).hide(); $(this).prev().show(); return false;">
-					{l s='Hide'}
-				</a>
+				{if ($manufacturer->meta_keywords|strstr:"no_long_description")}
+				{else}
+					<div class="hide_desc">
+						{$manufacturer->description}
+					</div>
+					<a href="#" class="lnk_more" onclick="$(this).prev().slideDown('slow'); $(this).hide(); $(this).next().show(); return false;">
+						<!--{l s='More'}-->{l s='Learn more about'}&nbsp;{$manufacturer->name|escape:'html':'UTF-8'}
+					</a>
+					<a href="#" class="lnk_more" style="display:none;" onclick="$(this).prev().prev().slideUp('slow'); $(this).hide(); $(this).prev().show(); return false;">
+						{l s='Hide'}
+					</a>
+				{/if}
 			{else}
 				<div>
 					{$manufacturer->description}
