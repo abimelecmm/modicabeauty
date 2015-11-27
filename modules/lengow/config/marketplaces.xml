@@ -2049,12 +2049,6 @@
         <api>https://wsdl.lengow.com/wsdl/laredoute/#ID_FLUX#/#ORDER_ID#/#ACTION#.xml</api>
         <apibyline>https://wsdl.lengow.com/wsdl/laredoute/#ID_FLUX#/#ORDER_ID#/#ORDER_LINE_ID#/#QTY_TO_REFUND#/#FDP#/#ACTION#.xml</apibyline>
         <states>
-            <state name="ToCancel">
-                <actions>
-                    <action type="cancel">cancelOrder</action>
-                </actions>
-                <lengow>new</lengow>
-            </state>
             <state name="Created">
                 <actions>
                     <action type="accept">acceptOrder</action>
@@ -2075,7 +2069,7 @@
                 <lengow>processing</lengow>
             </state>
             <state name="ToCancel">
-                <lengow>processing</lengow>
+                <lengow>canceled</lengow>
             </state>
             <state name="Shipped">
                 <actions>
@@ -3535,6 +3529,426 @@
     <marketplace name="home24_fr">
        <api>https://wsdl.lengow.com/wsdl/home24_fr/#ID_FLUX#/#ORDER_ID#/#ACTION#.xml</api>
        <apibyline>https://wsdl.lengow.com/wsdl/home24_fr/#ID_FLUX#/#ORDER_ID#/#ORDER_LINE_ID#/#QUANTITY#/action_lines.xml</apibyline>
+       <states>
+           <state name="new">
+               <lengow>new</lengow>
+               <actions>
+                   <action type="accept" method="post">processing</action>
+                   <action type="refuse" method="post">canceled</action>
+               </actions>
+           </state>
+           <state name="processing">
+               <lengow>processing</lengow>
+               <actions>
+                   <action type="shipped" method="post">shipped</action>
+                   <action type="refuse" method="post">canceled</action>
+               </actions>
+           </state>
+           <state name="shipped">
+               <lengow>shipped</lengow>
+           </state>
+           <state name="canceled">
+               <lengow>canceled</lengow>
+           </state>
+        </states>
+        <additional_params>
+            <param usedby="accept">
+                <type>date_shipped</type>
+                <name>date_shipped</name>
+            </param>
+            <param usedby="accept">
+                <type>date_delivered</type>
+                <name>date_delivered</name>
+            </param>
+            <param usedby="shipped cancel refund returned">
+                <type>action</type>
+                <name>action</name>
+            </param>
+            <param usedby="shipped cancel refund returned">
+                <type>sku</type>
+                <name>sku</name>
+            </param>
+            <param usedby="shipped cancel refund returned">
+                <type>quantity</type>
+                <name>quantity</name>
+            </param>
+            <param usedby="shipped cancel refund returned">
+                <type>line</type>
+                <name>line</name>
+            </param>
+            <param usedby="shipped">
+                <type>tracking</type>
+                <name>tracking_number</name>
+            </param>
+            <param usedby="shipped">
+                <type>carrier</type>
+                <name>carrier_name</name>
+            </param>
+        </additional_params>
+    </marketplace>
+    <marketplace name="home24_nl">
+       <api>https://wsdl.lengow.com/wsdl/home24_nl/#ID_FLUX#/#ORDER_ID#/#ACTION#.xml</api>
+       <apibyline>https://wsdl.lengow.com/wsdl/home24_nl/#ID_FLUX#/#ORDER_ID#/#ORDER_LINE_ID#/#QUANTITY#/action_lines.xml</apibyline>
+       <states>
+           <state name="new">
+               <lengow>new</lengow>
+               <actions>
+                   <action type="accept" method="post">processing</action>
+                   <action type="refuse" method="post">canceled</action>
+               </actions>
+           </state>
+           <state name="processing">
+               <lengow>processing</lengow>
+               <actions>
+                   <action type="shipped" method="post">shipped</action>
+                   <action type="refuse" method="post">canceled</action>
+               </actions>
+           </state>
+           <state name="shipped">
+               <lengow>shipped</lengow>
+           </state>
+           <state name="canceled">
+               <lengow>canceled</lengow>
+           </state>
+        </states>
+        <additional_params>
+            <param usedby="accept">
+                <type>date_shipped</type>
+                <name>date_shipped</name>
+            </param>
+            <param usedby="accept">
+                <type>date_delivered</type>
+                <name>date_delivered</name>
+            </param>
+            <param usedby="shipped cancel refund returned">
+                <type>action</type>
+                <name>action</name>
+            </param>
+            <param usedby="shipped cancel refund returned">
+                <type>sku</type>
+                <name>sku</name>
+            </param>
+            <param usedby="shipped cancel refund returned">
+                <type>quantity</type>
+                <name>quantity</name>
+            </param>
+            <param usedby="shipped cancel refund returned">
+                <type>line</type>
+                <name>line</name>
+            </param>
+            <param usedby="shipped">
+                <type>tracking</type>
+                <name>tracking_number</name>
+            </param>
+            <param usedby="shipped">
+                <type>carrier</type>
+                <name>carrier_name</name>
+            </param>
+        </additional_params>
+    </marketplace>
+    <marketplace name="home24_at">
+       <api>https://wsdl.lengow.com/wsdl/home24_at/#ID_FLUX#/#ORDER_ID#/#ACTION#.xml</api>
+       <apibyline>https://wsdl.lengow.com/wsdl/home24_at/#ID_FLUX#/#ORDER_ID#/#ORDER_LINE_ID#/#QUANTITY#/action_lines.xml</apibyline>
+       <states>
+           <state name="new">
+               <lengow>new</lengow>
+               <actions>
+                   <action type="accept" method="post">processing</action>
+                   <action type="refuse" method="post">canceled</action>
+               </actions>
+           </state>
+           <state name="processing">
+               <lengow>processing</lengow>
+               <actions>
+                   <action type="shipped" method="post">shipped</action>
+                   <action type="refuse" method="post">canceled</action>
+               </actions>
+           </state>
+           <state name="shipped">
+               <lengow>shipped</lengow>
+           </state>
+           <state name="canceled">
+               <lengow>canceled</lengow>
+           </state>
+        </states>
+        <additional_params>
+            <param usedby="accept">
+                <type>date_shipped</type>
+                <name>date_shipped</name>
+            </param>
+            <param usedby="accept">
+                <type>date_delivered</type>
+                <name>date_delivered</name>
+            </param>
+            <param usedby="shipped cancel refund returned">
+                <type>action</type>
+                <name>action</name>
+            </param>
+            <param usedby="shipped cancel refund returned">
+                <type>sku</type>
+                <name>sku</name>
+            </param>
+            <param usedby="shipped cancel refund returned">
+                <type>quantity</type>
+                <name>quantity</name>
+            </param>
+            <param usedby="shipped cancel refund returned">
+                <type>line</type>
+                <name>line</name>
+            </param>
+            <param usedby="shipped">
+                <type>tracking</type>
+                <name>tracking_number</name>
+            </param>
+            <param usedby="shipped">
+                <type>carrier</type>
+                <name>carrier_name</name>
+            </param>
+        </additional_params>
+    </marketplace>
+    <marketplace name="home24_bede">
+       <api>https://wsdl.lengow.com/wsdl/home24_bede/#ID_FLUX#/#ORDER_ID#/#ACTION#.xml</api>
+       <apibyline>https://wsdl.lengow.com/wsdl/home24_bede/#ID_FLUX#/#ORDER_ID#/#ORDER_LINE_ID#/#QUANTITY#/action_lines.xml</apibyline>
+       <states>
+           <state name="new">
+               <lengow>new</lengow>
+               <actions>
+                   <action type="accept" method="post">processing</action>
+                   <action type="refuse" method="post">canceled</action>
+               </actions>
+           </state>
+           <state name="processing">
+               <lengow>processing</lengow>
+               <actions>
+                   <action type="shipped" method="post">shipped</action>
+                   <action type="refuse" method="post">canceled</action>
+               </actions>
+           </state>
+           <state name="shipped">
+               <lengow>shipped</lengow>
+           </state>
+           <state name="canceled">
+               <lengow>canceled</lengow>
+           </state>
+        </states>
+        <additional_params>
+            <param usedby="accept">
+                <type>date_shipped</type>
+                <name>date_shipped</name>
+            </param>
+            <param usedby="accept">
+                <type>date_delivered</type>
+                <name>date_delivered</name>
+            </param>
+            <param usedby="shipped cancel refund returned">
+                <type>action</type>
+                <name>action</name>
+            </param>
+            <param usedby="shipped cancel refund returned">
+                <type>sku</type>
+                <name>sku</name>
+            </param>
+            <param usedby="shipped cancel refund returned">
+                <type>quantity</type>
+                <name>quantity</name>
+            </param>
+            <param usedby="shipped cancel refund returned">
+                <type>line</type>
+                <name>line</name>
+            </param>
+            <param usedby="shipped">
+                <type>tracking</type>
+                <name>tracking_number</name>
+            </param>
+            <param usedby="shipped">
+                <type>carrier</type>
+                <name>carrier_name</name>
+            </param>
+        </additional_params>
+    </marketplace>
+    <marketplace name="home24_befr">
+       <api>https://wsdl.lengow.com/wsdl/home24_befr/#ID_FLUX#/#ORDER_ID#/#ACTION#.xml</api>
+       <apibyline>https://wsdl.lengow.com/wsdl/home24_befr/#ID_FLUX#/#ORDER_ID#/#ORDER_LINE_ID#/#QUANTITY#/action_lines.xml</apibyline>
+       <states>
+           <state name="new">
+               <lengow>new</lengow>
+               <actions>
+                   <action type="accept" method="post">processing</action>
+                   <action type="refuse" method="post">canceled</action>
+               </actions>
+           </state>
+           <state name="processing">
+               <lengow>processing</lengow>
+               <actions>
+                   <action type="shipped" method="post">shipped</action>
+                   <action type="refuse" method="post">canceled</action>
+               </actions>
+           </state>
+           <state name="shipped">
+               <lengow>shipped</lengow>
+           </state>
+           <state name="canceled">
+               <lengow>canceled</lengow>
+           </state>
+        </states>
+        <additional_params>
+            <param usedby="accept">
+                <type>date_shipped</type>
+                <name>date_shipped</name>
+            </param>
+            <param usedby="accept">
+                <type>date_delivered</type>
+                <name>date_delivered</name>
+            </param>
+            <param usedby="shipped cancel refund returned">
+                <type>action</type>
+                <name>action</name>
+            </param>
+            <param usedby="shipped cancel refund returned">
+                <type>sku</type>
+                <name>sku</name>
+            </param>
+            <param usedby="shipped cancel refund returned">
+                <type>quantity</type>
+                <name>quantity</name>
+            </param>
+            <param usedby="shipped cancel refund returned">
+                <type>line</type>
+                <name>line</name>
+            </param>
+            <param usedby="shipped">
+                <type>tracking</type>
+                <name>tracking_number</name>
+            </param>
+            <param usedby="shipped">
+                <type>carrier</type>
+                <name>carrier_name</name>
+            </param>
+        </additional_params>
+    </marketplace>
+    <marketplace name="home24_it">
+       <api>https://wsdl.lengow.com/wsdl/home24_it/#ID_FLUX#/#ORDER_ID#/#ACTION#.xml</api>
+       <apibyline>https://wsdl.lengow.com/wsdl/home24_it/#ID_FLUX#/#ORDER_ID#/#ORDER_LINE_ID#/#QUANTITY#/action_lines.xml</apibyline>
+       <states>
+           <state name="new">
+               <lengow>new</lengow>
+               <actions>
+                   <action type="accept" method="post">processing</action>
+                   <action type="refuse" method="post">canceled</action>
+               </actions>
+           </state>
+           <state name="processing">
+               <lengow>processing</lengow>
+               <actions>
+                   <action type="shipped" method="post">shipped</action>
+                   <action type="refuse" method="post">canceled</action>
+               </actions>
+           </state>
+           <state name="shipped">
+               <lengow>shipped</lengow>
+           </state>
+           <state name="canceled">
+               <lengow>canceled</lengow>
+           </state>
+        </states>
+        <additional_params>
+            <param usedby="accept">
+                <type>date_shipped</type>
+                <name>date_shipped</name>
+            </param>
+            <param usedby="accept">
+                <type>date_delivered</type>
+                <name>date_delivered</name>
+            </param>
+            <param usedby="shipped cancel refund returned">
+                <type>action</type>
+                <name>action</name>
+            </param>
+            <param usedby="shipped cancel refund returned">
+                <type>sku</type>
+                <name>sku</name>
+            </param>
+            <param usedby="shipped cancel refund returned">
+                <type>quantity</type>
+                <name>quantity</name>
+            </param>
+            <param usedby="shipped cancel refund returned">
+                <type>line</type>
+                <name>line</name>
+            </param>
+            <param usedby="shipped">
+                <type>tracking</type>
+                <name>tracking_number</name>
+            </param>
+            <param usedby="shipped">
+                <type>carrier</type>
+                <name>carrier_name</name>
+            </param>
+        </additional_params>
+    </marketplace>
+    <marketplace name="home24_swde">
+       <api>https://wsdl.lengow.com/wsdl/home24_swde/#ID_FLUX#/#ORDER_ID#/#ACTION#.xml</api>
+       <apibyline>https://wsdl.lengow.com/wsdl/home24_swde/#ID_FLUX#/#ORDER_ID#/#ORDER_LINE_ID#/#QUANTITY#/action_lines.xml</apibyline>
+       <states>
+           <state name="new">
+               <lengow>new</lengow>
+               <actions>
+                   <action type="accept" method="post">processing</action>
+                   <action type="refuse" method="post">canceled</action>
+               </actions>
+           </state>
+           <state name="processing">
+               <lengow>processing</lengow>
+               <actions>
+                   <action type="shipped" method="post">shipped</action>
+                   <action type="refuse" method="post">canceled</action>
+               </actions>
+           </state>
+           <state name="shipped">
+               <lengow>shipped</lengow>
+           </state>
+           <state name="canceled">
+               <lengow>canceled</lengow>
+           </state>
+        </states>
+        <additional_params>
+            <param usedby="accept">
+                <type>date_shipped</type>
+                <name>date_shipped</name>
+            </param>
+            <param usedby="accept">
+                <type>date_delivered</type>
+                <name>date_delivered</name>
+            </param>
+            <param usedby="shipped cancel refund returned">
+                <type>action</type>
+                <name>action</name>
+            </param>
+            <param usedby="shipped cancel refund returned">
+                <type>sku</type>
+                <name>sku</name>
+            </param>
+            <param usedby="shipped cancel refund returned">
+                <type>quantity</type>
+                <name>quantity</name>
+            </param>
+            <param usedby="shipped cancel refund returned">
+                <type>line</type>
+                <name>line</name>
+            </param>
+            <param usedby="shipped">
+                <type>tracking</type>
+                <name>tracking_number</name>
+            </param>
+            <param usedby="shipped">
+                <type>carrier</type>
+                <name>carrier_name</name>
+            </param>
+        </additional_params>
+    </marketplace>
+    <marketplace name="home24_swfr">
+       <api>https://wsdl.lengow.com/wsdl/home24_swfr/#ID_FLUX#/#ORDER_ID#/#ACTION#.xml</api>
+       <apibyline>https://wsdl.lengow.com/wsdl/home24_swfr/#ID_FLUX#/#ORDER_ID#/#ORDER_LINE_ID#/#QUANTITY#/action_lines.xml</apibyline>
        <states>
            <state name="new">
                <lengow>new</lengow>
