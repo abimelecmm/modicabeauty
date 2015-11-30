@@ -321,7 +321,9 @@ class Mail extends MailCore
 			$template_vars['{sn_twitter}'] = $emailSettings["email_tw_acc"];
 			$template_vars['{sn_gplus}'] = $emailSettings["email_gp_acc"];
 			$template_vars['{sn_youtube}'] = $emailSettings["email_yt_acc"];
-			$template_vars['{email_addr}'] = $emailSettings["email_addr_text"];			
+//			$template_vars['{email_addr}'] = $emailSettings["email_addr_text"];		
+			$template_vars['{email_addr}'] = "Harrismith Place 8/10<br/>Edinburgh EH7 5PA<br/>United Kingdom";		
+			$template_vars['{social_networks}'] = '<a href="http://www.facebook.com/ModicaBeauty">Facebook</a><br/><a href="http://twitter.com/Modica_Beauty">Twitter</a><br/><a href="Google Plus">http://plus.google.com/u/0/114216189760484036393/posts</a><br/><a href="YouTube">http://www.youtube.com/channel/UCDGMDR_bgrWqWvYCYz70tGg</a><br/><a href="http://instagram.com/modicabeauty">Instagram</a><br/><a href="http://uk.pinterest.com/modicabeauty/">Pinterest</a><br/>';		
 			$template_vars['{emails_path}'] = Tools::getShopDomain(true, true).__PS_BASE_URI__.'themes/alysum/mails/images';
 			if ($emailSettings["email_adv"]) {
 				$template_vars['{adv_img}'] = '<td><a href="{shop_url}{advert_link}" style="width:271px; height:271px; display:block;"><img src="'.Tools::getShopDomain(true, true).__PS_BASE_URI__.'/modules/alysumthemesettings/images/upload/'.$emailSettings["email_image"].'" width="271" height="271" alt="" border="0" /></a></td>';
